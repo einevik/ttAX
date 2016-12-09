@@ -51,7 +51,7 @@
 
     <!-- page on load-->
     <welcome-file-list>
-        <welcome-file>mainPage.jsp</welcome-file>
+        <welcome-file>loginPage.jsp</welcome-file>
     </welcome-file-list>
 
     <!-- Simple Servlet, provide a name, class, description and map to URL /servlet/SimpleServlet -->

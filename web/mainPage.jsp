@@ -11,7 +11,7 @@
 
     <%--<a href="<c:url value="/home"/>">На главную</a>--%>
     <%--<a href="<c:url value="/registration"/>">зарегестрироваться</a>--%>
-    <a href="registrPage.jsp">Зарегестрироваться</a>
+    <a href="registrPage.jsp">Зарегестрироваться</a> or <a href="loginPage.jsp">войти</a>
     <br>
 
   </body>
