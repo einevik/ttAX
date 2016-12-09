@@ -4,9 +4,9 @@
 <head>
     <title>Регестрация</title>
 </head>
-    <body>
         <h2>Авторизация</h2>
-        <a href="mainPage.jsp">На гланвую</a> or <a href="registrPage.jsp">зарегестрироваться</a>
+        <a href="registrPage.jsp">Зарегестрироваться</a> <a href="mainPage.jsp">на гланвую</a>
+
         <table>
             <tr> <td>Login:</td> <td><input type="text" name="Login"></td></tr>
             <tr><td>Password:</td> <td><input type="password" name="Password"></td></tr>
