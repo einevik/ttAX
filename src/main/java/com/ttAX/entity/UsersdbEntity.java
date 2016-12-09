@@ -2,6 +2,7 @@ package com.ttAX.entity;
 
 import javax.persistence.*;
 
+//commit
 @Entity
 @Table(name = "usersdb", schema = "public", catalog = "ttAXDB")
 public class UsersdbEntity {
