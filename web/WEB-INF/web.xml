@@ -54,4 +54,15 @@
         <welcome-file>mainPage.jsp</welcome-file>
     </welcome-file-list>
 
+    <!-- Simple Servlet, provide a name, class, description and map to URL /servlet/SimpleServlet -->
+    <!--<servlet>-->
+        <!--<servlet-name>Simple</servlet-name>-->
+        <!--<servlet-class>SimpleServlet</servlet-class>-->
+        <!--<description>This is a simple Hello World servlet</description>-->
+    <!--</servlet>-->
+    <!--<servlet-mapping>-->
+        <!--<servlet-name>Simple</servlet-name>-->
+        <!--<url-pattern>/servlet/SimpleServlet</url-pattern>-->
+    <!--</servlet-mapping>-->
+
 </web-app>

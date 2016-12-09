@@ -1,17 +1,19 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: mozhaev.vv
-  Date: 09.12.2016
-  Time: 11:21
-  To change this template use File | Settings | File Templates.
---%>
+<%@ taglib prefix="c" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>$Title$</title>
-  </head>
+
+<head>
+  <title>Главная страница</title>
+</head>
   <body>
-  $END$
+  <h2>Главная страница</h2>
+
+    <%--<a href="<c:url value="/home"/>">На главную</a>--%>
+    <%--<a href="<c:url value="/registration"/>">зарегестрироваться</a>--%>
+    <a href="registrPage.jsp">Зарегестрироваться</a>
+    <br>
+
   </body>
+
 </html>
