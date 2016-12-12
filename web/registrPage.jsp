@@ -5,9 +5,11 @@
     <title>Регестрация</title>
 </head>
     <body>
+    <div style="border: 1px solid #ccc;padding:5px;margin-bottom:20px;">
+        <a href="mainPage.jsp">На гланвую</a> |
+        <a href="loginPage.jsp">Войти</a>
+    </div>
         <h2>Регестрация нового пользователя</h2>
-        <a href="mainPage.jsp">На гланвую</a>
-
             <table>
                 <tr> <td>Фамилия:</td> <td><input type="text" name="Фамилия"></td></tr>
                 <tr><td>Имя:</td> <td><input type="password" name="Имя"></td></tr>

@@ -7,13 +7,14 @@
   <title>Главная страница</title>
 </head>
   <body>
-  <h2>Главная страница</h2>
+      <div style="border: 1px solid #ccc;padding:5px;margin-bottom:20px;">
+        <a href="mainPage.jsp">На гланвую</a> |
+        <a href="registrPage.jsp">Зарегестрироваться</a> |
+        <a href="loginPage.jsp">Войти</a> |
+        <a href="adminPage.jsp">Управление пользователями</a>
+      </div>
 
-    <%--<a href="<c:url value="/home"/>">На главную</a>--%>
-    <%--<a href="<c:url value="/registration"/>">зарегестрироваться</a>--%>
-    <a href="registrPage.jsp">Зарегестрироваться</a> or <a href="loginPage.jsp">войти</a>
-    <br>
-
+    <h2>Главная страница</h2>
   </body>
 
 </html>
