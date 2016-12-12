@@ -8,7 +8,10 @@
     <!-- Создает Spring Container, доступный всем сервлетам и фильтрам -->
     <context-param>
         <param-name>contextConfigLocation</param-name>
-        <param-value>/WEB-INF/applicationContext.xml</param-value>
+        <param-value>
+            /WEB-INF/applicationContext.xml
+            /WEB-INF/security-config.xml
+        </param-value>
     </context-param>
     <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
@@ -54,15 +57,15 @@
         <welcome-file>loginPage.jsp</welcome-file>
     </welcome-file-list>
 
-    <!-- Simple Servlet, provide a name, class, description and map to URL /servlet/SimpleServlet -->
-    <!--<servlet>-->
-        <!--<servlet-name>Simple</servlet-name>-->
-        <!--<servlet-class>SimpleServlet</servlet-class>-->
-        <!--<description>This is a simple Hello World servlet</description>-->
-    <!--</servlet>-->
-    <!--<servlet-mapping>-->
-        <!--<servlet-name>Simple</servlet-name>-->
-        <!--<url-pattern>/servlet/SimpleServlet</url-pattern>-->
-    <!--</servlet-mapping>-->
+    <!--Spring security-->
+    <!-- Need to enable xml config Spring Security -->
+    <filter>
+        <filter-name>springSecurityFilterChain</filter-name>
+        <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>springSecurityFilterChain</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
 
 </web-app>
