@@ -24,4 +24,9 @@ public class MainController {
         return rPage;
     }
 
+    @RequestMapping(value = "/admin")
+    public String openAdminPage() {
+        return aPage;
+    }
+
 }
