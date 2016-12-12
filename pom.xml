@@ -126,6 +126,14 @@
             <version>1.0</version>
         </dependency>
 
+        <!--Common Java Annotations.
+        For this app it includes security annotation: @RolesAllowed; @DenyAll, @RunAs, @PermitAll-->
+        <dependency>
+            <groupId>javax.annotation</groupId>
+            <artifactId>jsr250-api</artifactId>
+            <version>1.0</version>
+        </dependency>
+
     </dependencies>
 
 </project>

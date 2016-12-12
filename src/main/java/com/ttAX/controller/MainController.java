@@ -29,4 +29,9 @@ public class MainController {
         return aPage;
     }
 
+//    @RequestMapping(value = { "/"}, method = RequestMethod.GET)
+//    public ModelAndView welcomePage() {
+//        return new ModelAndView(lPage);
+//    }
+
 }
