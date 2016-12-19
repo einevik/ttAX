@@ -53,9 +53,9 @@
     </filter-mapping>
 
     <!-- page on load-->
-    <welcome-file-list>
-        <welcome-file>loginPage.jsp</welcome-file>
-    </welcome-file-list>
+    <!--<welcome-file-list>-->
+        <!--<welcome-file>loginPage.jsp</welcome-file>-->
+    <!--</welcome-file-list>-->
 
     <!--Spring security-->
     <!-- Need to enable xml config Spring Security -->
