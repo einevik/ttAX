@@ -16,7 +16,7 @@
 
     <dependencies>
 
-        <!--Springframework-->
+        <!--Springframework START-->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-core</artifactId>
@@ -32,41 +32,40 @@
             <artifactId>spring-webmvc</artifactId>
             <version>${spring-framework-version}</version>
         </dependency>
+        <!--Springframework END-->
 
-        <!--JSF (include "jsf-api" and "jsf-impl")-->
+        <!--springframework security START-->
         <dependency>
-            <groupId>org.glassfish</groupId>
-            <artifactId>javax.faces</artifactId>
-            <version>2.2.14</version>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-web</artifactId>
+            <version>${spring-security-version}</version>
         </dependency>
         <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>javax.servlet-api</artifactId>
-            <version>3.1.0</version>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-config</artifactId>
+            <version>${spring-security-version}</version>
         </dependency>
-
-        <!--driver for connection to postgreSQL database -->
         <dependency>
-            <groupId>org.postgresql</groupId>
-            <artifactId>postgresql</artifactId>
-            <version>9.4.1212</version>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-taglibs</artifactId>
+            <version>${spring-security-version}</version>
+            <scope>runtime</scope>
         </dependency>
+        <!--springframework security END-->
 
-        <!-- Hibernate -->
+        <!-- Hibernate START-->
         <!-- to start need only this -->
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-core</artifactId>
             <version>${hibernate-version}</version>
         </dependency>
-
         <!-- for JPA, use hibernate-entitymanager instead of hibernate-core -->
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-entitymanager</artifactId>
             <version>${hibernate-version}</version>
         </dependency>
-
         <!-- optional -->
         <dependency>
             <groupId>org.hibernate</groupId>
@@ -98,32 +97,25 @@
             <artifactId>hibernate-ehcache</artifactId>
             <version>${hibernate-version}</version>
         </dependency>
-        <!--END Hibernate -->
+        <!--Hibernate END-->
 
-        <!--springframework security-->
+        <!--JSF (include "jsf-api" and "jsf-impl")-->
         <dependency>
-            <groupId>org.springframework.security</groupId>
-            <artifactId>spring-security-web</artifactId>
-            <version>${spring-security-version}</version>
+            <groupId>org.glassfish</groupId>
+            <artifactId>javax.faces</artifactId>
+            <version>2.2.14</version>
         </dependency>
         <dependency>
-            <groupId>org.springframework.security</groupId>
-            <artifactId>spring-security-config</artifactId>
-            <version>${spring-security-version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.security</groupId>
-            <artifactId>spring-security-taglibs</artifactId>
-            <version>${spring-security-version}</version>
-            <scope>runtime</scope>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>3.1.0</version>
         </dependency>
 
-        <!--Common Java Annotations.
-        For this app it includes security annotation: @RolesAllowed; @DenyAll, @RunAs, @PermitAll-->
+        <!--driver for connection to postgreSQL database -->
         <dependency>
-            <groupId>javax.annotation</groupId>
-            <artifactId>jsr250-api</artifactId>
-            <version>1.0</version>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>9.4.1212</version>
         </dependency>
 
         <!--Common Java Annotations.
@@ -133,6 +125,7 @@
             <artifactId>jsr250-api</artifactId>
             <version>1.0</version>
         </dependency>
+
 
     </dependencies>
 
