@@ -99,6 +99,13 @@
         </dependency>
         <!--Hibernate END-->
 
+        <!--driver for connection to postgreSQL database -->
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>9.4.1212</version>
+        </dependency>
+
         <!--JSF (include "jsf-api" and "jsf-impl")-->
         <dependency>
             <groupId>org.glassfish</groupId>
@@ -109,13 +116,19 @@
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>
             <version>3.1.0</version>
+            <scope>provided</scope>
         </dependency>
 
-        <!--driver for connection to postgreSQL database -->
         <dependency>
-            <groupId>org.postgresql</groupId>
-            <artifactId>postgresql</artifactId>
-            <version>9.4.1212</version>
+            <groupId>javax.servlet</groupId>
+            <artifactId>jstl</artifactId>
+            <version>1.2</version>
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet.jsp</groupId>
+            <artifactId>jsp-api</artifactId>
+            <version>2.2</version>
+            <scope>provided</scope>
         </dependency>
 
         <!--Common Java Annotations.
@@ -126,7 +139,8 @@
             <version>1.0</version>
         </dependency>
 
-
     </dependencies>
+
+
 
 </project>

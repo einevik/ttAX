@@ -1,37 +1,67 @@
 package com.ttAX.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.ModelAndView;
+import java.security.Principal;
 
 @Controller
 public class MainController {
 
-    private static final String mPage = "mainPage";
-    private static final String rPage = "registrPage";
-    private static final String lPage = "loginPage";
-    private static final String aPage = "adminPage";
-
-    @RequestMapping(value = "/home")
-    public String openMainPage() {
-        return mPage;
+    @RequestMapping(value = { "/", "/welcome" }, method = RequestMethod.GET)
+    public String welcomePage(Model model) {
+        model.addAttribute("title", "Welcome");
+        model.addAttribute("message", "This is welcome page!");
+        return "welcomePage";
     }
 
-    @RequestMapping(value = "/registration")
-    public String openRegistrPage() {
-        return rPage;
+    @RequestMapping(value = "/admin", method = RequestMethod.GET)
+    public String adminPage(Model model) {
+        return "adminPage";
     }
 
-    @RequestMapping(value = "/admin")
-    public String openAdminPage() {
-        return aPage;
+    @RequestMapping(value = "/login", method = RequestMethod.GET)
+    public String loginPage(Model model ) {
+
+        return "loginPage";
     }
 
-//    @RequestMapping(value = { "/"}, method = RequestMethod.GET)
-//    public ModelAndView welcomePage() {
-//        return new ModelAndView(lPage);
-//    }
+    @RequestMapping(value = "/logoutSuccessful", method = RequestMethod.GET)
+    public String logoutSuccessfulPage(Model model) {
+        model.addAttribute("title", "Logout");
+        return "logoutSuccessfulPage";
+    }
+
+    @RequestMapping(value = "/userInfo", method = RequestMethod.GET)
+    public String userInfo(Model model, Principal principal) {
+
+        // After user login successfully.
+        String userName = principal.getName();
+
+//        System.out.println("User Name: "+ userName);
+
+        return "userInfoPage";
+    }
+
+    @RequestMapping(value = "/register", method = RequestMethod.GET)
+    public String register(Model model, Principal principal) {
+
+
+        return "registerPage";
+    }
+
+    @RequestMapping(value = "/403", method = RequestMethod.GET)
+    public String accessDenied(Model model, Principal principal) {
+
+        if (principal != null) {
+            model.addAttribute("message", "Hi " + principal.getName()
+                    + "<br> You do not have permission to access this page!");
+        } else {
+            model.addAttribute("msg",
+                    "You do not have permission to access this page!");
+        }
+        return "403Page";
+    }
 
 }
