@@ -38,8 +38,8 @@
         <!-- authentication from database -->
         <authentication-provider>
             <jdbc-user-service data-source-ref="myDataSource"
-                               users-by-username-query="select username, password, enabled from users where username=?"
-                               authorities-by-username-query="Select username, concat('ROLE_',user_role) user_role from user_roles where username=?" />
+                               users-by-username-query="select login, password, enabled  from usersdb where login=?"
+                               authorities-by-username-query="select login, role from usersdb where login=?" role-prefix="ROLE_"/>
         </authentication-provider>
 
     </authentication-manager>
