@@ -14,6 +14,6 @@
 
 <h3>Welcome : ${pageContext.request.userPrincipal.name}</h3>
 
-<b>This is protected page!</b>
+<%--<b>This is protected page!</b>--%>
 </body>
 </html>

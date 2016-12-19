@@ -8,7 +8,6 @@
 
 
 <%--<h2>Страница авторизации</h2>--%>
-
 <!-- /login?error=true -->
 <c:if test="${param.error == 'true'}">
     <div style="color:red;margin:10px 0px;">
@@ -19,7 +18,7 @@
     </div>
 </c:if>
 
-<h3>Введите логин и пароль:</h3>
+<%--<h3>Введите логин и пароль:</h3>--%>
 
     <form name='f' action="${pageContext.request.contextPath}/spring_security_check" method='POST'>
         <table>
@@ -36,6 +35,7 @@
             <td><input name="submitIn" type="submit" value="Войти" /> или</td>
             <td><input name="submitUp" type="submit" value="Зарегистрироваться" formaction="register" formmethod="get" /></td>
         </tr>
-</form>
+    </form>
+
 </body>
 </html>

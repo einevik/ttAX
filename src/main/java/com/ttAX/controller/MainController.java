@@ -55,7 +55,7 @@ public class MainController {
     public String accessDenied(Model model, Principal principal) {
 
         if (principal != null) {
-            model.addAttribute("message", "Hi " + principal.getName()
+            model.addAttribute("message", "Текущий пользователь: " + principal.getName()
                     + "<br> У вас нету доступа к этой странице!");
         } else {
             model.addAttribute("msg",

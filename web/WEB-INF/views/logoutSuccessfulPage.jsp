@@ -6,6 +6,6 @@
 <body>
 <jsp:include page="menu.jsp" />
 
-<h1>Logout Successful!</h1>
+<h2>Успешный выход!</h2>
 </body>
 </html>
