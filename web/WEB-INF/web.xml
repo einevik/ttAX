@@ -10,7 +10,8 @@
         <param-name>contextConfigLocation</param-name>
         <param-value>
             /WEB-INF/applicationContext.xml
-            <!--/WEB-INF/security-config.xml-->
+            /WEB-INF/security-config.xml
+            /WEB-INF/data-source-cfg.xml
         </param-value>
     </context-param>
     <listener>
@@ -52,20 +53,15 @@
         <url-pattern>/*</url-pattern>
     </filter-mapping>
 
-    <!-- page on load-->
-    <!--<welcome-file-list>-->
-        <!--<welcome-file>loginPage.jsp</welcome-file>-->
-    <!--</welcome-file-list>-->
+    <!-- Spring Security Filter -->
+    <filter>
+        <filter-name>springSecurityFilterChain</filter-name>
+        <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+    </filter>
 
-    <!--Spring security-->
-    <!-- Need to enable xml config Spring Security -->
-    <!--<filter>-->
-        <!--<filter-name>springSecurityFilterChain</filter-name>-->
-        <!--<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>-->
-    <!--</filter>-->
-    <!--<filter-mapping>-->
-        <!--<filter-name>springSecurityFilterChain</filter-name>-->
-        <!--<url-pattern>/*</url-pattern>-->
-    <!--</filter-mapping>-->
+    <filter-mapping>
+        <filter-name>springSecurityFilterChain</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
 
 </web-app>
