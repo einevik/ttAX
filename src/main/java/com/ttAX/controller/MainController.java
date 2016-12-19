@@ -11,8 +11,8 @@ public class MainController {
 
     @RequestMapping(value = { "/", "/welcome" }, method = RequestMethod.GET)
     public String welcomePage(Model model) {
-        model.addAttribute("title", "Welcome");
-        model.addAttribute("message", "This is welcome page!");
+        model.addAttribute("title", "Главная");
+//        model.addAttribute("message", "Главная страница!");
         return "welcomePage";
     }
 
@@ -56,10 +56,10 @@ public class MainController {
 
         if (principal != null) {
             model.addAttribute("message", "Hi " + principal.getName()
-                    + "<br> You do not have permission to access this page!");
+                    + "<br> У вас нету доступа к этой странице!");
         } else {
             model.addAttribute("msg",
-                    "You do not have permission to access this page!");
+                    "У вас нету доступа к этой странице!");
         }
         return "403Page";
     }

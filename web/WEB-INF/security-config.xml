@@ -34,13 +34,6 @@
     </http>
 
     <authentication-manager>
-        <!--<authentication-provider>-->
-        <!--<user-service>-->
-        <!--<user name="user1" password="12345" authorities="user" />-->
-        <!--<user name="admin1" password="12345" authorities="user, admin" />-->
-        <!--</user-service>-->
-        <!--</authentication-provider>-->
-
 
         <!-- authentication from database -->
         <authentication-provider>
