@@ -1,9 +1,10 @@
-package com.ttAX.dao;
+package com.ttAX.service;
 
 import java.util.List;
+
 import com.ttAX.model.Users;
 
-public interface UserDAO {
+public interface PersonService {
 
     public void addPerson(Users users);
     public void updatePerson(Users users);

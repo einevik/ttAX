@@ -1,10 +1,12 @@
-package com.ttAX.entity;
+package com.ttAX.model;
 
-import javax.persistence.*;
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 
 @Entity
-@Table(name = "users", schema = "public", catalog = "ttAXDB")
-public class UsersEntity {
+public class Users {
     private int id;
     private String surname;
     private String firstname;
@@ -110,17 +112,17 @@ public class UsersEntity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        UsersEntity that = (UsersEntity) o;
+        Users users = (Users) o;
 
-        if (id != that.id) return false;
-        if (enabled != that.enabled) return false;
-        if (surname != null ? !surname.equals(that.surname) : that.surname != null) return false;
-        if (firstname != null ? !firstname.equals(that.firstname) : that.firstname != null) return false;
-        if (lastname != null ? !lastname.equals(that.lastname) : that.lastname != null) return false;
-        if (login != null ? !login.equals(that.login) : that.login != null) return false;
-        if (password != null ? !password.equals(that.password) : that.password != null) return false;
-        if (email != null ? !email.equals(that.email) : that.email != null) return false;
-        if (role != null ? !role.equals(that.role) : that.role != null) return false;
+        if (id != users.id) return false;
+        if (enabled != users.enabled) return false;
+        if (surname != null ? !surname.equals(users.surname) : users.surname != null) return false;
+        if (firstname != null ? !firstname.equals(users.firstname) : users.firstname != null) return false;
+        if (lastname != null ? !lastname.equals(users.lastname) : users.lastname != null) return false;
+        if (login != null ? !login.equals(users.login) : users.login != null) return false;
+        if (password != null ? !password.equals(users.password) : users.password != null) return false;
+        if (email != null ? !email.equals(users.email) : users.email != null) return false;
+        if (role != null ? !role.equals(users.role) : users.role != null) return false;
 
         return true;
     }

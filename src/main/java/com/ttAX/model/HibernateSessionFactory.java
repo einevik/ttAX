@@ -1,4 +1,4 @@
-package com.ttAX.entity;
+package com.ttAX.model;
 
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.MetadataSources;
