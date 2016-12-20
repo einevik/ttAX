@@ -11,10 +11,8 @@
 <!-- /login?error=true -->
 <c:if test="${param.error == 'true'}">
     <div style="color:red;margin:10px 0px;">
-
         Неправильный логин или пароль!!!<br />
         <%--Reason :  ${sessionScope["SPRING_SECURITY_LAST_EXCEPTION"].message}--%>
-
     </div>
 </c:if>
 
@@ -32,7 +30,7 @@
             </tr>
         </table>
         <tr>
-            <td><input name="submitIn" type="submit" value="Войти" /> или</td>
+            <td><input name="submitIn" type="submit" value="Войти"/> или</td>
             <td><input name="submitUp" type="submit" value="Зарегистрироваться" formaction="register" formmethod="get" /></td>
         </tr>
     </form>

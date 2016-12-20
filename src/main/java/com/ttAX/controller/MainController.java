@@ -9,21 +9,20 @@ import java.security.Principal;
 @Controller
 public class MainController {
 
-    @RequestMapping(value = { "/", "/welcome" }, method = RequestMethod.GET)
+    @RequestMapping(value = { "/home" }, method = RequestMethod.GET)
     public String welcomePage(Model model) {
         model.addAttribute("title", "Главная");
 //        model.addAttribute("message", "Главная страница!");
-        return "welcomePage";
+        return "homePage";
     }
 
-    @RequestMapping(value = "/admin", method = RequestMethod.GET)
+    @RequestMapping(value = {"/admin"}, method = RequestMethod.GET)
     public String adminPage(Model model) {
         return "adminPage";
     }
 
-    @RequestMapping(value = "/login", method = RequestMethod.GET)
+    @RequestMapping(value = {"/" , "/login"}, method = RequestMethod.GET)
     public String loginPage(Model model ) {
-
         return "loginPage";
     }
 
@@ -35,19 +34,13 @@ public class MainController {
 
     @RequestMapping(value = "/userInfo", method = RequestMethod.GET)
     public String userInfo(Model model, Principal principal) {
-
         // After user login successfully.
         String userName = principal.getName();
-
-//        System.out.println("User Name: "+ userName);
-
         return "userInfoPage";
     }
 
     @RequestMapping(value = "/register", method = RequestMethod.GET)
     public String register(Model model, Principal principal) {
-
-
         return "registerPage";
     }
 
@@ -55,11 +48,9 @@ public class MainController {
     public String accessDenied(Model model, Principal principal) {
 
         if (principal != null) {
-            model.addAttribute("message", "Текущий пользователь: " + principal.getName()
-                    + "<br> У вас нету доступа к этой странице!");
+            model.addAttribute("message", "Текущий пользователь: " + principal.getName() + "<br> У вас нету доступа к этой странице!");
         } else {
-            model.addAttribute("msg",
-                    "У вас нету доступа к этой странице!");
+            model.addAttribute("msg", "У вас нету доступа к этой странице!");
         }
         return "403Page";
     }

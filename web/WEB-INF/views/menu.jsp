@@ -1,10 +1,11 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
 <%@ page contentType="text/html;charset=UTF-8" %>
 
 <div style="border: 1px solid #ccc;padding:5px;margin-bottom:20px;">
 
     &nbsp;
-    <a href="${pageContext.request.contextPath}/welcome">Главная</a>
+    <a href="${pageContext.request.contextPath}/home">Главная</a>
 
     <c:if test="${pageContext.request.userPrincipal.name == null}">
 
@@ -20,19 +21,12 @@
 
     </c:if>
 
-    <c:if test="${pageContext.request.userPrincipal.name != null}">
-
-        &nbsp; | &nbsp;
-        <a href="${pageContext.request.contextPath}/userInfo">Инфо</a>
-
-    </c:if>
-
-    <c:if test="${pageContext.request.userPrincipal.name != null}">
+    <security:authorize access="hasAnyRole('admin')">
 
         &nbsp; | &nbsp;
         <a href="${pageContext.request.contextPath}/admin">Управление пользователями</a>
 
-    </c:if>
+    </security:authorize>
 
     <c:if test="${pageContext.request.userPrincipal.name != null}">
 
