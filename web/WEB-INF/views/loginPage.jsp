@@ -3,6 +3,7 @@
 
 <html>
 <head><title>Авторизация</title></head>
+
 <body>
 <jsp:include page="menu.jsp" />
 
@@ -30,8 +31,8 @@
             </tr>
         </table>
         <tr>
-            <td><input name="submitIn" type="submit" value="Войти"/> или</td>
-            <td><input name="submitUp" type="submit" value="Зарегистрироваться" formaction="register" formmethod="get" /></td>
+            <td><input name="submitIn" type="submit" value="Войти"/></td>
+            <%--<td> или <input name="submitUp" type="submit" value="Зарегистрироваться" formaction="register" formmethod="get" /></td>--%>
         </tr>
     </form>
 

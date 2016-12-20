@@ -5,7 +5,6 @@
 
 <head><title>Регистрация</title></head>
 
-
     <body>
     <jsp:include page="menu.jsp" />
         <c:if test="${param.error == 'true'}">
