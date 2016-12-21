@@ -28,14 +28,21 @@ public class UserDAOImpl implements UserDAO {
     @Override
     public void addUser (Users users) {
         Session session = HibernateSessionFactory.getSessionFactory().openSession();
-        session.persist(users);
+        session.beginTransaction();
+//        session.persist(users);
+        session.save(users);
+        session.getTransaction().commit();
+        session.close();
         logger.info("Users saved successfully, Users Details="+users);
     }
 
     @Override
     public void updateUser(Users users) {
         Session session = HibernateSessionFactory.getSessionFactory().openSession();
+        session.beginTransaction();
         session.update(users);
+        session.getTransaction().commit();
+        session.close();
         logger.info("Users updated successfully, Users Details="+users);
     }
 
@@ -63,7 +70,10 @@ public class UserDAOImpl implements UserDAO {
         Session session = HibernateSessionFactory.getSessionFactory().openSession();
         Users users = (Users) session.load(Users.class, new Integer(id));
         if(null != users){
+            session.beginTransaction();
             session.delete(users);
+            session.getTransaction().commit();
+            session.close();
         }
         logger.info("Users deleted successfully, Users details="+users);
     }

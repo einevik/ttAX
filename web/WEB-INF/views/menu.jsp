@@ -10,7 +10,7 @@
     <c:if test="${pageContext.request.userPrincipal.name == null}">
 
         &nbsp; | &nbsp;
-        <a href="${pageContext.request.contextPath}/userInfo">Войти</a>
+        <a href="${pageContext.request.contextPath}/login">Войти</a>
 
     </c:if>
 
@@ -24,7 +24,7 @@
     <security:authorize access="hasAnyRole('admin')">
 
         &nbsp; | &nbsp;
-        <a href="${pageContext.request.contextPath}/admin">Управление пользователями</a>
+        <a href="${pageContext.request.contextPath}/users">Пользователи</a>
 
     </security:authorize>
 
@@ -34,8 +34,5 @@
         <a href="${pageContext.request.contextPath}/logout">Выйти</a>
 
     </c:if>
-
-    &nbsp; | &nbsp;
-    <a href="${pageContext.request.contextPath}/users">test</a>
 
 </div>

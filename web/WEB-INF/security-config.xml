@@ -14,12 +14,14 @@
         <intercept-url pattern="/home" access="permitAll()" />
         <intercept-url pattern="/login" access="permitAll()" />
         <intercept-url pattern="/logout" access="permitAll()" />
-        <intercept-url pattern="/users" access="permitAll()" />
 
 
         <intercept-url pattern="/userInfo" access="hasAnyRole('user', 'admin')" />
         <intercept-url pattern="/admin" access="hasRole('admin')" />
         <intercept-url pattern="/other/**" access="isAuthenticated()" />
+        <intercept-url pattern="/users" access="hasRole('admin')" />
+        <intercept-url pattern="/edit" access="hasRole('admin')" />
+        <intercept-url pattern="/edit/*" access="hasRole('admin')" />
 
         <access-denied-handler error-page="/403" />
 

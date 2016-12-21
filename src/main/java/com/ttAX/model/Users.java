@@ -1,9 +1,8 @@
 package com.ttAX.model;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import org.hibernate.annotations.GenericGenerator;
+
+import javax.persistence.*;
 
 @Entity
 public class Users {
@@ -19,6 +18,8 @@ public class Users {
 
     @Id
     @Column(name = "id", nullable = false)
+    @GenericGenerator(name="generator", strategy="increment")
+    @GeneratedValue(generator="generator")
     public int getId() {
         return id;
     }

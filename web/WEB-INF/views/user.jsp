@@ -13,6 +13,7 @@
     </style>
 </head>
 <body>
+<jsp:include page="menu.jsp"/>
 <h1>
     Add a User
 </h1>
@@ -73,17 +74,27 @@
 <c:if test="${!empty listUsers}">
     <table class="tg">
         <tr>
-            <th width="80">User ID</th>
-            <th width="120">User First Name</th>
-            <th width="120">User Email</th>
+            <th width="80">ID</th>
+            <th width="120">Surname</th>
+            <th width="120">First Name</th>
+            <th width="120">Last Name</th>
+            <th width="100">Login</th>
+            <th width="100">Password</th>
+            <th width="120">Email</th>
+            <th width="60">Role</th>
             <th width="60">Edit</th>
             <th width="60">Delete</th>
         </tr>
         <c:forEach items="${listUsers}" var="user">
             <tr>
                 <td>${user.id}</td>
+                <td>${user.surname}</td>
                 <td>${user.firstname}</td>
+                <td>${user.lastname}</td>
+                <td>${user.login}</td>
+                <td>${user.password}</td>
                 <td>${user.email}</td>
+                <td>${user.role}</td>
                 <td><a href="<c:url value='/edit/${user.id}' />" >Edit</a></td>
                 <td><a href="<c:url value='/remove/${user.id}' />" >Delete</a></td>
             </tr>

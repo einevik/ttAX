@@ -18,7 +18,7 @@
     </c:if>
 
     <security:authorize access="hasAnyRole('admin')">
-        <a href="${pageContext.request.contextPath}/admin">Управление пользователями</a>
+        <a href="${pageContext.request.contextPath}/users">Управление пользователями</a>
     </security:authorize>
 
 </body>
