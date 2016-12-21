@@ -15,7 +15,7 @@
         для статических ресурсов -->
     <mvc:resources mapping="/resources/**" location="/resources/" />
 
-    <context:component-scan base-package="com.ttAX.controller" />
+    <context:component-scan base-package="com.ttAX" />
 
     <!-- Определяет какое представление рендерить на основании вычеслений в @Controller
        (return ModelAndView) -->
@@ -24,5 +24,10 @@
         <property name="prefix" value="/WEB-INF/views/" />
         <property name="suffix" value=".jsp" />
     </bean>
+
+    <bean id="userService" class="com.ttAX.service.UserServiceImpl">
+        <property name="userDAO" ref="userDAO"></property>
+    </bean>
+    <bean id="userDAO" class="com.ttAX.dao.UserDAOImpl"></bean>
 
 </beans>

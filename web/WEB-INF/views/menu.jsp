@@ -35,4 +35,7 @@
 
     </c:if>
 
+    &nbsp; | &nbsp;
+    <a href="${pageContext.request.contextPath}/users">test</a>
+
 </div>

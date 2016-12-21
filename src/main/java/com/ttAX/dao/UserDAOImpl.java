@@ -9,36 +9,40 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.ttAX.model.Users;
+import com.ttAX.model.HibernateSessionFactory;
 
 @Repository
 public class UserDAOImpl implements UserDAO {
 
     private static final Logger logger = LoggerFactory.getLogger(UserDAOImpl.class);
 
-    private SessionFactory sessionFactory;
+//    private SessionFactory sessionFactory;
+//    private HibernateSessionFactory hSF = new HibernateSessionFactory();
 
-    public void setSessionFactory(SessionFactory sf){
-        this.sessionFactory = sf;
-    }
+
+
+//    public void setSessionFactory(SessionFactory sessionFactory){
+//        this.sessionFactory = hSF.getSessionFactory();
+//    }
 
     @Override
-    public void addPerson(Users users) {
-        Session session = this.sessionFactory.getCurrentSession();
+    public void addUser (Users users) {
+        Session session = HibernateSessionFactory.getSessionFactory().openSession();
         session.persist(users);
         logger.info("Users saved successfully, Users Details="+users);
     }
 
     @Override
-    public void updatePerson(Users users) {
-        Session session = this.sessionFactory.getCurrentSession();
+    public void updateUser(Users users) {
+        Session session = HibernateSessionFactory.getSessionFactory().openSession();
         session.update(users);
         logger.info("Users updated successfully, Users Details="+users);
     }
 
     @SuppressWarnings("unchecked")
     @Override
-    public List<Users> listPersons() {
-        Session session = this.sessionFactory.getCurrentSession();
+    public List<Users> listUsers() {
+        Session session = HibernateSessionFactory.getSessionFactory().openSession();
         List<Users> UsersList = session.createQuery("from Users").list();
         for(Users users: UsersList){
             logger.info("Users List::"+users);
@@ -47,17 +51,17 @@ public class UserDAOImpl implements UserDAO {
     }
 
     @Override
-    public Users getPersonById(int id) {
-        Session session = this.sessionFactory.getCurrentSession();
+    public Users getUserById(int id) {
+        Session session = HibernateSessionFactory.getSessionFactory().openSession();
         Users users= (Users) session.load(Users.class, new Integer(id));
         logger.info("Users loaded successfully, Users details="+users);
         return users;
     }
 
     @Override
-    public void removePerson(int id) {
-        Session session = this.sessionFactory.getCurrentSession();
-        Users users= (Users) session.load(Users.class, new Integer(id));
+    public void removeUser(int id) {
+        Session session = HibernateSessionFactory.getSessionFactory().openSession();
+        Users users = (Users) session.load(Users.class, new Integer(id));
         if(null != users){
             session.delete(users);
         }
