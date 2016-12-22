@@ -19,7 +19,7 @@
     <table>
         <c:if test="${!empty user.login}">
             <tr>
-                <td> <form:label path="id"><spring:message text="ID"/> </form:label> </td>
+                <td> <form:label path="id"> <spring:message text="ID"/> </form:label> </td>
                 <td> <form:input path="id" readonly="true" size="8"  disabled="true" /> </td>
             </tr>
         </c:if>

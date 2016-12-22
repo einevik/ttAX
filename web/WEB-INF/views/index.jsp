@@ -1,3 +1,4 @@
+<%@ page contentType="text/html;charset=UTF-8" %>
 <!DOCTYPE html>
 <link href="/resources/style.css" rel="stylesheet" type="text/css">
 <html>
@@ -12,12 +13,18 @@
 
     <!-- Modal content -->
     <div class="modal-content">
+        <h3>Добавить нового пользователя</h3>
         <span class="close">&times;</span>
-        <p>Some text in the Modal..</p>
-        <p>Some text in the Modal..</p>
-        <p>Some text in the Modal..</p>
-        <p>Some text in the Modal..</p>
-        <p>...</p>
+        <table>
+            <tr>
+                <td>Логин:</td>
+                <td><input type='text' name='username' value=''></td>
+            </tr>
+            <tr>
+                <td>Пароль:</td>
+                <td><input type='password' name='password' /></td>
+            </tr>
+        </table>
     </div>
 
 </div>
