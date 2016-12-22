@@ -38,9 +38,7 @@ public class UserController {
         }else{
             this.userService.updateUser(u);
         }
-
         return "redirect:/users";
-
     }
 
     @RequestMapping("/remove/{id}")
