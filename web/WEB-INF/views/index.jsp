@@ -2,7 +2,7 @@
 <link href="/resources/style.css" rel="stylesheet" type="text/css">
 <html>
 <body>
-
+<jsp:include page="menu.jsp"/>
 <h2>Modal Example</h2>
 <!-- Trigger/Open The Modal -->
 <button id="myBtn">Open Modal</button>
