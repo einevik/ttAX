@@ -16,6 +16,12 @@ public class MainController {
         return "homePage";
     }
 
+    @RequestMapping(value = { "/index" }, method = RequestMethod.GET)
+    public String indexPage(Model model) {
+        model.addAttribute("title", "Index");
+        return "index";
+    }
+
     @RequestMapping(value = {"/admin"}, method = RequestMethod.GET)
     public String adminPage(Model model) {
         return "adminPage";

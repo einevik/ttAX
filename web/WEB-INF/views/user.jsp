@@ -67,7 +67,7 @@
         <tr>
             <td colspan="2">
                 <c:if test="${!empty user.login}">
-                    <input type="submit" value="<spring:message text="Edit User"/>"/>
+                    <input type="submit" value="<spring:message text="Edit User"/>" id="ss"/>
                 </c:if>
                 <c:if test="${empty user.login}">
                     <input type="submit" value="<spring:message text="Add User"/>"/>

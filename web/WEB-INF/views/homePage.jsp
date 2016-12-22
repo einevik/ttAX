@@ -21,5 +21,25 @@
         <a href="${pageContext.request.contextPath}/users">Управление пользователями</a>
     </security:authorize>
 
+</br>
+</br>
+
+<script language="JavaScript">
+    function checkSearch() {
+        $(document).ready(function() {
+            document.VendorEditListForm.direction.value = "Search";
+            $.ajax({
+                data: $('#frmAPVendorEdit').serialize(),
+                type: $('#frmAPVendorEdit').attr('method'),
+                url: $('#frmAPVendorEdit').attr('action'),
+                success: function(response) {
+                    $('#testResult').html(response);
+                }
+            });
+            return false;
+        });
+    }
+</script>
+
 </body>
 </html>

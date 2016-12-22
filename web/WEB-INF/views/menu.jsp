@@ -35,4 +35,7 @@
 
     </c:if>
 
+    &nbsp; | &nbsp;
+    <a href="${pageContext.request.contextPath}/index">index</a>
+
 </div>
