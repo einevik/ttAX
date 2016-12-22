@@ -53,4 +53,10 @@ public class UserController {
         return "user";
     }
 
+    @RequestMapping(value= "/register", method = RequestMethod.POST)
+    public String regUser(@ModelAttribute("user") Users u){
+        this.userService.addUser(u);
+        return "redirect:/login";
+    }
+
 }
