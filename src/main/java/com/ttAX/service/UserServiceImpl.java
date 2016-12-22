@@ -25,6 +25,12 @@ public class UserServiceImpl implements UserService {
 
     @Override
     @Transactional
+    public void regUser(Users users) {
+        this.userDAO.addUser(users);
+    }
+
+    @Override
+    @Transactional
     public void updateUser(Users users) {
         this.userDAO.updateUser(users);
     }

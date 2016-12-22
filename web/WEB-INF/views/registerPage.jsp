@@ -11,7 +11,7 @@
             <div style="color:red;margin:10px 0px;">Что-то пошло не так!!!<br/></div>
         </c:if>
 
-        <form action="/register" method='POST'/>
+        <form action="/reg" method='POST'/>
         <table>
                 <tr>
                     <td>Фамилия:</td>
@@ -19,15 +19,15 @@
                 </tr>
                 <tr>
                     <td>Имя:</td>
-                    <td><input type='text' name='firstName' value=''></td>
+                    <td><input type='text' name='firstname' value=''></td>
                 </tr>
                 <tr>
                     <td>Отчество:</td>
-                    <td><input type='text' name='lastName'  value=''></td>
+                    <td><input type='text' name='lastname'  value=''></td>
                 </tr>
                 <tr>
                     <td>Email:</td>
-                    <td><input type='password' name='email' /></td>
+                    <td><input type='text' name='email' /></td>
                 </tr>
                 <tr>
                     <td>Логин:</td>

@@ -45,11 +45,6 @@ public class MainController {
         return "userInfoPage";
     }
 
-    @RequestMapping(value = "/register", method = RequestMethod.GET)
-    public String register(Model model, Principal principal) {
-        return "registerPage";
-    }
-
     @RequestMapping(value = "/403", method = RequestMethod.GET)
     public String accessDenied(Model model, Principal principal) {
 

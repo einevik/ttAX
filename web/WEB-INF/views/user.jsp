@@ -19,30 +19,30 @@
     <table>
         <c:if test="${!empty user.login}">
             <tr>
-                <td> <form:label path="id"> <spring:message text="ID"/> </form:label> </td>
+                <td> <form:label path="id"><spring:message text="ID"/> </form:label> </td>
                 <td> <form:input path="id" readonly="true" size="8"  disabled="true" /> </td>
             </tr>
         </c:if>
         <tr>
             <td> <form:label path="login"><spring:message text="Логин:"/></form:label> </td>
-            <td> <form:input path="login" /> </td>
+            <td> <form:input path="login"/> </td>
         </tr>
         <tr>
             <td> <form:label path="password"><spring:message text="Пароль:"/></form:label> </td>
-            <td> <form:input path="password" /> </td>
+            <td> <form:input path="password"/> </td>
         </tr>
         <tr>
             <td> <form:label path="firstname"><spring:message text="Имя:"/></form:label> </td>
-            <td> <form:input path="firstname" /> </td>
+            <td> <form:input path="firstname"/> </td>
         </tr>
         <tr>
             <td> <form:label path="email"><spring:message text="email:"/></form:label> </td>
-            <td> <form:input path="email" /> </td>
+            <td> <form:input path="email"/> </td>
         </tr>
         <tr>
             <td colspan="2">
                 <c:if test="${!empty user.login}">
-                    <input type="submit" value="<spring:message text="Edit User"/>" id="ss"/>
+                    <input type="submit" value="<spring:message text="Edit User"/>"/>
                 </c:if>
                 <c:if test="${empty user.login}">
                     <input type="submit" value="<spring:message text="Add User"/>"/>

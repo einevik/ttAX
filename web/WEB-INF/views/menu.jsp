@@ -17,7 +17,7 @@
     <c:if test="${pageContext.request.userPrincipal.name == null}">
 
         &nbsp; | &nbsp;
-        <a href="${pageContext.request.contextPath}/register">Зарегистрироваться</a>
+        <a href="${pageContext.request.contextPath}/registration">Зарегистрироваться</a>
 
     </c:if>
 

@@ -13,8 +13,8 @@ public class Users {
     private String login;
     private String password;
     private String email;
-    private String role;
-    private boolean enabled;
+    private String role = "user";
+    private boolean enabled = true;
 
     @Id
     @Column(name = "id", nullable = false)

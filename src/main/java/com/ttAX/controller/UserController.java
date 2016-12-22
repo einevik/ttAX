@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.ttAX.model.Users;
 import com.ttAX.service.UserService;
 
+import java.security.Principal;
+
 @Controller
 public class UserController {
 
@@ -53,10 +55,15 @@ public class UserController {
         return "user";
     }
 
-    @RequestMapping(value= "/register", method = RequestMethod.POST)
+    @RequestMapping(value= "/reg", method = RequestMethod.POST)
     public String regUser(@ModelAttribute("user") Users u){
-        this.userService.addUser(u);
+        this.userService.regUser(u);
         return "redirect:/login";
+    }
+
+    @RequestMapping(value = "/registration", method = RequestMethod.GET)
+    public String register(Model model, Principal principal) {
+        return "registerPage";
     }
 
 }
