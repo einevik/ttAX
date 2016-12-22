@@ -11,7 +11,7 @@
             <div style="color:red;margin:10px 0px;">Что-то пошло не так!!!<br/></div>
         </c:if>
 
-        <form name='f' action="${pageContext.request.contextPath}/register" method='POST'/>
+        <form action="/register" method='POST'/>
         <table>
                 <tr>
                     <td>Фамилия:</td>
@@ -39,7 +39,7 @@
                 </tr>
         </table>
                 <tr>
-                    <td><input name="submitIn" type="submit" value="Зарегистрироваться" /></td>
+                    <td><input name="submitIn" type="submit" value="Зарегистрироваться"/></td>
                 </tr>
     </body>
 
