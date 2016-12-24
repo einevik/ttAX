@@ -14,15 +14,10 @@ import javax.persistence.*;
 public class Users {
 
     private int id;
-
-//    @NotNull(message="Name cannot be null")
-//    @Size(min=5, max=30)
     private String surname;
-
     private String firstname;
     private String lastname;
 
-//    @Size(min = 3)
     @NotEmpty
     private String login;
 
