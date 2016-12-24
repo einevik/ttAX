@@ -15,20 +15,10 @@ public class UserDAOImpl implements UserDAO {
 
     private static final Logger logger = LoggerFactory.getLogger(UserDAOImpl.class);
 
-//    private SessionFactory sessionFactory;
-//    private HibernateSessionFactory hSF = new HibernateSessionFactory();
-
-
-
-//    public void setSessionFactory(SessionFactory sessionFactory){
-//        this.sessionFactory = hSF.getSessionFactory();
-//    }
-
     @Override
     public void addUser (Users users) {
         Session session = HibernateSessionFactory.getSessionFactory().openSession();
         session.beginTransaction();
-//        session.persist(users);
         session.save(users);
         session.getTransaction().commit();
         session.close();
