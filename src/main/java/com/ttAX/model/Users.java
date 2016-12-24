@@ -1,18 +1,36 @@
 package com.ttAX.model;
 
 import org.hibernate.annotations.GenericGenerator;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotEmpty;
 
+//import cz.jiripinkas.jba.annotation.UniqueUsername;
 import javax.persistence.*;
 
 @Entity
 public class Users {
+
     private int id;
+
+//    @NotNull(message="Name cannot be null")
+//    @Size(min=5, max=30)
     private String surname;
+
     private String firstname;
     private String lastname;
+
+    @Size(min = 3, message = "Name must be at least 3 characters!")
+//    @Column(unique = true)
     private String login;
+
     private String password;
+
+    @Email
     private String email;
+
     private String role = "user";
     private boolean enabled = true;
 

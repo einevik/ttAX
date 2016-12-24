@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.ttAX.model.Users;
 import com.ttAX.service.UserService;
 
+import javax.validation.Valid;
 import java.security.Principal;
 
 @Controller
@@ -55,14 +57,18 @@ public class UserController {
         return "user";
     }
 
-    @RequestMapping(value= "/reg", method = RequestMethod.POST)
-    public String regUser(@ModelAttribute("user") Users u){
+    @RequestMapping(value= "/regUser", method = RequestMethod.POST)
+    public String regUser(@ModelAttribute("user") @Valid Users u, BindingResult bindingResult){
+        if(bindingResult.hasErrors()) {
+            return "registerPage";
+        }
         this.userService.regUser(u);
         return "redirect:/login";
     }
 
-    @RequestMapping(value = "/registration", method = RequestMethod.GET)
-    public String register(Model model, Principal principal) {
+    @RequestMapping(value = "/registrationPage", method = RequestMethod.GET)
+    public String registerPage(Model model) {
+        model.addAttribute("user", new Users());
         return "registerPage";
     }
 

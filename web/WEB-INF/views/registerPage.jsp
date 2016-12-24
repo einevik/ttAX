@@ -1,46 +1,36 @@
 <%@page session="false"%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <html>
 
 <head><title>Регистрация</title></head>
 
     <body>
     <jsp:include page="menu.jsp" />
-        <c:if test="${param.error == 'true'}">
-            <div style="color:red;margin:10px 0px;">Что-то пошло не так!!!<br/></div>
-        </c:if>
 
-        <form action="/reg" method='POST'/>
+    <c:if test="${not empty message}"><div class="message green">${message}</div></c:if>
+
+    <form:form action="/regUser" modelAttribute="user">
+
         <table>
-                <tr>
-                    <td>Фамилия:</td>
-                    <td><input type='text' name='surname' value=''></td>
-                </tr>
-                <tr>
-                    <td>Имя:</td>
-                    <td><input type='text' name='firstname' value=''></td>
-                </tr>
-                <tr>
-                    <td>Отчество:</td>
-                    <td><input type='text' name='lastname'  value=''></td>
-                </tr>
-                <tr>
-                    <td>Email:</td>
-                    <td><input type='text' name='email' /></td>
-                </tr>
-                <tr>
-                    <td>Логин:</td>
-                    <td><input type='text' name='login' value=''></td>
-                </tr>
-                <tr>
-                    <td>Пароль:</td>
-                    <td><input type='password' name='password' /></td>
-                </tr>
+            <tr>
+                <td><form:label path="login"><spring:message text="Логин:"/></form:label> </td>
+                <td><form:input path="login"/> </td>
+                <td><form:errors path="surname" cssClass="error" /></td>
+            </tr>
+
+            <tr>
+                <td><form:label path="email"><spring:message text="email:"/></form:label></td>
+                <td><form:input path="email"/></td>
+                <td><form:errors path="email" cssClass="error" /></td>
+            </tr>
         </table>
-                <tr>
-                    <td><input name="submitIn" type="submit" value="Зарегистрироваться"/></td>
-                </tr>
+
+        <br/>
+        <input type="submit" value="Submit" />
+    </form:form>
     </body>
 
 </html>
