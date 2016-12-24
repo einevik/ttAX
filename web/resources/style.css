@@ -37,6 +37,10 @@
     cursor: pointer;
 }
 
+.error {
+    color:red;margin:10px 0px;
+}
+
 /*Table*/
 .tg  {border-collapse:collapse;border-spacing:0;border-color:#ccc;}
 .tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;overflow:hidden;word-break:normal;

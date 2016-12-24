@@ -22,10 +22,11 @@ public class Users {
     private String firstname;
     private String lastname;
 
-    @Size(min = 3, message = "Name must be at least 3 characters!")
-//    @Column(unique = true)
+//    @Size(min = 3)
+    @NotEmpty
     private String login;
 
+    @NotEmpty
     private String password;
 
     @Email

@@ -30,8 +30,8 @@
     </bean>
     <bean id="userDAO" class="com.ttAX.dao.UserDAOImpl"></bean>
 
-    <bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
-        <property name="basename" value="/resources/validationMessages" />
+    <bean class="org.springframework.context.support.ResourceBundleMessageSource" id="messageSource">
+        <property name="basename" value="validationMessages" />
     </bean>
 
 </beans>
