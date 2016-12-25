@@ -36,6 +36,9 @@
     </c:if>
 
     &nbsp; | &nbsp;
-    <a href="${pageContext.request.contextPath}/index">index</a>
+    <a href="${pageContext.request.contextPath}/index">check login</a>
+
+    &nbsp; | &nbsp;
+    <a href="${pageContext.request.contextPath}/addUserAJAX">ajax</a>
 
 </div>

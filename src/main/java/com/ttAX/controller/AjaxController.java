@@ -19,7 +19,7 @@ public class AjaxController {
     UserDAOImpl userService = new UserDAOImpl();
     Users user = new Users();
 
-    @RequestMapping(value= "/check", method = RequestMethod.POST)
+    @RequestMapping(value= "/checkAJAX", method = RequestMethod.POST)
     public void checkUser(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -34,6 +34,30 @@ public class AjaxController {
             out.println("<font color=red><b>"+login+"</b> is already in use</font>");
         }
         out.println();
+        } catch (Exception ex) {
+            out.println("Error ->" + ex.getMessage());
+        } finally {
+            out.close();
+        }
+    }
+
+    @RequestMapping(value= "/regAJAX", method = RequestMethod.POST)
+    public void regAJAX(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
+        PrintWriter out = response.getWriter();
+        try {
+            String login = request.getParameter("login");
+            String password = request.getParameter("password");
+            String email = request.getParameter("email");
+
+            user.setLogin(login);
+            user.setPassword(password);
+            user.setEmail(email);
+
+            userService.regUser(user);
+            out.println(login);
+            out.println(password);
         } catch (Exception ex) {
             out.println("Error ->" + ex.getMessage());
         } finally {

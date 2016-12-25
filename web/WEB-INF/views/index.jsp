@@ -26,11 +26,12 @@
         $(document).ready(function(){
             $(".login").change(function(){
                 var login = $(this).val();
+//                Кол-во символов
                 if(login.length >= 3){
                     $(".status").html("<img src='/resources/loading.gif'><font color=gray> Checking availability...</font>");
                     $.ajax({
                         type: "POST",
-                        url: "check",
+                        url: "checkAJAX",
                         data: "login="+ login,
                         success: function(msg){
 
@@ -55,8 +56,7 @@
 <jsp:include page="menu.jsp"/>
 
 <div>
-    <label class="flable">User Name :</label> <input type="text"
-                                                     class="login" />&nbsp;<span class="status"></span>
+    <label class="flable">User Name :</label> <input type="text" class="login" />&nbsp;<span class="status"></span>
 </div>
 </body>
 </html>
