@@ -11,41 +11,63 @@
 <body>
 <jsp:include page="menu.jsp"/>
 
-<h2>Add a User</h2>
+<c:choose>
+    <c:when test="${empty user.login}">
+        <h2>Добавить нового пользователя</h2>
+    </c:when>
+    <c:when test="${!empty user.login}">
+        <h2>Изменть пользователя</h2>
+    </c:when>
+</c:choose>
 
+
+<c:url var="addAction" value="/user/add" ></c:url>
 <c:url var="addAction" value="/user/add" ></c:url>
 
 <form:form action="${addAction}" commandName="user">
     <table>
         <c:if test="${!empty user.login}">
             <tr>
-                <td><form:label path="id"><spring:message text="ID"/> </form:label></td>
+                <td><form:label path="id"><spring:message text="ID"/></form:label></td>
                 <td><form:input path="id" readonly="true" size="8"  disabled="true" /></td>
             </tr>
         </c:if>
         <tr>
+            <td><form:label path="firstname"><spring:message text="Имя:"/></form:label></td>
+            <td><form:input path="firstname"/></td>
+            <td><form:errors path="firstname" cssStyle="color:red;margin:10px 0px;"/></td>
+        </tr>
+        <tr>
+            <td><form:label path="lastname"><spring:message text="Отчество:"/></form:label></td>
+            <td><form:input path="lastname"/></td>
+            <td><form:errors path="lastname" cssStyle="color:red;margin:10px 0px;"/></td>
+        </tr>
+        <tr>
+            <td><form:label path="email"><spring:message text="Email:"/></form:label></td>
+            <td><form:input path="email"/></td>
+            <td><form:errors path="email" cssStyle="color:red;margin:10px 0px;"/></td>
+        </tr>
+        <tr>
             <td><form:label path="login"><spring:message text="Логин:"/></form:label></td>
             <td><form:input path="login"/></td>
+            <td><form:errors path="login" cssStyle="color:red;margin:10px 0px;"/></td>
         </tr>
         <tr>
             <td><form:label path="password"><spring:message text="Пароль:"/></form:label></td>
             <td><form:input path="password"/></td>
+            <td><form:errors path="password" cssStyle="color:red;margin:10px 0px;"/></td>
         </tr>
         <tr>
-            <td><form:label path="firstname"><spring:message text="Имя:"/></form:label></td>
-            <td><form:input path="firstname"/></td>
+            <td><form:label path="role"><spring:message text="Права:"/></form:label></td>
+            <td><form:input path="role"/></td>
+            <td><form:errors path="role" cssStyle="color:red;margin:10px 0px;"/></td>
         </tr>
-        <tr>
-            <td><form:label path="email"><spring:message text="email:"/></form:label></td>
-            <td><form:input path="email"/></td>
-        </tr>
-        <tr>
             <td colspan="2">
                 <c:if test="${!empty user.login}">
-                    <input type="submit" value="<spring:message text="Edit User"/>"/>
+                    <input type="submit" value="<spring:message text="Изменить"/>" formaction=""/>
                 </c:if>
                 <c:if test="${empty user.login}">
-                    <input type="submit" value="<spring:message text="Add User"/>"/>
+                    <input type="submit" value="<spring:message text="Добавить"/>"/>
                 </c:if>
             </td>
         </tr>

@@ -34,12 +34,26 @@ public class UserController {
         return "user";
     }
 
+//    @RequestMapping(value= "/user/add", method = RequestMethod.POST)
+//    public String addUser(@ModelAttribute("user") Users u){
+//        if(u.getId() == 0){
+//            this.userService.addUser(u);
+//        }else{
+//            this.userService.updateUser(u);
+//        }
+//        return "redirect:/users";
+//    }
+
     @RequestMapping(value= "/user/add", method = RequestMethod.POST)
-    public String addUser(@ModelAttribute("user") Users u){
-        if(u.getId() == 0){
-            this.userService.addUser(u);
-        }else{
-            this.userService.updateUser(u);
+    public String addUser(@ModelAttribute("user") @Valid Users u, BindingResult bindingResult){
+        if(bindingResult.hasErrors()) {
+            return "user";
+        }else {
+            if(u.getId() == 0){
+                this.userService.addUser(u);
+            }else {
+                this.userService.updateUser(u);
+            }
         }
         return "redirect:/users";
     }
@@ -71,5 +85,6 @@ public class UserController {
         model.addAttribute("user", new Users());
         return "registerPage";
     }
+
 
 }

@@ -10,10 +10,8 @@
     <body>
     <jsp:include page="menu.jsp" />
 
-    <c:if test="${not empty message}"><div class="message green">${message}</div></c:if>
 
     <form:form action="/regUser" modelAttribute="user">
-
         <table>
             <tr>
                 <td><form:label path="surname"><spring:message text="Фамилия:"/></form:label></td>

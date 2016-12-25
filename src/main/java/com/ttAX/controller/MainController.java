@@ -1,5 +1,6 @@
 package com.ttAX.controller;
 
+import com.ttAX.model.Users;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,7 +19,7 @@ public class MainController {
 
     @RequestMapping(value = { "/index" }, method = RequestMethod.GET)
     public String indexPage(Model model) {
-        model.addAttribute("title", "Index");
+        model.addAttribute("user", new Users());
         return "index";
     }
 
