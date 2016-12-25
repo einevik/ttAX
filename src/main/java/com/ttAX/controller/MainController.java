@@ -23,6 +23,12 @@ public class MainController {
         return "index";
     }
 
+    @RequestMapping(value = { "/addUserAJAX" }, method = RequestMethod.GET)
+    public String addUserAJAXPage(Model model) {
+        model.addAttribute("user", new Users());
+        return "addUserAJAX";
+    }
+
     @RequestMapping(value = {"/admin"}, method = RequestMethod.GET)
     public String adminPage(Model model) {
         return "adminPage";

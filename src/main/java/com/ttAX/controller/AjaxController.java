@@ -4,7 +4,6 @@ import com.ttAX.dao.UserDAOImpl;
 import com.ttAX.model.Users;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -23,15 +22,11 @@ public class AjaxController {
     @RequestMapping(value= "/check", method = RequestMethod.POST)
     public void checkUser(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
-
         try {
-
             String login = request.getParameter("login");
             user = userService.getUserByLogin(login);
-
         if (user==null) {
             out.println("<font color=green><b>"+login+"</b> is available");
         }
@@ -40,10 +35,7 @@ public class AjaxController {
         }
         out.println();
         } catch (Exception ex) {
-
             out.println("Error ->" + ex.getMessage());
-//            out.println(request.getParameter("login"));
-
         } finally {
             out.close();
         }
