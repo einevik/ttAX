@@ -1,9 +1,7 @@
 package com.ttAX.model;
 
+import com.ttAX.validator.Unique;
 import org.hibernate.annotations.GenericGenerator;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 
