@@ -3,6 +3,7 @@ package com.ttAX.dao;
 
 import java.util.List;
 import org.hibernate.Session;
+import org.hibernate.query.Query;
 import org.springframework.stereotype.Repository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -56,6 +57,21 @@ public class UserDAOImpl implements UserDAO {
             logger.info("Users List::"+users);
         }
         return UsersList;
+    }
+
+    @Override
+    @SuppressWarnings("unchecked")
+    public Users getUserByLogin(String login) {
+        Session session = HibernateSessionFactory.getSessionFactory().openSession();
+        session.beginTransaction();
+        List<Users> usersList = session.createQuery("from Users where login=?").setParameter(0,login).list();
+        session.getTransaction().commit();
+        session.close();
+        if (usersList.size() > 0) {
+            return usersList.get(0);
+        } else {
+            return null;
+        }
     }
 
     @Override

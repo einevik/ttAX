@@ -17,6 +17,7 @@ public class Users {
     private String lastname;
 
     @NotEmpty
+    @Unique
     private String login;
 
     @NotEmpty
@@ -139,6 +140,7 @@ public class Users {
 
         return true;
     }
+
 
     @Override
     public int hashCode() {
