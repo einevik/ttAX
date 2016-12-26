@@ -25,12 +25,13 @@
 
 <form:form action="${addAction}" commandName="user">
     <table>
-        <c:if test="${user.id!=0}">
+        <%--<c:if test="${user.id!=0}">--%>
             <tr>
-                <td><form:label path="id"><spring:message text="ID"/></form:label></td>
-                <td><form:input path="id" readonly="true" size="8"  disabled="true" /></td>
+                <%--<td><form:label path="id"><spring:message text="ID"/></form:label></td>--%>
+                <%--<td><form:input path="id" readonly="true" size="8"  disabled="true"/></td>--%>
+                <form:hidden path="id"/>
             </tr>
-        </c:if>
+        <%--</c:if>--%>
         <tr>
             <td><form:label path="firstname"><spring:message text="Имя:"/></form:label></td>
             <td><form:input path="firstname"/></td>

@@ -43,8 +43,8 @@ public class UserDAOImpl implements UserDAO {
         Session session = HibernateSessionFactory.getSessionFactory().openSession();
         session.beginTransaction();
 
-        session.replicate(users, ReplicationMode.OVERWRITE);
-//        session.merge(users);
+//        session.replicate(users, ReplicationMode.OVERWRITE);
+        session.update(users);
         session.getTransaction().commit();
         session.close();
         logger.info("Users updated successfully, Users Details="+users);

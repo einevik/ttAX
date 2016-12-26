@@ -49,7 +49,6 @@ public class UserController {
     @RequestMapping(value= "/user/edit", method = RequestMethod.POST)
     public String editUser(@ModelAttribute("user") Users u, BindingResult bindingResult, Model model){
         model.addAttribute("listUsers", this.userService.listUsers());
-
         if(bindingResult.hasErrors()) {
             return "user";
         }else {
