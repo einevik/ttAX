@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
 import java.io.IOException;
 import java.io.PrintWriter;
 
@@ -47,17 +48,12 @@ public class AjaxController {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         try {
-            String login = request.getParameter("login");
-            String password = request.getParameter("password");
-            String email = request.getParameter("email");
 
-            user.setLogin(login);
-            user.setPassword(password);
-            user.setEmail(email);
-
+            user.setLogin(request.getParameter("login"));
+            user.setPassword(request.getParameter("password"));
+            user.setEmail(request.getParameter("email"));
             userService.regUser(user);
-            out.println(login);
-            out.println(password);
+
         } catch (Exception ex) {
             out.println("Error ->" + ex.getMessage());
         } finally {

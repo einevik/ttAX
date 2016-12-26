@@ -1,49 +1,40 @@
-
-function formValidation()
-{
-    var uid = document.registration.userid;
-    var passid = document.registration.passid;
-    var uname = document.registration.username;
-    var uadd = document.registration.address;
-    var ucountry = document.registration.country;
-    var uzip = document.registration.zip;
-    var uemail = document.registration.email;
-    var umsex = document.registration.msex;
-    var ufsex = document.registration.fsex; if(userid_validation(uid,5,12))
-{
-    if(passid_validation(passid,7,12))
-    {
-        if(allLetter(uname))
-        {
-            if(alphanumeric(uadd))
-            {
-                if(countryselect(ucountry))
-                {
-                    if(allnumeric(uzip))
-                    {
-                        if(ValidateEmail(uemail))
-                        {
-                            if(validsex(umsex,ufsex))
-                            {
-                            }
-                        }
-                    }
+$(document).ready(function() {
+    $("#register").click(function() {
+        var login = $("#login").val();
+        var email = $("#email").val();
+        var password = $("#password").val();
+        if (login == '' || email == '' || password == '') {
+            alert("Please fill all fields...!!!!!!");
+        } else if ((password.length) <=2) {
+            alert("Password should atleast 2 character in length...!!!!!!");
+            // $('#password').after('<p>Phone number has to be 10 digits long.</p>');
+        } else {
+            $.post("regAJAX", {
+                login: login,
+                email: email,
+                password: password
+            },
+                function(data) {
+                if (data == 'You have Successfully Registered.....') {
+                    $("form")[0].reset();
                 }
-            }
+                alert(data);
+            });
         }
-    }
-}
-    return false;
-}
+    });
+});
 
-function userid_validation(uid,mx,my)
-{
-    var uid_len = uid.value.length;
-    if (uid_len == 0 || uid_len >= my || uid_len < mx)
-    {
-        alert("User Id should not be empty / length be between "+mx+" to "+my);
-        uid.focus();
-        return false;
+var modal = document.getElementById('myModal');
+var btn = document.getElementById("myBtn");
+var span = document.getElementsByClassName("close")[0];
+btn.onclick = function() {
+    modal.style.display = "block";
+}
+span.onclick = function() {
+    modal.style.display = "none";
+}
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
     }
-    return true;
 }

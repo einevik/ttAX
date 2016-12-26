@@ -12,21 +12,20 @@
 <jsp:include page="menu.jsp"/>
 
 <c:choose>
-    <c:when test="${empty user.login}">
+    <c:when test="${user.id==0}">
         <h2>Добавить нового пользователя</h2>
+        <c:url var="addAction" value="/user/add" ></c:url>
     </c:when>
-    <c:when test="${!empty user.login}">
+    <c:when test="${user.id!=0}">
         <h2>Изменть пользователя</h2>
+        <c:url var="addAction" value="/user/edit" ></c:url>
     </c:when>
 </c:choose>
 
 
-<c:url var="addAction" value="/user/add" ></c:url>
-<c:url var="addAction" value="/user/add" ></c:url>
-
 <form:form action="${addAction}" commandName="user">
     <table>
-        <c:if test="${!empty user.login}">
+        <c:if test="${user.id!=0}">
             <tr>
                 <td><form:label path="id"><spring:message text="ID"/></form:label></td>
                 <td><form:input path="id" readonly="true" size="8"  disabled="true" /></td>
@@ -62,12 +61,18 @@
             <td><form:input path="role"/></td>
             <td><form:errors path="role" cssStyle="color:red;margin:10px 0px;"/></td>
         </tr>
+        <tr>
+            <td><form:label path="enabled"><spring:message text="enabled:"/></form:label></td>
+            <td><form:input path="enabled"/></td>
+            <td><form:errors path="enabled" cssStyle="color:red;margin:10px 0px;"/></td>
+        </tr>
             <td colspan="2">
-                <c:if test="${!empty user.login}">
-                    <input type="submit" value="<spring:message text="Изменить"/>" formaction=""/>
+                <c:if test="${user.id!=0}">
+                    <input type="submit" value="<spring:message text="изменить"/>"/>
+                    <input type="reset" value="отмена">
                 </c:if>
-                <c:if test="${empty user.login}">
-                    <input type="submit" value="<spring:message text="Добавить"/>"/>
+                <c:if test="${user.id==0}">
+                    <input type="submit" value="<spring:message text="добавить"/>"/>
                 </c:if>
             </td>
         </tr>

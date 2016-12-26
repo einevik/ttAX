@@ -34,11 +34,8 @@
                         url: "checkAJAX",
                         data: "login="+ login,
                         success: function(msg){
-
                             $(".status").ajaxComplete(function(event, request, settings){
-
                                 $(".status").html(msg);
-
                             });
                         }
                     });

@@ -15,6 +15,7 @@ import com.ttAX.service.UserService;
 
 import javax.validation.Valid;
 import java.security.Principal;
+import java.util.Enumeration;
 
 @Controller
 public class UserController {
@@ -34,26 +35,26 @@ public class UserController {
         return "user";
     }
 
-//    @RequestMapping(value= "/user/add", method = RequestMethod.POST)
-//    public String addUser(@ModelAttribute("user") Users u){
-//        if(u.getId() == 0){
-//            this.userService.addUser(u);
-//        }else{
-//            this.userService.updateUser(u);
-//        }
-//        return "redirect:/users";
-//    }
-
     @RequestMapping(value= "/user/add", method = RequestMethod.POST)
-    public String addUser(@ModelAttribute("user") @Valid Users u, BindingResult bindingResult){
+    public String addUser(@ModelAttribute("user") @Valid Users u, BindingResult bindingResult, Model model){
+        model.addAttribute("listUsers", this.userService.listUsers());
         if(bindingResult.hasErrors()) {
             return "user";
         }else {
-            if(u.getId() == 0){
                 this.userService.addUser(u);
-            }else {
-                this.userService.updateUser(u);
-            }
+        }
+        return "redirect:/users";
+    }
+
+    @RequestMapping(value= "/user/edit", method = RequestMethod.POST)
+    public String editUser(@ModelAttribute("user") Users u, BindingResult bindingResult, Model model){
+        model.addAttribute("listUsers", this.userService.listUsers());
+
+        if(bindingResult.hasErrors()) {
+            return "user";
+        }else {
+
+            this.userService.updateUser(u);
         }
         return "redirect:/users";
     }
@@ -65,7 +66,7 @@ public class UserController {
     }
 
     @RequestMapping("/edit/{id}")
-    public String editUser(@PathVariable("id") int id, Model model){
+    public String editUserPage(@PathVariable("id") int id, Model model){
         model.addAttribute("user", this.userService.getUserById(id));
         model.addAttribute("listUsers", this.userService.listUsers());
         return "user";
