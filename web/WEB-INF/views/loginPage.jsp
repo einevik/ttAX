@@ -22,6 +22,7 @@
     <form name='f' action="${pageContext.request.contextPath}/spring_security_check" method='POST'>
         <table>
             <tr>
+                <p>${message}</p>
                 <td>Логин:</td>
                 <td><input type='text' name='username' value=''></td>
             </tr>

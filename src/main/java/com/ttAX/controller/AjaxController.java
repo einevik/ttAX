@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.validation.Valid;
 import java.io.IOException;
 import java.io.PrintWriter;
 
@@ -27,7 +26,7 @@ public class AjaxController {
         PrintWriter out = response.getWriter();
         try {
             String login = request.getParameter("login");
-            user = userService.getUserByLogin(login);
+            user = userService.findLogin(login);
         if (user==null) {
             out.println("<font color=green><b>"+login+"</b> is available");
         }

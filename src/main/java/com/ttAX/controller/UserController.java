@@ -5,6 +5,7 @@ import com.ttAX.validator.Unique;
 import com.ttAX.validator.UniqueValidator;
 import jdk.nashorn.internal.ir.annotations.Ignore;
 import net.bytebuddy.implementation.bind.annotation.IgnoreForBinding;
+import org.hibernate.Session;
 import org.hibernate.annotations.DynamicUpdate;
 import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +24,8 @@ import com.ttAX.service.UserService;
 import javax.inject.Singleton;
 import javax.persistence.ExcludeDefaultListeners;
 import javax.persistence.PostUpdate;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.security.Principal;
 import java.util.Enumeration;
@@ -31,6 +34,7 @@ import java.util.Enumeration;
 public class UserController {
 
     private UserService userService;
+    private final String loginMessage = "Login already exist";
 
     @Autowired(required=true)
     @Qualifier(value = "userService")
@@ -46,9 +50,10 @@ public class UserController {
     }
 
     @RequestMapping(value= "/user/add", method = RequestMethod.POST)
-    public String addUser(@ModelAttribute("user") @Valid Users u, BindingResult bindingResult, Model model){
+    public String addUser(@ModelAttribute("user") @Valid Users u, BindingResult bindingResult,HttpServletRequest request, Model model){
         model.addAttribute("listUsers", this.userService.listUsers());
-        if(bindingResult.hasErrors()) {
+        if(userService.findLogin(u.getLogin())!=null || bindingResult.hasErrors()) {
+            request.setAttribute("message", loginMessage);
             return "user";
         }else {
                 this.userService.addUser(u);
@@ -58,7 +63,7 @@ public class UserController {
 
 
     @RequestMapping(value= "/user/edit", method = RequestMethod.POST)
-    public String editUser(@ModelAttribute("user") @Valid Users u, BindingResult bindingResult, Model model){
+    public String editUser(@ModelAttribute("user") @Valid Users u, BindingResult bindingResult,HttpServletRequest request, Model model){
         model.addAttribute("listUsers", this.userService.listUsers());
         if(bindingResult.hasErrors()) {
             return "user";
@@ -82,8 +87,9 @@ public class UserController {
     }
 
     @RequestMapping(value= "/regUser", method = RequestMethod.POST)
-    public String regUser(@ModelAttribute("user") @Valid Users u, BindingResult bindingResult){
-        if(bindingResult.hasErrors()) {
+    public String regUser(@ModelAttribute("user") @Valid Users u, BindingResult bindingResult, HttpServletRequest request){
+        if(userService.findLogin(u.getLogin())!=null || bindingResult.hasErrors()) {
+            request.setAttribute("message", loginMessage);
             return "registerPage";
         }
         this.userService.regUser(u);
@@ -95,6 +101,5 @@ public class UserController {
         model.addAttribute("user", new Users());
         return "registerPage";
     }
-
 
 }

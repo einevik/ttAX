@@ -53,4 +53,10 @@ public class UserServiceImpl implements UserService {
         this.userDAO.removeUser(id);
     }
 
+    @Override
+    @Transactional
+    public Users findLogin(String login) {
+        return this.userDAO.findLogin(login);
+    }
+
 }

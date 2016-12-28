@@ -16,7 +16,7 @@ public class Users {
     private String lastname;
 
     @NotEmpty
-    @Unique
+//    @Unique
     private String login;
 
     @NotEmpty

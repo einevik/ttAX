@@ -9,7 +9,7 @@ public interface UserDAO {
     void regUser(Users users);
     void updateUser(Users users);
     List<Users> listUsers();
-    Users getUserByLogin(String login);
+    Users findLogin(String login);
     Users getUserById(int id);
     void removeUser(int id);
 }

@@ -55,7 +55,9 @@
         <tr>
             <td><form:label path="login"><spring:message text="Логин:"/></form:label></td>
             <td><form:input path="login"/></td>
+            <td><div style="color:red;"><p>${message}</p></div></td>
             <td><form:errors path="login" cssStyle="color:red;margin:10px 0px;"/></td>
+
         </tr>
         <tr>
             <td><form:label path="password"><spring:message text="Пароль:"/></form:label></td>
@@ -67,11 +69,6 @@
             <td><form:input path="role"/></td>
             <td><form:errors path="role" cssStyle="color:red;margin:10px 0px;"/></td>
         </tr>
-        <%--<tr>--%>
-            <%--<td><form:label path="enabled"><spring:message text="enabled:"/></form:label></td>--%>
-            <%--<td><form:input path="enabled"/></td>--%>
-            <%--<td><form:errors path="enabled" cssStyle="color:red;margin:10px 0px;"/></td>--%>
-        <%--</tr>--%>
             <td colspan="2">
                 <c:if test="${user.id!=0}">
                     <input type="submit" value="<spring:message text="изменить"/>"/>

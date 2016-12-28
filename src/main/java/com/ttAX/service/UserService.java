@@ -11,6 +11,7 @@ public interface UserService {
     void updateUser(Users users);
     List<Users> listUsers();
     Users getUserById(int id);
+    Users findLogin(String login);
     void removeUser(int id);
 
 }

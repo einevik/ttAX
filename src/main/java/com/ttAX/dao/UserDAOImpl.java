@@ -60,7 +60,7 @@ public class UserDAOImpl implements UserDAO {
     }
 
     @Override
-    public Users getUserByLogin(String login) {
+    public Users findLogin(String login) {
         Session session = HibernateSessionFactory.getSessionFactory().openSession();
         session.beginTransaction();
         List<Users> usersList = session.createQuery("from Users where login=?").setParameter(0,login).list();

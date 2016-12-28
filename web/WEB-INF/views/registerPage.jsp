@@ -10,7 +10,6 @@
     <body>
     <jsp:include page="menu.jsp" />
 
-
     <form:form action="/regUser" modelAttribute="user">
         <table>
             <tr>
@@ -36,7 +35,9 @@
             <tr>
                 <td><form:label path="login"><spring:message text="Логин:"/></form:label></td>
                 <td><form:input path="login"/></td>
+                <td><div style="color:red;"><p>${message}</p></div></td>
                 <td><form:errors path="login" cssStyle="color:red;margin:10px 0px;"/></td>
+
             </tr>
             <tr>
                 <td><form:label path="password"><spring:message text="Пароль:"/></form:label></td>
