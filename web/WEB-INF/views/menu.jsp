@@ -41,4 +41,5 @@
     &nbsp; | &nbsp;
     <a href="${pageContext.request.contextPath}/addUserAJAX">ajax</a>
 
+
 </div>

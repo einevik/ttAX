@@ -32,6 +32,11 @@
                 <form:hidden path="id"/>
             </tr>
         <%--</c:if>--%>
+            <tr>
+                <td><form:label path="surname"><spring:message text="Фамилия:"/></form:label></td>
+                <td><form:input path="surname"/></td>
+                <td><form:errors path="surname" cssStyle="color:red;margin:10px 0px;"/></td>
+            </tr>
         <tr>
             <td><form:label path="firstname"><spring:message text="Имя:"/></form:label></td>
             <td><form:input path="firstname"/></td>
@@ -62,15 +67,15 @@
             <td><form:input path="role"/></td>
             <td><form:errors path="role" cssStyle="color:red;margin:10px 0px;"/></td>
         </tr>
-        <tr>
-            <td><form:label path="enabled"><spring:message text="enabled:"/></form:label></td>
-            <td><form:input path="enabled"/></td>
-            <td><form:errors path="enabled" cssStyle="color:red;margin:10px 0px;"/></td>
-        </tr>
+        <%--<tr>--%>
+            <%--<td><form:label path="enabled"><spring:message text="enabled:"/></form:label></td>--%>
+            <%--<td><form:input path="enabled"/></td>--%>
+            <%--<td><form:errors path="enabled" cssStyle="color:red;margin:10px 0px;"/></td>--%>
+        <%--</tr>--%>
             <td colspan="2">
                 <c:if test="${user.id!=0}">
                     <input type="submit" value="<spring:message text="изменить"/>"/>
-                    <input type="reset" value="отмена">
+                    <%--<input type="reset" value="отмена">--%>
                 </c:if>
                 <c:if test="${user.id==0}">
                     <input type="submit" value="<spring:message text="добавить"/>"/>

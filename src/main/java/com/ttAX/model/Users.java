@@ -5,7 +5,6 @@ import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 
-//import cz.jiripinkas.jba.annotation.UniqueUsername;
 import javax.persistence.*;
 
 @Entity
@@ -17,7 +16,7 @@ public class Users {
     private String lastname;
 
     @NotEmpty
-//    @Unique
+    @Unique
     private String login;
 
     @NotEmpty

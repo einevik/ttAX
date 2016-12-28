@@ -42,8 +42,6 @@ public class UserDAOImpl implements UserDAO {
     public void updateUser(Users users) {
         Session session = HibernateSessionFactory.getSessionFactory().openSession();
         session.beginTransaction();
-
-//        session.replicate(users, ReplicationMode.OVERWRITE);
         session.update(users);
         session.getTransaction().commit();
         session.close();
@@ -62,7 +60,6 @@ public class UserDAOImpl implements UserDAO {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
     public Users getUserByLogin(String login) {
         Session session = HibernateSessionFactory.getSessionFactory().openSession();
         session.beginTransaction();

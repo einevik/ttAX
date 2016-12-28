@@ -5,7 +5,9 @@ import com.ttAX.dao.UserDAOImpl;
 import com.ttAX.model.Users;
 
 import org.springframework.stereotype.Component;
+import org.springframework.ui.Model;
 
+import javax.persistence.PostUpdate;
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
@@ -13,9 +15,8 @@ import javax.validation.ConstraintValidatorContext;
 @Component
 public class UniqueValidator implements ConstraintValidator<Unique, String> {
 
-    UserDAOImpl userService = new UserDAOImpl();
-    Users user = new Users();
-
+    private UserDAOImpl userService = new UserDAOImpl();
+    private Users user = new Users();
 
     @Override
     public void initialize(Unique unique) {
@@ -24,8 +25,9 @@ public class UniqueValidator implements ConstraintValidator<Unique, String> {
     @Override
     public boolean isValid(String login, ConstraintValidatorContext context) {
         user = userService.getUserByLogin(login);
-        if (user == null){
+        if (user == null) {
             return true;
         }return false;
     }
+
 }

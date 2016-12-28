@@ -17,5 +17,4 @@ public @interface Unique {
     String message() default "Login already exist";
     Class<?>[] groups() default {};
     Class<? extends Payload>[] payload() default {};
-
 }

@@ -1,5 +1,12 @@
 package com.ttAX.controller;
 
+import com.sun.xml.internal.ws.developer.SchemaValidation;
+import com.ttAX.validator.Unique;
+import com.ttAX.validator.UniqueValidator;
+import jdk.nashorn.internal.ir.annotations.Ignore;
+import net.bytebuddy.implementation.bind.annotation.IgnoreForBinding;
+import org.hibernate.annotations.DynamicUpdate;
+import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -13,6 +20,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.ttAX.model.Users;
 import com.ttAX.service.UserService;
 
+import javax.inject.Singleton;
+import javax.persistence.ExcludeDefaultListeners;
+import javax.persistence.PostUpdate;
 import javax.validation.Valid;
 import java.security.Principal;
 import java.util.Enumeration;
@@ -46,13 +56,13 @@ public class UserController {
         return "redirect:/users";
     }
 
+
     @RequestMapping(value= "/user/edit", method = RequestMethod.POST)
-    public String editUser(@ModelAttribute("user") Users u, BindingResult bindingResult, Model model){
+    public String editUser(@ModelAttribute("user") @Valid Users u, BindingResult bindingResult, Model model){
         model.addAttribute("listUsers", this.userService.listUsers());
         if(bindingResult.hasErrors()) {
             return "user";
         }else {
-
             this.userService.updateUser(u);
         }
         return "redirect:/users";
