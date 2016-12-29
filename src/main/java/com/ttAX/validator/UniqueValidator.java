@@ -1,21 +1,25 @@
 package com.ttAX.validator;
 
+import com.ttAX.dao.UserDAOImpl;
+
 import com.ttAX.model.Users;
 
+import com.ttAX.service.UserService;
 import com.ttAX.service.UserServiceImpl;
 import org.springframework.stereotype.Component;
+
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
 
 @Component
-public class UniqueValidator implements ConstraintValidator<Validator, String> {
+public class UniqueValidator implements ConstraintValidator<Unique, String> {
 
-    private UserServiceImpl userService = new UserServiceImpl();
+    private UserDAOImpl userService = new UserDAOImpl();
     private Users user = new Users();
 
     @Override
-    public void initialize(Validator validator) {
+    public void initialize(Unique unique) {
     }
 
     @Override

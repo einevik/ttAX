@@ -12,9 +12,10 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 @Constraint(validatedBy = UniqueValidator.class)
 @Documented
-public @interface Validator {
+public @interface Unique {
 
-    String message() default "Default Message Validator";
+    String message() default "Login already exist";
     Class<?>[] groups() default {};
     Class<? extends Payload>[] payload() default {};
+
 }
