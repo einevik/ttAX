@@ -7,20 +7,6 @@
 <html>
 <head>
     <title>Username Availability</title>
-    <style type="text/css">
-        .flable {
-            color: gray;
-        }
-
-        .status {
-            font-family: verdana;
-            font-size: 12px;
-        }
-
-        .login {
-            color: blue;
-        }
-    </style>
     <script src="<c:url value="/resources/jquery.js" />" type="text/javascript"></script>
     <script type="text/javascript">
         $(document).ready(function(){

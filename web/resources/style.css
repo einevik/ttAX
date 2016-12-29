@@ -19,7 +19,7 @@
     margin: auto;
     padding: 20px;
     border: 1px solid #888;
-    width: 50%;
+    width: 35%;
 }
 
 /* The Close Button */
@@ -51,6 +51,20 @@
     border: 1px solid #ccc;
     color:#333;background-color:#f0f0f0;}
 .tg .tg-4eph{background-color:#f9f9f9}
+
+
+.flable {
+    color: gray;
+}
+
+.status {
+    font-family: verdana;
+    font-size: 12px;
+}
+
+.login {
+    color: blue;
+}
 
 /*AddUser*/
 /*h1 {*/
