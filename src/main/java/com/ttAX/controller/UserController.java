@@ -56,6 +56,12 @@ public class UserController {
             return "user";
         }
         if( bindingResult.hasErrors()) {
+            if (userService.findLogin(u.getLogin())!=null){
+                request.setAttribute("message", loginMessage);
+            }
+            return "user";
+        }
+        if (userService.findLogin(u.getLogin())!=null){
             request.setAttribute("message", loginMessage);
             return "user";
         }
@@ -67,11 +73,7 @@ public class UserController {
     @RequestMapping(value= "/user/edit", method = RequestMethod.POST)
     public String editUser(@ModelAttribute("user") @Valid Users u, BindingResult bindingResult,HttpServletRequest request, Model model){
         model.addAttribute("listUsers", this.userService.listUsers());
-        if (u.getLogin().isEmpty()){
-            return "user";
-        }
         if(bindingResult.hasErrors()) {
-            request.setAttribute("message", loginMessage);
             return "user";
         }
         this.userService.updateUser(u);
@@ -97,6 +99,12 @@ public class UserController {
             return "registerPage";
         }
         if( bindingResult.hasErrors()) {
+            if (userService.findLogin(u.getLogin())!=null){
+                request.setAttribute("message", loginMessage);
+            }
+            return "registerPage";
+        }
+        if (userService.findLogin(u.getLogin())!=null){
             request.setAttribute("message", loginMessage);
             return "registerPage";
         }
