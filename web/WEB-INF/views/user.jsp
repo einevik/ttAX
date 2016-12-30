@@ -58,6 +58,7 @@
             <%--<td><div style="color:red;"><p>${message}</p></div></td>--%>
             <td><div style="color:red;"><p>${message} </p></div><form:errors path="login" cssStyle="color:red;"/></td>
         </tr>
+            <%--<c:if test="${user.id==0}">--%>
         <tr>
             <td><form:label path="password"><spring:message text="Пароль:"/></form:label></td>
             <td><form:password path="password"/></td>
@@ -68,15 +69,18 @@
             <td><form:password path="confrimpassword"/></td>
             <td><form:errors path="confrimpassword" cssStyle="color:red;"/><form:errors cssStyle="color:red;"/></td>
         </tr>
+            <%--</c:if>--%>
+            <c:if test="${user.id!=0}">
         <tr>
             <td><form:label path="role"><spring:message text="Права:"/></form:label></td>
             <td><form:input path="role"/></td>
             <td><form:errors path="role" cssStyle="color:red;"/></td>
         </tr>
+            </c:if>
             <td colspan="2">
                 <c:if test="${user.id!=0}">
                     <input type="submit" value="<spring:message text="изменить"/>"/>
-                    <%--<input type="reset" value="отмена">--%>
+                    <%--<input type="submit" value="<spring:message text="отмена"/>">--%>
                 </c:if>
                 <c:if test="${user.id==0}">
                     <input type="submit" value="<spring:message text="добавить"/>"/>
@@ -90,29 +94,29 @@
 <c:if test="${!empty listUsers}">
     <table class="tg">
         <tr>
-            <th width="50">ID</th>
+            <%--<th width="50">ID</th>--%>
             <th width="100">Фамилия</th>
             <th width="100">Имя</th>
             <th width="100">Отчество</th>
             <th width="100">Логин</th>
-            <th width="80">Пароль</th>
+            <%--<th width="80">Пароль</th>--%>
             <th width="120">Email</th>
             <th width="50">Права</th>
-            <th width="60">Разрешение</th>
+            <%--<th width="60">Разрешение</th>--%>
             <th width="25">Изменить</th>
             <th width="40">Удалить</th>
         </tr>
         <c:forEach items="${listUsers}" var="user">
             <tr>
-                <td>${user.id}</td>
+                <%--<td>${user.id}</td>--%>
                 <td>${user.surname}</td>
                 <td>${user.firstname}</td>
                 <td>${user.lastname}</td>
                 <td>${user.login}</td>
-                <td>${user.password}</td>
+                <%--<td>${user.password}</td>--%>
                 <td>${user.email}</td>
                 <td>${user.role}</td>
-                <td>${user.enabled}</td>
+                <%--<td>${user.enabled}</td>--%>
                 <td><a href="<c:url value='/edit/${user.id}' />" >Edit</a></td>
                 <td><a href="<c:url value='/remove/${user.id}' />" >Delete</a></td>
             </tr>
