@@ -26,7 +26,7 @@ public class MainController {
     @RequestMapping(value = { "/addUserAJAX" }, method = RequestMethod.GET)
     public String addUserAJAXPage(Model model) {
         model.addAttribute("user", new Users());
-        return "changePaswwordAJAX";
+        return "AJAX";
     }
 
     @RequestMapping(value = {"/admin"}, method = RequestMethod.GET)

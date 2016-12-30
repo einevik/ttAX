@@ -10,7 +10,7 @@
     <title>${title}</title>
 </head>
 <body>
-<script src="<c:url value="/resources/popup.js" />" type="text/javascript"></script>
+
 
 <jsp:include page="menu.jsp"/>
 
@@ -23,10 +23,11 @@
     <table>
         <tr>
             <td>Текущий пользователь : ${pageContext.request.userPrincipal.name}</td>
-            <td><button id="myBtn">Изменить пароль</button></td>
+            <td><button id="myBtn" onclick="openWindow()">Изменить пароль</button></td>
         </tr>
     </table>
 
+    <script src="<c:url value="/resources/popup.js" />" type="text/javascript"></script>
     <div id="myModal" class="modal">
         <div class="modal-content">
             <span class="close">&times;</span>
@@ -46,22 +47,22 @@
         </div>
     </div>
 
-    <script>
-        var modal = document.getElementById('myModal');
-        var btn = document.getElementById("myBtn");
-        var span = document.getElementsByClassName("close")[0];
-        btn.onclick = function() {
-            modal.style.display = "block";
-        }
-        span.onclick = function() {
-            modal.style.display = "none";
-        }
-        window.onclick = function(event) {
-            if (event.target == modal) {
-                modal.style.display = "none";
-            }
-        }
-    </script>
+    <%--<script>--%>
+        <%--var modal = document.getElementById('myModal');--%>
+        <%--var btn = document.getElementById("myBtn");--%>
+        <%--var span = document.getElementsByClassName("close")[0];--%>
+        <%--btn.onclick = function() {--%>
+            <%--modal.style.display = "block";--%>
+        <%--}--%>
+        <%--span.onclick = function() {--%>
+            <%--modal.style.display = "none";--%>
+        <%--}--%>
+        <%--window.onclick = function(event) {--%>
+            <%--if (event.target == modal) {--%>
+                <%--modal.style.display = "none";--%>
+            <%--}--%>
+        <%--}--%>
+    <%--</script>--%>
 
 </c:if>
 </body>

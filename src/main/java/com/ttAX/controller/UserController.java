@@ -52,12 +52,14 @@ public class UserController {
     @RequestMapping(value= "/user/add", method = RequestMethod.POST)
     public String addUser(@ModelAttribute("user") @Valid Users u, BindingResult bindingResult,HttpServletRequest request, Model model){
         model.addAttribute("listUsers", this.userService.listUsers());
-        if(userService.findLogin(u.getLogin())!=null || bindingResult.hasErrors()) {
+        if (u.getLogin().isEmpty()){
+            return "user";
+        }
+        if( bindingResult.hasErrors()) {
             request.setAttribute("message", loginMessage);
             return "user";
-        }else {
-                this.userService.addUser(u);
         }
+        this.userService.addUser(u);
         return "redirect:/users";
     }
 
@@ -65,11 +67,14 @@ public class UserController {
     @RequestMapping(value= "/user/edit", method = RequestMethod.POST)
     public String editUser(@ModelAttribute("user") @Valid Users u, BindingResult bindingResult,HttpServletRequest request, Model model){
         model.addAttribute("listUsers", this.userService.listUsers());
-        if(bindingResult.hasErrors()) {
+        if (u.getLogin().isEmpty()){
             return "user";
-        }else {
-            this.userService.updateUser(u);
         }
+        if(bindingResult.hasErrors()) {
+            request.setAttribute("message", loginMessage);
+            return "user";
+        }
+        this.userService.updateUser(u);
         return "redirect:/users";
     }
 
@@ -88,11 +93,9 @@ public class UserController {
 
     @RequestMapping(value= "/regUser", method = RequestMethod.POST)
     public String regUser(@ModelAttribute("user") @Valid Users u, BindingResult bindingResult, HttpServletRequest request){
-
         if (u.getLogin().isEmpty()){
             return "registerPage";
         }
-
         if( bindingResult.hasErrors()) {
             request.setAttribute("message", loginMessage);
             return "registerPage";

@@ -1,13 +1,19 @@
 package com.ttAX.model;
 
+import com.ttAX.validator.ConfrimPassword;
+import com.ttAX.validator.ConfrimPasswordValidator;
 import com.ttAX.validator.Unique;
+import com.ttAX.validator.UniqueValidator;
+
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
+import javax.validation.constraints.AssertTrue;
 
 @Entity
+@ConfrimPassword
 public class Users {
 
     private int id;
@@ -16,17 +22,18 @@ public class Users {
     private String lastname;
 
     @NotEmpty
-//    @Unique
     private String login;
 
     @NotEmpty
     private String password;
 
+    @NotEmpty
+    private String confrimpassword;
+
     @Email
     private String email;
-
     private String role = "user";
-    private boolean enabled = true;
+    private Boolean enabled = true;
 
     @Id
     @Column(name = "id", nullable = false)
@@ -91,6 +98,16 @@ public class Users {
     }
 
     @Basic
+    @Column(name = "confrimpassword", nullable = true, length = 255)
+    public String getConfrimpassword() {
+        return confrimpassword;
+    }
+
+    public void setConfrimpassword(String confrimpassword) {
+        this.confrimpassword = confrimpassword;
+    }
+
+    @Basic
     @Column(name = "email", nullable = true, length = 255)
     public String getEmail() {
         return email;
@@ -111,12 +128,12 @@ public class Users {
     }
 
     @Basic
-    @Column(name = "enabled", nullable = false)
-    public boolean isEnabled() {
+    @Column(name = "enabled", nullable = true)
+    public Boolean getEnabled() {
         return enabled;
     }
 
-    public void setEnabled(boolean enabled) {
+    public void setEnabled(Boolean enabled) {
         this.enabled = enabled;
     }
 
@@ -128,18 +145,19 @@ public class Users {
         Users users = (Users) o;
 
         if (id != users.id) return false;
-        if (enabled != users.enabled) return false;
         if (surname != null ? !surname.equals(users.surname) : users.surname != null) return false;
         if (firstname != null ? !firstname.equals(users.firstname) : users.firstname != null) return false;
         if (lastname != null ? !lastname.equals(users.lastname) : users.lastname != null) return false;
         if (login != null ? !login.equals(users.login) : users.login != null) return false;
         if (password != null ? !password.equals(users.password) : users.password != null) return false;
+        if (confrimpassword != null ? !confrimpassword.equals(users.confrimpassword) : users.confrimpassword != null)
+            return false;
         if (email != null ? !email.equals(users.email) : users.email != null) return false;
         if (role != null ? !role.equals(users.role) : users.role != null) return false;
+        if (enabled != null ? !enabled.equals(users.enabled) : users.enabled != null) return false;
 
         return true;
     }
-
 
     @Override
     public int hashCode() {
@@ -149,9 +167,10 @@ public class Users {
         result = 31 * result + (lastname != null ? lastname.hashCode() : 0);
         result = 31 * result + (login != null ? login.hashCode() : 0);
         result = 31 * result + (password != null ? password.hashCode() : 0);
+        result = 31 * result + (confrimpassword != null ? confrimpassword.hashCode() : 0);
         result = 31 * result + (email != null ? email.hashCode() : 0);
         result = 31 * result + (role != null ? role.hashCode() : 0);
-        result = 31 * result + (enabled ? 1 : 0);
+        result = 31 * result + (enabled != null ? enabled.hashCode() : 0);
         return result;
     }
 }

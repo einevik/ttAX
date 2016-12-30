@@ -8,14 +8,16 @@ import javax.validation.ConstraintValidatorContext;
 
 
 @Component
-public class ConfrimPasswordValidator implements ConstraintValidator<Validator, Object> {
+public class ConfrimPasswordValidator implements ConstraintValidator<ConfrimPassword, Users> {
 
     @Override
-    public void initialize(Validator constraintAnnotation) {
+    public void initialize(ConfrimPassword constraintAnnotation) {
     }
+
     @Override
-    public boolean isValid(Object obj, ConstraintValidatorContext context){
-        Users user = (Users) obj;
+    public boolean isValid(Users user, ConstraintValidatorContext context){
+        if (user.getPassword().isEmpty() || user.getConfrimpassword().isEmpty())
+            return true;
         return user.getPassword().equals(user.getConfrimpassword());
     }
 }
