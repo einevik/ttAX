@@ -35,39 +35,43 @@
             <tr>
                 <td><form:label path="surname"><spring:message text="Фамилия:"/></form:label></td>
                 <td><form:input path="surname"/></td>
-                <td><form:errors path="surname" cssStyle="color:red;margin:10px 0px;"/></td>
+                <td><form:errors path="surname" cssStyle="color:red;"/></td>
             </tr>
         <tr>
             <td><form:label path="firstname"><spring:message text="Имя:"/></form:label></td>
             <td><form:input path="firstname"/></td>
-            <td><form:errors path="firstname" cssStyle="color:red;margin:10px 0px;"/></td>
+            <td><form:errors path="firstname" cssStyle="color:red;"/></td>
         </tr>
         <tr>
             <td><form:label path="lastname"><spring:message text="Отчество:"/></form:label></td>
             <td><form:input path="lastname"/></td>
-            <td><form:errors path="lastname" cssStyle="color:red;margin:10px 0px;"/></td>
+            <td><form:errors path="lastname" cssStyle="color:red;"/></td>
         </tr>
         <tr>
             <td><form:label path="email"><spring:message text="Email:"/></form:label></td>
             <td><form:input path="email"/></td>
-            <td><form:errors path="email" cssStyle="color:red;margin:10px 0px;"/></td>
+            <td><form:errors path="email" cssStyle="color:red;"/></td>
         </tr>
         <tr>
             <td><form:label path="login"><spring:message text="Логин:"/></form:label></td>
             <td><form:input path="login"/></td>
-            <td><div style="color:red;"><p>${message}</p></div></td>
-            <td><form:errors path="login" cssStyle="color:red;margin:10px 0px;"/></td>
-
+            <%--<td><div style="color:red;"><p>${message}</p></div></td>--%>
+            <td><div style="color:red;"><p>${message} </p></div><form:errors path="login" cssStyle="color:red;"/></td>
         </tr>
         <tr>
             <td><form:label path="password"><spring:message text="Пароль:"/></form:label></td>
-            <td><form:input path="password"/></td>
-            <td><form:errors path="password" cssStyle="color:red;margin:10px 0px;"/></td>
+            <td><form:password path="password"/></td>
+            <td><form:errors path="password" cssStyle="color:red;"/></td>
+        </tr>
+        <tr>
+            <td><form:label path="confrimpassword"><spring:message text="Повтор пароля:"/></form:label></td>
+            <td><form:password path="confrimpassword"/></td>
+            <td><form:errors path="confrimpassword" cssStyle="color:red;"/><form:errors cssStyle="color:red;"/></td>
         </tr>
         <tr>
             <td><form:label path="role"><spring:message text="Права:"/></form:label></td>
             <td><form:input path="role"/></td>
-            <td><form:errors path="role" cssStyle="color:red;margin:10px 0px;"/></td>
+            <td><form:errors path="role" cssStyle="color:red;"/></td>
         </tr>
             <td colspan="2">
                 <c:if test="${user.id!=0}">
