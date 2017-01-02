@@ -41,7 +41,7 @@
         <authentication-provider>
             <jdbc-user-service data-source-ref="myDataSource"
                                users-by-username-query="select login, password, enabled  from users where login=?"
-                               authorities-by-username-query="select login, role from users where login=?" role-prefix="ROLE_"/>
+                               authorities-by-username-query="select login, role from roles where login=?" role-prefix="ROLE_"/>
         </authentication-provider>
 
     </authentication-manager>

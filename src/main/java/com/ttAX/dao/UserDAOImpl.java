@@ -1,15 +1,12 @@
 package com.ttAX.dao;
 
-
 import java.util.List;
-
-import org.hibernate.ReplicationMode;
 import org.hibernate.Session;
-import org.hibernate.query.Query;
 import org.springframework.stereotype.Repository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.ttAX.model.Roles;
 import com.ttAX.model.Users;
 import com.ttAX.model.HibernateSessionFactory;
 
@@ -29,10 +26,11 @@ public class UserDAOImpl implements UserDAO {
     }
 
     @Override
-    public void regUser (Users users) {
+    public void regUser (Users users, Roles roles) {
         Session session = HibernateSessionFactory.getSessionFactory().openSession();
         session.beginTransaction();
         session.save(users);
+        session.save(roles);
         session.getTransaction().commit();
         session.close();
 //        logger.info("Users saved successfully, Users Details="+users);

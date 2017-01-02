@@ -115,7 +115,7 @@
                 <td>${user.login}</td>
                 <%--<td>${user.password}</td>--%>
                 <td>${user.email}</td>
-                <td>${user.role}</td>
+                <td>${user.roles.role}</td>
                 <%--<td>${user.enabled}</td>--%>
                 <td><a href="<c:url value='/edit/${user.id}' />" >Edit</a></td>
                 <td><a href="<c:url value='/remove/${user.id}' />" >Delete</a></td>

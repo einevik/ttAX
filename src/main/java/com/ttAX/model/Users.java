@@ -5,6 +5,7 @@ import com.ttAX.validator.ConfrimPasswordValidator;
 import com.ttAX.validator.Unique;
 import com.ttAX.validator.UniqueValidator;
 
+import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
@@ -37,9 +38,22 @@ public class Users {
     private String confrimpassword;
 
     @Email
+    @NotEmpty
     private String email;
-    private String role;
+
     private Boolean enabled;
+
+    private Roles roles;
+    
+    @OneToOne
+    @JoinColumn(name = "id", referencedColumnName = "id_role")
+    public Roles getRoles() {
+        return this.roles;
+    }
+
+    public void setRoles(Roles roles) {
+        this.roles = roles;
+    }
 
     @Id
     @Column(name = "id", nullable = false)
@@ -123,15 +137,6 @@ public class Users {
         this.email = email;
     }
 
-    @Basic
-    @Column(name = "role", nullable = true, length = 255)
-    public String getRole() {
-        return role;
-    }
-
-    public void setRole(String role) {
-        this.role = role;
-    }
 
     @Basic
     @Column(name = "enabled", nullable = true)
@@ -159,7 +164,6 @@ public class Users {
         if (confrimpassword != null ? !confrimpassword.equals(users.confrimpassword) : users.confrimpassword != null)
             return false;
         if (email != null ? !email.equals(users.email) : users.email != null) return false;
-        if (role != null ? !role.equals(users.role) : users.role != null) return false;
         if (enabled != null ? !enabled.equals(users.enabled) : users.enabled != null) return false;
 
         return true;
@@ -175,7 +179,6 @@ public class Users {
         result = 31 * result + (password != null ? password.hashCode() : 0);
         result = 31 * result + (confrimpassword != null ? confrimpassword.hashCode() : 0);
         result = 31 * result + (email != null ? email.hashCode() : 0);
-        result = 31 * result + (role != null ? role.hashCode() : 0);
         result = 31 * result + (enabled != null ? enabled.hashCode() : 0);
         return result;
     }

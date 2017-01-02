@@ -51,7 +51,7 @@ public class AjaxController {
             user.setLogin(request.getParameter("login"));
             user.setPassword(request.getParameter("password"));
             user.setEmail(request.getParameter("email"));
-            userService.regUser(user);
+//            userService.regUser(user);
 
         } catch (Exception ex) {
             out.println("Error ->" + ex.getMessage());
