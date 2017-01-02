@@ -17,8 +17,14 @@ import javax.validation.constraints.AssertTrue;
 public class Users {
 
     private int id;
+
+    @NotEmpty
     private String surname;
+
+    @NotEmpty
     private String firstname;
+
+    @NotEmpty
     private String lastname;
 
     @NotEmpty
@@ -32,8 +38,8 @@ public class Users {
 
     @Email
     private String email;
-    private String role = "user";
-    private Boolean enabled = true;
+    private String role;
+    private Boolean enabled;
 
     @Id
     @Column(name = "id", nullable = false)
