@@ -23,7 +23,7 @@
 </c:choose>
 
 
-<form:form action="${addAction}" commandName="user">
+<form:form action="${addAction}" modelAttribute="user">
     <table>
             <tr>
                 <%--<td><form:label path="id"><spring:message text="ID"/></form:label></td>--%>
