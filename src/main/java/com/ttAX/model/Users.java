@@ -44,8 +44,8 @@ public class Users {
     private Boolean enabled;
 
     private Roles roles;
-    
-    @OneToOne
+
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "id", referencedColumnName = "id_role")
     public Roles getRoles() {
         return this.roles;

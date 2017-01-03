@@ -83,6 +83,7 @@ public class UserDAOImpl implements UserDAO {
     public void removeUser(int id) {
         Session session = HibernateSessionFactory.getSessionFactory().openSession();
         Users users = (Users) session.load(Users.class, new Integer(id));
+        Roles roles = (Roles) session.load(Roles.class, new Integer(id));
         if(null != users){
             session.beginTransaction();
             session.delete(users);

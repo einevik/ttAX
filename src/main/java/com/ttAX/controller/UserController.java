@@ -40,7 +40,6 @@ public class UserController {
 
     @RequestMapping(value= "/user/add", method = RequestMethod.POST)
     public String addUser(@ModelAttribute("user") @Valid Users u, BindingResult bindingResult,HttpServletRequest request, Model model){
-        model.addAttribute("listUsers", this.userService.listUsers());
         if (u.getLogin().isEmpty()){
             return "user";
         }
@@ -54,7 +53,12 @@ public class UserController {
             request.setAttribute("message", loginMessage);
             return "user";
         }
-        this.userService.addUser(u);
+
+        Roles r = new Roles();
+        r.setLogin(u.getLogin());
+        r.setRole("user");
+        u.setEnabled(true);
+        this.userService.regUser(u,r);
         return "redirect:/users";
     }
 
