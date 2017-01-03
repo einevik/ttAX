@@ -17,7 +17,7 @@
         <c:url var="addAction" value="/user/add" ></c:url>
     </c:when>
     <c:when test="${user.id!=0}">
-        <h2>Изменть пользователя</h2>
+        <h2>Изменть права пользователя</h2>
         <c:url var="addAction" value="/user/edit" ></c:url>
     </c:when>
 </c:choose>
@@ -25,13 +25,12 @@
 
 <form:form action="${addAction}" commandName="user">
     <table>
-        <%--<c:if test="${user.id!=0}">--%>
             <tr>
                 <%--<td><form:label path="id"><spring:message text="ID"/></form:label></td>--%>
                 <%--<td><form:input path="id" readonly="true" size="8"  disabled="true"/></td>--%>
                 <form:hidden path="id"/>
             </tr>
-        <%--</c:if>--%>
+            <c:if test="${user.id==0}">
             <tr>
                 <td><form:label path="surname"><spring:message text="Фамилия:"/></form:label></td>
                 <td><form:input path="surname"/></td>
@@ -58,7 +57,6 @@
             <%--<td><div style="color:red;"><p>${message}</p></div></td>--%>
             <td><div style="color:red;"><p>${message} </p></div><form:errors path="login" cssStyle="color:red;"/></td>
         </tr>
-            <%--<c:if test="${user.id==0}">--%>
         <tr>
             <td><form:label path="password"><spring:message text="Пароль:"/></form:label></td>
             <td><form:password path="password"/></td>
@@ -69,18 +67,18 @@
             <td><form:password path="confrimpassword"/></td>
             <td><form:errors path="confrimpassword" cssStyle="color:red;"/><form:errors cssStyle="color:red;"/></td>
         </tr>
-            <%--</c:if>--%>
+            </c:if>
             <c:if test="${user.id!=0}">
         <tr>
-            <td><form:label path="role"><spring:message text="Права:"/></form:label></td>
-            <td><form:input path="role"/></td>
-            <td><form:errors path="role" cssStyle="color:red;"/></td>
+            <td><form:label path="roles.role"><spring:message text="Права:"/></form:label></td>
+            <td><form:input path="roles.role"/></td>
+            <td><form:errors path="roles.role" cssStyle="color:red;"/></td>
         </tr>
             </c:if>
             <td colspan="2">
                 <c:if test="${user.id!=0}">
                     <input type="submit" value="<spring:message text="изменить"/>"/>
-                    <%--<input type="submit" value="<spring:message text="отмена"/>">--%>
+                    <input type="submit" value="<spring:message text="отмена"/>" formaction="/users" formmethod="get">
                 </c:if>
                 <c:if test="${user.id==0}">
                     <input type="submit" value="<spring:message text="добавить"/>"/>
@@ -103,7 +101,7 @@
             <th width="120">Email</th>
             <th width="50">Права</th>
             <%--<th width="60">Разрешение</th>--%>
-            <th width="25">Изменить</th>
+            <th width="25">Изменить права</th>
             <th width="40">Удалить</th>
         </tr>
         <c:forEach items="${listUsers}" var="user">
