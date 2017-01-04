@@ -2,6 +2,7 @@ package com.ttAX.dao;
 
 import java.util.List;
 import org.hibernate.Session;
+import org.osgi.service.useradmin.User;
 import org.springframework.stereotype.Repository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -37,13 +38,23 @@ public class UserDAOImpl implements UserDAO {
     }
 
     @Override
-    public void updateUser(Users users) {
+    public void updateUser(Users user) {
         Session session = HibernateSessionFactory.getSessionFactory().openSession();
         session.beginTransaction();
-        session.update(users);
+        session.update(user);
         session.getTransaction().commit();
         session.close();
-        logger.info("Users updated successfully, Users Details="+users);
+        logger.info("Users updated successfully, Users Details="+user);
+    }
+
+    @Override
+    public void updateRole(Roles role) {
+        Session session = HibernateSessionFactory.getSessionFactory().openSession();
+        session.beginTransaction();
+        session.update(role);
+        session.getTransaction().commit();
+        session.close();
+        logger.info("Roles updated successfully, Roles Details="+role);
     }
 
     @SuppressWarnings("unchecked")
@@ -74,9 +85,17 @@ public class UserDAOImpl implements UserDAO {
     @Override
     public Users getUserById(int id) {
         Session session = HibernateSessionFactory.getSessionFactory().openSession();
-        Users users= (Users) session.load(Users.class, new Integer(id));
+        Users users = (Users) session.load(Users.class, new Integer(id));
         logger.info("Users loaded successfully, Users details="+users);
         return users;
+    }
+
+    @Override
+    public Roles getRoleById(int id) {
+        Session session = HibernateSessionFactory.getSessionFactory().openSession();
+        Roles roles= (Roles) session.load(Roles.class, new Integer(id));
+        logger.info("Users loaded successfully, Users details="+roles);
+        return roles;
     }
 
     @Override

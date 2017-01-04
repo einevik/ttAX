@@ -14,7 +14,7 @@
                 var login = $(this).val();
 //                Кол-во символов
                 if(login.length >= 3){
-                    $(".status").html("<img src='/resources/loading.gif'><font color=gray> Checking availability...</font>");
+                    $(".status").html("<img src='/resources/loading.gif'><font color=gray> Performed...</font>");
                     $.ajax({
                         type: "POST",
                         url: "checkAJAX",

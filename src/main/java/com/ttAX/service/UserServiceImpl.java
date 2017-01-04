@@ -38,6 +38,12 @@ public class UserServiceImpl implements UserService {
 
     @Override
     @Transactional
+    public void updateRole(Roles role) {
+        this.userDAO.updateRole(role);
+    }
+
+    @Override
+    @Transactional
     public List<Users> listUsers() {
         return this.userDAO.listUsers();
     }
@@ -46,6 +52,12 @@ public class UserServiceImpl implements UserService {
     @Transactional
     public Users getUserById(int id) {
         return this.userDAO.getUserById(id);
+    }
+
+    @Override
+    @Transactional
+    public Roles getRoleById(int id) {
+        return this.userDAO.getRoleById(id);
     }
 
     @Override

@@ -2,53 +2,92 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%--<!DOCTYPE html>--%>
 <link href="/resources/style.css" rel="stylesheet" type="text/css">
-<script src="<c:url value="/resources/popup.js" />" type="text/javascript"></script>
+<%--<script src="<c:url value="/resources/popup.js" />" type="text/javascript"></script>--%>
+<%--<script src="<c:url value="/resources/changePassword.js" />" type="text/javascript"></script>--%>
+<script src="<c:url value="/resources/jquery.js" />" type="text/javascript"></script>
 
 <html>
 <body>
 <jsp:include page="menu.jsp"/>
-<h2>Modal Example</h2>
-<!-- Trigger/Open The Modal -->
-<button id="myBtn" onclick="openWindow()">Open Modal</button>
 
-<div id="myModal" class="modal">
-    <div class="modal-content">
-        <span class="close">&times;</span>
-        <h3>Изменить пароль</h3>
-        <table>
-            <tr>
-                <td>Старый пароль:</td>
-                <td><input type='text' name='username' value=''></td>
-            </tr>
-            <tr>
-                <td>Новый пароль:</td>
-                <td><input type='password' name='password' /></td>
-            </tr>
-        </table>
+<button id="myBtn">Open Modal</button>
+    <div id="myModal" class="modal">
+
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h3>Изменить пароль</h3>
+            <table method="post" name="password-form" id="form-password">
+                <label>Current Password:</label> <br>
+                <input type="password" name="password" id="password" value="" size="32" />
+                <br>
+                <br>
+                <label>New Password:</label> <br>
+                <input type="password" name="new-password" id="new-password" value="" size="32" />
+                <br>
+                <br>
+                <label>Re-Enter Password:</label> <br>
+                <input type="password" name="password-check" id="password-check" value="" size="32" />
+                <br>
+                <br>
+                <input type="submit" value="Submit" id="passsubmit">
+            </table>
+        </div>
+
     </div>
 
-</div>
-<%--<script>--%>
-    <%--// Get the modal--%>
-    <%--var modal = document.getElementById('myModal');--%>
-    <%--// Get the button that opens the modal--%>
-    <%--var btn = document.getElementById("myBtn");--%>
-    <%--// Get the <span> element that closes the modal--%>
-    <%--var span = document.getElementsByClassName("close")[0];--%>
-    <%--// When the user clicks the button, open the modal--%>
-    <%--btn.onclick = function() {--%>
-        <%--modal.style.display = "block";--%>
-    <%--}--%>
-    <%--// When the user clicks on <span> (x), close the modal--%>
-    <%--span.onclick = function() {--%>
-        <%--modal.style.display = "none";--%>
-    <%--}--%>
-    <%--// When the user clicks anywhere outside of the modal, close it--%>
-    <%--window.onclick = function(event) {--%>
-        <%--if (event.target == modal) {--%>
-            <%--modal.style.display = "none";--%>
-        <%--}--%>
-    <%--}--%>
-<%--</script>--%>
+<script>
+//    Modal Window START
+    var modal = document.getElementById('myModal');
+    var btn = document.getElementById("myBtn");
+    var span = document.getElementsByClassName("close")[0];
+    btn.onclick = function() {
+        modal.style.display = "block";
+    }
+    span.onclick = function() {
+        modal.style.display = "none";
+    }
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+//    Modal Window END
+
+    $(function(){
+        $("#passsubmit").click(function(){
+            $(".error").hide();
+            var hasError = false;
+            var password = $("#password").val();
+            var newpass = $("#new-password").val();
+            var checkVal = $("#password-check").val();
+            if (newpass == '') {
+                $("#new-password").after('<span class="error"> Please enter a password.</span>');
+                hasError = true;
+            } else if (checkVal == '') {
+                $("#password-check").after('<span class="error"> Please re-enter your password.</span>');
+                hasError = true;
+            } else if (newpass != checkVal ) {
+                $("#password-check").after('<span class="error"> Passwords do not match.</span>');
+                hasError = true;
+            }
+
+            if(hasError == true) {return false;}
+
+            if(hasError == false) {
+                $.ajax({
+                    type: "POST",
+                    url: "changePassword",
+                    data: {newpass:newpass},
+                    success: function(msg){
+                        $(".status").ajaxComplete(function(event, request, settings){
+                            $(".status").html(msg);
+                        });
+                    }
+                });
+            };
+        });
+
+    });
+</script>
 </body>
 </html>

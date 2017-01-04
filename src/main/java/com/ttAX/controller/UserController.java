@@ -33,13 +33,14 @@ public class UserController {
 
     @RequestMapping(value = "/users", method = RequestMethod.GET)
     public String listUsers(Model model) {
+        model.addAttribute("role", new Roles());
         model.addAttribute("user", new Users());
         model.addAttribute("listUsers", this.userService.listUsers());
         return "user";
     }
 
     @RequestMapping(value= "/user/add", method = RequestMethod.POST)
-    public String addUser(@ModelAttribute("user") @Valid Users u, BindingResult bindingResult,HttpServletRequest request, Model model){
+    public String addUser(@ModelAttribute("user") @Valid Users u, Roles r, BindingResult bindingResult,HttpServletRequest request, Model model){
         if (u.getLogin().isEmpty()){
             return "user";
         }
@@ -53,8 +54,6 @@ public class UserController {
             request.setAttribute("message", loginMessage);
             return "user";
         }
-
-        Roles r = new Roles();
         r.setLogin(u.getLogin());
         r.setRole("user");
         u.setEnabled(true);
@@ -62,14 +61,18 @@ public class UserController {
         return "redirect:/users";
     }
 
+    @RequestMapping("/edit/{id}")
+    public String editUserPage(@PathVariable("id") int id, Model model){
+        model.addAttribute("user", this.userService.getUserById(id));
+        model.addAttribute("role", this.userService.getRoleById(id));
+        model.addAttribute("listUsers", this.userService.listUsers());
+        return "user";
+    }
 
     @RequestMapping(value= "/user/edit", method = RequestMethod.POST)
-    public String editUser(@ModelAttribute("user") @Valid Users u, BindingResult bindingResult,HttpServletRequest request, Model model){
+    public String editUser(@ModelAttribute("user") Users u, Roles r, Model model){
         model.addAttribute("listUsers", this.userService.listUsers());
-        if(bindingResult.hasErrors()) {
-            return "user";
-        }
-        this.userService.updateUser(u);
+        this.userService.updateRole(r);
         return "redirect:/users";
     }
 
@@ -77,13 +80,6 @@ public class UserController {
     public String removeUser(@PathVariable("id") int id){
         this.userService.removeUser(id);
         return "redirect:/users";
-    }
-
-    @RequestMapping("/edit/{id}")
-    public String editUserPage(@PathVariable("id") int id, Model model){
-        model.addAttribute("user", this.userService.getUserById(id));
-        model.addAttribute("listUsers", this.userService.listUsers());
-        return "user";
     }
 
     @RequestMapping(value= "/regUser", method = RequestMethod.POST)
