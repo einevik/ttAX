@@ -71,7 +71,7 @@
             <c:if test="${user.id!=0}">
         <tr>
             <td><form:label path="roles.role"><spring:message text="Права:"/></form:label></td>
-            <td><form:input path="roles.role"/></td>
+            <td><form:input path="roles.role" /></td>
             <td><form:errors path="roles.role" cssStyle="color:red;"/></td>
         </tr>
             </c:if>

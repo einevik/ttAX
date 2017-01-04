@@ -45,6 +45,7 @@ public class Users {
 
     private Roles roles;
 
+
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "id", referencedColumnName = "id_role")
     public Roles getRoles() {
@@ -54,6 +55,7 @@ public class Users {
     public void setRoles(Roles roles) {
         this.roles = roles;
     }
+
 
     @Id
     @Column(name = "id", nullable = false)

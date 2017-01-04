@@ -2,13 +2,13 @@ package com.ttAX.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
@@ -70,8 +70,13 @@ public class UserController {
     }
 
     @RequestMapping(value= "/user/edit", method = RequestMethod.POST)
-    public String editUser(@ModelAttribute("user") Users u, Roles r, Model model){
+    public String editRole(@ModelAttribute("user") Users u, @RequestParam("roles.role") String roleForm, Roles r, Model model){
         model.addAttribute("listUsers", this.userService.listUsers());
+
+        r.setIdRole(u.getId());
+        u = userService.getUserById(u.getId());
+        r.setLogin(u.getLogin());
+        r.setRole(roleForm);
         this.userService.updateRole(r);
         return "redirect:/users";
     }
