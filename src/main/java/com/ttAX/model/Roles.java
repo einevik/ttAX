@@ -1,11 +1,13 @@
 package com.ttAX.model;
 
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
 
 @Entity
 public class Roles {
+
     private int idRole;
     private String login;
     private String role;

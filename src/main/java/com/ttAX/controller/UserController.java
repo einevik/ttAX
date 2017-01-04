@@ -70,7 +70,7 @@ public class UserController {
     }
 
     @RequestMapping(value= "/user/edit", method = RequestMethod.POST)
-    public String editRole(@ModelAttribute("user") Users u, @RequestParam("roles.role") String roleForm, Roles r, Model model){
+    public String editRole(@ModelAttribute("user") Users u, @RequestParam("roles.role") String roleForm,Roles r, Model model){
         model.addAttribute("listUsers", this.userService.listUsers());
 
         r.setIdRole(u.getId());

@@ -70,6 +70,11 @@
             </c:if>
             <c:if test="${user.id!=0}">
         <tr>
+            <td><form:label path="login"><spring:message text="Логин:"/></form:label></td>
+            <td><form:input path="login" readonly="true" disabled="true"/></td>
+            <td><div style="color:red;"><p>${message} </p></div><form:errors path="login" cssStyle="color:red;"/></td>
+        </tr>
+        <tr>
             <td><form:label path="roles.role"><spring:message text="Права:"/></form:label></td>
             <td><form:input path="roles.role" /></td>
             <td><form:errors path="roles.role" cssStyle="color:red;"/></td>
