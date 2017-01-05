@@ -2,6 +2,7 @@ package com.ttAX.service;
 
 import java.util.List;
 
+import com.ttAX.model.Messages;
 import com.ttAX.model.Roles;
 import com.ttAX.model.Users;
 
@@ -12,6 +13,8 @@ public interface UserService {
     void updateUser(Users users);
     void updateRole(Roles roles);
     List<Users> listUsers();
+    List<Messages> listMessages();
+    List<Messages> listMessagesByLogin(String login);
     Users getUserById(int id);
     Roles getRoleById(int id);
     Users findLogin(String login);

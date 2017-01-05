@@ -2,6 +2,7 @@
 <%@page session="false"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
+<%@ taglib prefix="form" uri="http://java.sun.com/jsf/html" %>
 <%@ page contentType="text/html;charset=UTF-8" %>
 <html>
 <link href="/resources/style.css" rel="stylesheet" type="text/css">
@@ -29,7 +30,6 @@
     </table>
 
     <div id="myModal" class="modal">
-
         <div class="modal-content">
             <span class="close">&times;</span>
             <h3>Изменить пароль</h3>
@@ -49,8 +49,51 @@
                 <input type="submit" value="Submit" id="passsubmit">
             </table>
         </div>
-
     </div>
+
+
+
+    <h3>Messages:</h3>
+        <table class="tg">
+            <tr>
+                <th width="100">Отправитель</th>
+            <security:authorize access="hasAnyRole('admin')">
+                <th width="100">Получатель</th>
+            </security:authorize>
+                <th width="100">Дата</th>
+                <th width="100">Время</th>
+                <th width="100">Тема</th>
+                <th width="40">Сообщение</th>
+                <th width="40">Удалить</th>
+            </tr>
+
+        <security:authorize access="hasAnyRole('admin')">
+            <c:forEach items="${listMessages}" var="messages">
+                <tr>
+                    <td>${messages.sender}</td>
+                    <td>${messages.recipient}</td>
+                    <td>${messages.date}</td>
+                    <td>${messages.time}</td>
+                    <td>${messages.theme}</td>
+                        <%--<td><a href="<c:url value='/edit/${messages.id}' />" >Edit</a></td>--%>
+                        <%--<td><a href="<c:url value='/remove/${messages.id}' />" >Delete</a></td>--%>
+                </tr>
+            </c:forEach>
+        </security:authorize>
+
+            <security:authorize access="hasAnyRole('user')">
+                <c:forEach items="${listMessagesByLogin}" var="messages">
+                    <tr>
+                        <td>${messages.sender}</td>
+                        <td>${messages.date}</td>
+                        <td>${messages.time}</td>
+                        <td>${messages.theme}</td>
+                            <%--<td><a href="<c:url value='/edit/${messages.id}' />" >Edit</a></td>--%>
+                            <%--<td><a href="<c:url value='/remove/${messages.id}' />" >Delete</a></td>--%>
+                    </tr>
+                </c:forEach>
+            </security:authorize>
+        </table>
 
     <script>
 //        Window START

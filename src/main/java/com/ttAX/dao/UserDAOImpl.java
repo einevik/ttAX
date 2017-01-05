@@ -1,6 +1,8 @@
 package com.ttAX.dao;
 
 import java.util.List;
+
+import com.ttAX.model.Messages;
 import org.hibernate.Session;
 import org.osgi.service.useradmin.User;
 import org.springframework.stereotype.Repository;
@@ -66,6 +68,28 @@ public class UserDAOImpl implements UserDAO {
             logger.info("Users List::"+users);
         }
         return UsersList;
+    }
+
+    @SuppressWarnings("unchecked")
+    @Override
+    public List<Messages> listMessages() {
+        Session session = HibernateSessionFactory.getSessionFactory().openSession();
+        List<Messages> MessagesList = session.createQuery("from Messages").list();
+        for(Messages messages: MessagesList){
+            logger.info("Messages List::"+messages);
+        }
+        return MessagesList;
+    }
+
+    @SuppressWarnings("unchecked")
+    @Override
+    public List<Messages> listMessagesByLogin(String login) {
+        Session session = HibernateSessionFactory.getSessionFactory().openSession();
+        List<Messages> MessagesListByLogin = session.createQuery("from Messages where recipient=?").setParameter(0,login).list();
+        for(Messages messages: MessagesListByLogin){
+            logger.info("Messages List::"+messages);
+        }
+        return MessagesListByLogin;
     }
 
     @Override

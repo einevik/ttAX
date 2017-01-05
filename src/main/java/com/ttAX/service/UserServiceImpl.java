@@ -2,6 +2,7 @@ package com.ttAX.service;
 
 import java.util.List;
 
+import com.ttAX.model.Messages;
 import com.ttAX.model.Roles;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -46,6 +47,18 @@ public class UserServiceImpl implements UserService {
     @Transactional
     public List<Users> listUsers() {
         return this.userDAO.listUsers();
+    }
+
+    @Override
+    @Transactional
+    public List<Messages> listMessages() {
+        return this.userDAO.listMessages();
+    }
+
+    @Override
+    @Transactional
+    public List<Messages> listMessagesByLogin(String login) {
+        return this.userDAO.listMessagesByLogin(login);
     }
 
     @Override

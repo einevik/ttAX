@@ -1,6 +1,13 @@
 package com.ttAX.controller;
 
+import com.ttAX.model.Messages;
+import com.ttAX.model.Roles;
 import com.ttAX.model.Users;
+import com.ttAX.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,10 +17,22 @@ import java.security.Principal;
 @Controller
 public class MainController {
 
+    private UserService userService;
+
+    @Autowired(required=true)
+    @Qualifier(value = "userService")
+    public void setUserService(UserService userService){
+        this.userService = userService;
+    }
+
     @RequestMapping(value = { "/home" }, method = RequestMethod.GET)
-    public String welcomePage(Model model) {
+    public String welcomePage(Model model, String login) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        login = auth.getName();
         model.addAttribute("title", "Главная");
-//        model.addAttribute("message", "Главная страница!");
+        model.addAttribute("messages", new Messages());
+        model.addAttribute("listMessages", this.userService.listMessages());
+        model.addAttribute("listMessagesByLogin", this.userService.listMessagesByLogin(login));
         return "homePage";
     }
 
