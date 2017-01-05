@@ -63,8 +63,8 @@
                 <th width="100">Дата</th>
                 <th width="100">Время</th>
                 <th width="100">Тема</th>
-                <th width="40">Сообщение</th>
-                <th width="40">Удалить</th>
+                <th width="80">Прочитать Сообщение</th>
+                <th width="80">Удалить сообщение</th>
             </tr>
 
         <security:authorize access="hasAnyRole('admin')">
@@ -75,8 +75,8 @@
                     <td>${messages.date}</td>
                     <td>${messages.time}</td>
                     <td>${messages.theme}</td>
-                        <%--<td><a href="<c:url value='/edit/${messages.id}' />" >Edit</a></td>--%>
-                        <%--<td><a href="<c:url value='/remove/${messages.id}' />" >Delete</a></td>--%>
+                        <td><a href="<c:url value='/edit/${messages.idMessage}' />" >Read</a></td>
+                        <td><a href="<c:url value='/home/remove/${messages.idMessage}' />" >Delete</a></td>
                 </tr>
             </c:forEach>
         </security:authorize>
@@ -88,8 +88,8 @@
                         <td>${messages.date}</td>
                         <td>${messages.time}</td>
                         <td>${messages.theme}</td>
-                            <%--<td><a href="<c:url value='/edit/${messages.id}' />" >Edit</a></td>--%>
-                            <%--<td><a href="<c:url value='/remove/${messages.id}' />" >Delete</a></td>--%>
+                            <td><a href="<c:url value='/edit/${messages.idMessage}' />" >Read</a></td>
+                            <td><a href="<c:url value='/home/remove/${messages.idMessage}' />" >Delete</a></td>
                     </tr>
                 </c:forEach>
             </security:authorize>

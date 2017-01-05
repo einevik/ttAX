@@ -19,4 +19,5 @@ public interface UserDAO {
     Users getUserById(int id);
     Roles getRoleById(int id);
     void removeUser(int id);
+    void removeMessage(int id);
 }

@@ -25,17 +25,6 @@ public class MainController {
         this.userService = userService;
     }
 
-    @RequestMapping(value = { "/home" }, method = RequestMethod.GET)
-    public String welcomePage(Model model, String login) {
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        login = auth.getName();
-        model.addAttribute("title", "Главная");
-        model.addAttribute("messages", new Messages());
-        model.addAttribute("listMessages", this.userService.listMessages());
-        model.addAttribute("listMessagesByLogin", this.userService.listMessagesByLogin(login));
-        return "homePage";
-    }
-
     @RequestMapping(value = { "/index" }, method = RequestMethod.GET)
     public String indexPage(Model model) {
         model.addAttribute("user", new Users());

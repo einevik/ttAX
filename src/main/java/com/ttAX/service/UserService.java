@@ -19,5 +19,6 @@ public interface UserService {
     Roles getRoleById(int id);
     Users findLogin(String login);
     void removeUser(int id);
+    void removeMessage(int id);
 
 }

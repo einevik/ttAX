@@ -135,4 +135,17 @@ public class UserDAOImpl implements UserDAO {
         }
         logger.info("Users deleted successfully, Users details="+users);
     }
+
+    @Override
+    public void removeMessage(int id) {
+        Session session = HibernateSessionFactory.getSessionFactory().openSession();
+        Messages messages = (Messages) session.load(Messages.class, new Integer(id));
+        if(null != messages){
+            session.beginTransaction();
+            session.delete(messages);
+            session.getTransaction().commit();
+            session.close();
+        }
+        logger.info("Messages deleted successfully, Messages details="+messages);
+    }
 }
