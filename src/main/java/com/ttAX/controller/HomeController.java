@@ -33,13 +33,20 @@ public class HomeController {
     }
 
     @RequestMapping(value = { "/home" }, method = RequestMethod.GET)
-    public String welcomePage(Model model, String login) {
+    public String welcomePage(Model model, String login, Roles roles, HttpServletRequest request) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         login = auth.getName();
         model.addAttribute("title", "Главная");
         model.addAttribute("messages", new Messages());
-        model.addAttribute("listMessages", this.userService.listMessages());
-        model.addAttribute("listMessagesByLogin", this.userService.listMessagesByLogin(login));
+
+        if (request.isUserInRole("admin")){
+            model.addAttribute("listMessages", this.userService.listMessages());
+        }
+
+        if (request.isUserInRole("user")){
+            model.addAttribute("listMessages", this.userService.listMessagesByLogin(login));
+        }
+
         return "homePage";
     }
 

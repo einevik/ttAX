@@ -20,5 +20,4 @@ public interface UserService {
     Users findLogin(String login);
     void removeUser(int id);
     void removeMessage(int id);
-
 }

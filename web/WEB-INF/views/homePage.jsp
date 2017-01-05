@@ -51,52 +51,8 @@
         </div>
     </div>
 
-
-
-    <h3>Messages:</h3>
-        <table class="tg">
-            <tr>
-                <th width="100">Отправитель</th>
-            <security:authorize access="hasAnyRole('admin')">
-                <th width="100">Получатель</th>
-            </security:authorize>
-                <th width="100">Дата</th>
-                <th width="100">Время</th>
-                <th width="100">Тема</th>
-                <th width="80">Прочитать Сообщение</th>
-                <th width="80">Удалить сообщение</th>
-            </tr>
-
-        <security:authorize access="hasAnyRole('admin')">
-            <c:forEach items="${listMessages}" var="messages">
-                <tr>
-                    <td>${messages.sender}</td>
-                    <td>${messages.recipient}</td>
-                    <td>${messages.date}</td>
-                    <td>${messages.time}</td>
-                    <td>${messages.theme}</td>
-                        <td><a href="<c:url value='/edit/${messages.idMessage}' />" >Read</a></td>
-                        <td><a href="<c:url value='/home/remove/${messages.idMessage}' />" >Delete</a></td>
-                </tr>
-            </c:forEach>
-        </security:authorize>
-
-            <security:authorize access="hasAnyRole('user')">
-                <c:forEach items="${listMessagesByLogin}" var="messages">
-                    <tr>
-                        <td>${messages.sender}</td>
-                        <td>${messages.date}</td>
-                        <td>${messages.time}</td>
-                        <td>${messages.theme}</td>
-                            <td><a href="<c:url value='/edit/${messages.idMessage}' />" >Read</a></td>
-                            <td><a href="<c:url value='/home/remove/${messages.idMessage}' />" >Delete</a></td>
-                    </tr>
-                </c:forEach>
-            </security:authorize>
-        </table>
-
     <script>
-//        Window START
+        //        Window START
         var modal = document.getElementById('myModal');
         var btn = document.getElementById("myBtn");
         var span = document.getElementsByClassName("close")[0];
@@ -111,7 +67,7 @@
                 modal.style.display = "none";
             }
         }
-//        Window END
+        //        Window END
 
         $(function(){
             $("#passsubmit").click(function(){
@@ -156,6 +112,56 @@
             });
 
         });
+    </script>
+
+    <h3>Messages:</h3>
+        <table class="tg">
+            <tr>
+                <th width="100">Отправитель</th>
+            <security:authorize access="hasAnyRole('admin')">
+                <th width="100">Получатель</th>
+            </security:authorize>
+                <th width="100">Дата</th>
+                <th width="100">Время</th>
+                <th width="100">Тема</th>
+                <th width="80">Прочитать Сообщение</th>
+                <th width="80">Удалить сообщение</th>
+            </tr>
+
+            <c:forEach items="${listMessages}" var="messages">
+            <tr>
+                <td>${messages.sender}</td>
+            <security:authorize access="hasAnyRole('admin')">
+                <td>${messages.recipient}</td>
+            </security:authorize>
+                <td>${messages.date}</td>
+                <td>${messages.time}</td>
+                <td>${messages.theme}</td>
+                <td><a href="<c:url value='/edit/${messages.idMessage}' />" >Read</a></td>
+                <td><a href="<c:url value='/home/remove/${messages.idMessage}' />" >Delete</a></td>
+            </tr>
+            </c:forEach>
+
+        </table>
+
+    <script>
+//        Window START
+        var modal = document.getElementById('myModal');
+        var btn = document.getElementById("myBtn");
+        var span = document.getElementsByClassName("close")[0];
+        btn.onclick = function() {
+            modal.style.display = "block";
+        }
+        span.onclick = function() {
+            modal.style.display = "none";
+        }
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+//        Window END
+
     </script>
 
 </c:if>
