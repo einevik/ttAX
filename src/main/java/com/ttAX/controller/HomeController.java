@@ -62,4 +62,25 @@ public class HomeController {
         model.addAttribute("listMessages", this.userService.sortTable(query));
         return "homePage";
     }
+
+    @RequestMapping("/home/sort_recipient")
+    public String sortRecipient(Model model, String query, HttpServletRequest request){
+        query = "from Messages order by recipient asc";
+        model.addAttribute("listMessages", this.userService.sortTable(query));
+        return "homePage";
+    }
+
+    @RequestMapping("/home/sort_date")
+    public String sortDate(Model model, String query, HttpServletRequest request){
+        query = "from Messages order by date asc";
+        model.addAttribute("listMessages", this.userService.sortTable(query));
+        return "homePage";
+    }
+
+    @RequestMapping("/home/sort_theme")
+    public String sortTheme(Model model, String query, HttpServletRequest request){
+        query = "from Messages order by theme asc";
+        model.addAttribute("listMessages", this.userService.sortTable(query));
+        return "homePage";
+    }
 }

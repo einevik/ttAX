@@ -122,10 +122,10 @@
             <tr>
                 <th id="itemSender" width="100"><a href="<c:url value='/home/sort_sender'/>">Отправитель</a></th>
                                                                     <security:authorize access="hasAnyRole('admin')">
-                <th id="itemRecipient" width="100">Получатель</th>
+                <th id="itemRecipient" width="100"><a href="<c:url value='/home/sort_recipient'/>">Получатель</a></th>
                                                                     </security:authorize>
-                <th id="itemDate" width="100">Дата</th>
-                <th id="itemTheme" width="100">Тема</th>
+                <th id="itemDate" width="100"><a href="<c:url value='/home/sort_date'/>">Дата</a></th>
+                <th id="itemTheme" width="100"><a href="<c:url value='/home/sort_theme'/>">Тема</a></th>
                 <th id="itemText" width="100">Сообщение</th>
                 <th width="80">Удалить сообщение</th>
             </tr>
