@@ -15,6 +15,7 @@ public interface UserService {
     List<Users> listUsers();
     List<Messages> listMessages();
     List<Messages> listMessagesByLogin(String login);
+    List<Messages> sortTable(String query);
     Users getUserById(int id);
     Roles getRoleById(int id);
     Users findLogin(String login);

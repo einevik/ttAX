@@ -97,6 +97,7 @@ public class UserDAOImpl implements UserDAO {
         Session session = HibernateSessionFactory.getSessionFactory().openSession();
         session.beginTransaction();
         List<Users> usersList = session.createQuery("from Users where login=?").setParameter(0,login).list();
+//        List<Users> usersList = session.createQuery("from Messages order by sender asc").list();
         session.getTransaction().commit();
         session.close();
         if (usersList.size() > 0) {
@@ -146,6 +147,17 @@ public class UserDAOImpl implements UserDAO {
             session.close();
         }
         logger.info("Messages deleted successfully, Messages details="+messages);
+    }
+
+    @SuppressWarnings("unchecked")
+    @Override
+    public List<Messages> sortTable(String query) {
+        Session session = HibernateSessionFactory.getSessionFactory().openSession();
+        List<Messages> messagesList = session.createQuery(query).list();
+        for(Messages messages: messagesList){
+            logger.info("Messages List::"+messages);
+        }
+        return messagesList;
     }
 
 }

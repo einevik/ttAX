@@ -15,6 +15,7 @@ public interface UserDAO {
     List<Users> listUsers();
     List<Messages> listMessages();
     List<Messages> listMessagesByLogin(String login);
+    List<Messages> sortTable(String query);
     Users findLogin(String login);
     Users getUserById(int id);
     Roles getRoleById(int id);

@@ -63,6 +63,12 @@ public class UserServiceImpl implements UserService {
 
     @Override
     @Transactional
+    public List<Messages> sortTable(String query) {
+        return this.userDAO.sortTable(query);
+    }
+
+    @Override
+    @Transactional
     public Users getUserById(int id) {
         return this.userDAO.getUserById(id);
     }

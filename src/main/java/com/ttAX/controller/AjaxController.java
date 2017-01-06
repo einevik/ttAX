@@ -89,20 +89,4 @@ public class AjaxController {
         }
     }
 
-    @RequestMapping(value= "/sortItemSender", method = RequestMethod.POST)
-    public void sortable(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        PrintWriter out = response.getWriter();
-
-        try {
-
-
-
-        } catch (Exception ex) {
-            out.println("Error ->" + ex.getMessage());
-        } finally {
-            out.close();
-        }
-    }
-
 }

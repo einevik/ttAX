@@ -56,4 +56,10 @@ public class HomeController {
         return "redirect:/home";
     }
 
+    @RequestMapping("/home/sort_sender")
+    public String sortSender(Model model, String query, HttpServletRequest request){
+        query = "from Messages order by sender asc";
+        model.addAttribute("listMessages", this.userService.sortTable(query));
+        return "homePage";
+    }
 }

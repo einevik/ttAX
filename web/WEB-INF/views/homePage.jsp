@@ -120,7 +120,7 @@
 
         <table class="tg">
             <tr>
-                <th id="itemSender" width="100">Отправитель</th>
+                <th id="itemSender" width="100"><a href="<c:url value='/home/sort_sender'/>">Отправитель</a></th>
                                                                     <security:authorize access="hasAnyRole('admin')">
                 <th id="itemRecipient" width="100">Получатель</th>
                                                                     </security:authorize>
