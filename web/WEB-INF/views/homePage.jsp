@@ -121,9 +121,9 @@
         <table class="tg">
             <tr>
                 <th id="itemSender" width="100"><a href="<c:url value='/home/sort_sender'/>">Отправитель</a></th>
-                                                                    <security:authorize access="hasAnyRole('admin')">
+            <security:authorize access="hasAnyRole('admin')">
                 <th id="itemRecipient" width="100"><a href="<c:url value='/home/sort_recipient'/>">Получатель</a></th>
-                                                                    </security:authorize>
+            </security:authorize>
                 <th id="itemDate" width="100"><a href="<c:url value='/home/sort_date'/>">Дата</a></th>
                 <th id="itemTheme" width="100"><a href="<c:url value='/home/sort_theme'/>">Тема</a></th>
                 <th id="itemText" width="100">Сообщение</th>
@@ -134,9 +134,9 @@
 
             <tr onclick="myFunction(this)">
                 <td align="center">${messages.sender}</td>
-                                                                    <security:authorize access="hasAnyRole('admin')">
+            <security:authorize access="hasAnyRole('admin')">
                 <td align="center">${messages.recipient}</td>
-                                                                    </security:authorize>
+            </security:authorize>
                 <td align="center">${messages.date}</td>
                 <td align="center">${messages.theme}</td>
                 <td>${messages.text}</td>
