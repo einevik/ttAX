@@ -115,13 +115,13 @@
                 <td>${user.surname}</td>
                 <td>${user.firstname}</td>
                 <td>${user.lastname}</td>
-                <td>${user.login}</td>
+                <td align="center">${user.login}</td>
                 <%--<td>${user.password}</td>--%>
                 <td>${user.email}</td>
-                <td>${user.roles.role}</td>
+                <td align="center">${user.roles.role}</td>
                 <%--<td>${user.enabled}</td>--%>
-                <td><a href="<c:url value='/edit/${user.id}' />" >Edit</a></td>
-                <td><a href="<c:url value='/remove/${user.id}' />" >Delete</a></td>
+                <td align="center"><a href="<c:url value='/edit/${user.id}' />" >Edit</a></td>
+                <td align="center"><a href="<c:url value='/remove/${user.id}' />" >Delete</a></td>
             </tr>
         </c:forEach>
     </table>

@@ -7,6 +7,7 @@
 <html>
 <link href="/resources/style.css" rel="stylesheet" type="text/css">
 <script src="<c:url value="/resources/jquery.js" />" type="text/javascript"></script>
+
 <html>
 <head>
     <title>${title}</title>
@@ -25,6 +26,7 @@
         <tr>
             <td>Текущий пользователь : </td>
             <td style="font-weight:bold">${pageContext.request.userPrincipal.name}</td>
+            <td><button id="bookBtn">Адресная книга</button></td>
             <td><button id="myBtn">Изменить пароль</button>&nbsp;<span class="status"></span></td>
         </tr>
     </table>
@@ -115,52 +117,37 @@
     </script>
 
     <h3>Messages:</h3>
+
         <table class="tg">
             <tr>
-                <th width="100">Отправитель</th>
-            <security:authorize access="hasAnyRole('admin')">
-                <th width="100">Получатель</th>
-            </security:authorize>
-                <th width="100">Дата</th>
-                <th width="100">Время</th>
-                <th width="100">Тема</th>
-                <th width="80">Прочитать Сообщение</th>
+                <th id="itemSender" width="100">Отправитель</th>
+                                                                    <security:authorize access="hasAnyRole('admin')">
+                <th id="itemRecipient" width="100">Получатель</th>
+                                                                    </security:authorize>
+                <th id="itemDate" width="100">Дата</th>
+                <th id="itemTheme" width="100">Тема</th>
+                <th id="itemText" width="100">Сообщение</th>
                 <th width="80">Удалить сообщение</th>
             </tr>
 
             <c:forEach items="${listMessages}" var="messages">
-            <tr>
-                <td>${messages.sender}</td>
-            <security:authorize access="hasAnyRole('admin')">
-                <td>${messages.recipient}</td>
-            </security:authorize>
-                <td>${messages.date}</td>
-                <td>${messages.time}</td>
-                <td>${messages.theme}</td>
-                <td><a href="<c:url value='/edit/${messages.idMessage}' />" >Read</a></td>
-                <td><a href="<c:url value='/home/remove/${messages.idMessage}' />" >Delete</a></td>
+
+            <tr onclick="myFunction(this)">
+                <td align="center">${messages.sender}</td>
+                                                                    <security:authorize access="hasAnyRole('admin')">
+                <td align="center">${messages.recipient}</td>
+                                                                    </security:authorize>
+                <td align="center">${messages.date}</td>
+                <td align="center">${messages.theme}</td>
+                <td>${messages.text}</td>
+                <td align="center"> <a href="<c:url value='/home/remove/${messages.idMessage}' />" >Delete</a></td>
             </tr>
+
             </c:forEach>
 
         </table>
 
     <script>
-//        Window START
-        var modal = document.getElementById('myModal');
-        var btn = document.getElementById("myBtn");
-        var span = document.getElementsByClassName("close")[0];
-        btn.onclick = function() {
-            modal.style.display = "block";
-        }
-        span.onclick = function() {
-            modal.style.display = "none";
-        }
-        window.onclick = function(event) {
-            if (event.target == modal) {
-                modal.style.display = "none";
-            }
-        }
-//        Window END
 
     </script>
 
