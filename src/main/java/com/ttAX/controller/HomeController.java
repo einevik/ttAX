@@ -58,29 +58,66 @@ public class HomeController {
 
     @RequestMapping("/home/sort_sender")
     public String sortSender(Model model, String query, HttpServletRequest request){
-        query = "from Messages order by sender asc";
-        model.addAttribute("listMessages", this.userService.sortTable(query));
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String login = auth.getName();
+
+        if (request.isUserInRole("admin")){
+            query = "from Messages order by sender asc";
+            model.addAttribute("listMessages", this.userService.sortTable(query));
+        }
+        if (request.isUserInRole("user")){
+            query = "from Messages where recipient='"+login+"' order by sender asc";
+            model.addAttribute("listMessages", this.userService.sortTable(query));
+        }
+
         return "homePage";
     }
 
     @RequestMapping("/home/sort_recipient")
     public String sortRecipient(Model model, String query, HttpServletRequest request){
-        query = "from Messages order by recipient asc";
-        model.addAttribute("listMessages", this.userService.sortTable(query));
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String login = auth.getName();
+
+        if (request.isUserInRole("admin")){
+            query = "from Messages order by recipient asc";
+            model.addAttribute("listMessages", this.userService.sortTable(query));
+        }
+        if (request.isUserInRole("user")){
+            query = "from Messages where recipient='"+login+"' order by recipient asc";
+            model.addAttribute("listMessages", this.userService.sortTable(query));
+        }
         return "homePage";
     }
 
     @RequestMapping("/home/sort_date")
     public String sortDate(Model model, String query, HttpServletRequest request){
-        query = "from Messages order by dateval asc";
-        model.addAttribute("listMessages", this.userService.sortTable(query));
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String login = auth.getName();
+
+        if (request.isUserInRole("admin")){
+            query = "from Messages order by dateval asc";
+            model.addAttribute("listMessages", this.userService.sortTable(query));
+        }
+        if (request.isUserInRole("user")){
+            query = "from Messages where recipient='"+login+"' order by dateval asc";
+            model.addAttribute("listMessages", this.userService.sortTable(query));
+        }
         return "homePage";
     }
 
     @RequestMapping("/home/sort_theme")
     public String sortTheme(Model model, String query, HttpServletRequest request){
-        query = "from Messages order by theme asc";
-        model.addAttribute("listMessages", this.userService.sortTable(query));
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String login = auth.getName();
+
+        if (request.isUserInRole("admin")){
+            query = "from Messages order by theme asc";
+            model.addAttribute("listMessages", this.userService.sortTable(query));
+        }
+        if (request.isUserInRole("user")){
+            query = "from Messages where recipient='"+login+"' order by theme asc";
+            model.addAttribute("listMessages", this.userService.sortTable(query));
+        }
         return "homePage";
     }
 }
