@@ -27,8 +27,8 @@ public class UserController {
 
     @Autowired(required=true)
     @Qualifier(value = "userService")
-    public void setUserService(UserService us){
-        this.userService = us;
+    public void setUserService(UserService userService){
+        this.userService = userService;
     }
 
     @RequestMapping(value = "/users", method = RequestMethod.GET)
@@ -40,24 +40,30 @@ public class UserController {
     }
 
     @RequestMapping(value= "/user/add", method = RequestMethod.POST)
-    public String addUser(@ModelAttribute("user") @Valid Users u, Roles r, BindingResult bindingResult,HttpServletRequest request, Model model){
+    public String addUser(@ModelAttribute("user") @Valid Users u, BindingResult bindingResult,HttpServletRequest request, Model model){
         if (u.getLogin().isEmpty()){
+            model.addAttribute("listUsers", this.userService.listUsers());
             return "user";
         }
         if( bindingResult.hasErrors()) {
             if (userService.findLogin(u.getLogin())!=null){
                 request.setAttribute("message", loginMessage);
             }
+            model.addAttribute("listUsers", this.userService.listUsers());
             return "user";
         }
         if (userService.findLogin(u.getLogin())!=null){
             request.setAttribute("message", loginMessage);
+            model.addAttribute("listUsers", this.userService.listUsers());
             return "user";
         }
+
+        Roles r = new Roles();
         r.setLogin(u.getLogin());
         r.setRole("user");
         u.setEnabled(true);
         this.userService.regUser(u,r);
+
         return "redirect:/users";
     }
 

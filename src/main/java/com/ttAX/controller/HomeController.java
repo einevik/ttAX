@@ -72,7 +72,7 @@ public class HomeController {
 
     @RequestMapping("/home/sort_date")
     public String sortDate(Model model, String query, HttpServletRequest request){
-        query = "from Messages order by date asc";
+        query = "from Messages order by dateval asc";
         model.addAttribute("listMessages", this.userService.sortTable(query));
         return "homePage";
     }

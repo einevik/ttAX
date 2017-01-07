@@ -2,6 +2,7 @@ package com.ttAX.service;
 
 import java.util.List;
 
+import com.ttAX.model.Addressbook;
 import com.ttAX.model.Messages;
 import com.ttAX.model.Roles;
 import org.springframework.stereotype.Service;
@@ -23,6 +24,12 @@ public class UserServiceImpl implements UserService {
     @Transactional
     public void addUser(Users users) {
         this.userDAO.addUser(users);
+    }
+
+    @Override
+    @Transactional
+    public void addUserBook(Addressbook user) {
+        this.userDAO.addUserBook(user);
     }
 
     @Override
@@ -87,6 +94,12 @@ public class UserServiceImpl implements UserService {
 
     @Override
     @Transactional
+    public void removeUserBook(int id) {
+        this.userDAO.removeUserBook(id);
+    }
+
+    @Override
+    @Transactional
     public void removeMessage(int id) {
         this.userDAO.removeMessage(id);
     }
@@ -95,6 +108,12 @@ public class UserServiceImpl implements UserService {
     @Transactional
     public Users findLogin(String login) {
         return this.userDAO.findLogin(login);
+    }
+
+    @Override
+    @Transactional
+    public List<Addressbook> listUserBook(String login) {
+        return this.userDAO.listUserBook(login);
     }
 
 }

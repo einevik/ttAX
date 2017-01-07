@@ -2,16 +2,12 @@ package com.ttAX.dao;
 
 import java.util.List;
 
-import com.ttAX.model.Messages;
+import com.ttAX.model.*;
 import org.hibernate.Session;
 import org.osgi.service.useradmin.User;
 import org.springframework.stereotype.Repository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import com.ttAX.model.Roles;
-import com.ttAX.model.Users;
-import com.ttAX.model.HibernateSessionFactory;
 
 @Repository
 public class UserDAOImpl implements UserDAO {
@@ -26,6 +22,16 @@ public class UserDAOImpl implements UserDAO {
         session.getTransaction().commit();
         session.close();
         logger.info("Users saved successfully, Users Details="+users);
+    }
+
+    @Override
+    public void addUserBook (Addressbook user) {
+        Session session = HibernateSessionFactory.getSessionFactory().openSession();
+        session.beginTransaction();
+        session.save(user);
+        session.getTransaction().commit();
+        session.close();
+        logger.info("User saved successfully, User Details="+user);
     }
 
     @Override
@@ -93,6 +99,16 @@ public class UserDAOImpl implements UserDAO {
     }
 
     @Override
+    public List<Addressbook> listUserBook(String login) {
+        Session session = HibernateSessionFactory.getSessionFactory().openSession();
+        List<Addressbook> addressbookList = session.createQuery("from Addressbook where login=?").setParameter(0,login).list();
+        for(Addressbook addressbook: addressbookList){
+            logger.info("Addressbook List::"+addressbook);
+        }
+        return addressbookList;
+    }
+
+    @Override
     public Users findLogin(String login) {
         Session session = HibernateSessionFactory.getSessionFactory().openSession();
         session.beginTransaction();
@@ -134,6 +150,19 @@ public class UserDAOImpl implements UserDAO {
             session.close();
         }
         logger.info("Users deleted successfully, Users details="+users);
+    }
+
+    @Override
+    public void removeUserBook(int id) {
+        Session session = HibernateSessionFactory.getSessionFactory().openSession();
+        Addressbook addressbook = (Addressbook) session.load(Addressbook.class, new Integer(id));
+        if(null != addressbook){
+            session.beginTransaction();
+            session.delete(addressbook);
+            session.getTransaction().commit();
+            session.close();
+        }
+        logger.info("Addressbook deleted successfully, Addressbook details="+addressbook);
     }
 
     @Override

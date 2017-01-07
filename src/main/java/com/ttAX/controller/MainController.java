@@ -1,7 +1,6 @@
 package com.ttAX.controller;
 
-import com.ttAX.model.Messages;
-import com.ttAX.model.Roles;
+import com.ttAX.model.Addressbook;
 import com.ttAX.model.Users;
 import com.ttAX.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,10 +24,13 @@ public class MainController {
         this.userService = userService;
     }
 
-    @RequestMapping(value = { "/index" }, method = RequestMethod.GET)
+    @RequestMapping(value = { "/home/book" }, method = RequestMethod.GET)
     public String indexPage(Model model) {
-        model.addAttribute("user", new Users());
-        return "index";
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String login = auth.getName();
+        model.addAttribute("addressBook", new Addressbook());
+        model.addAttribute("listAddressBook", this.userService.listUserBook(login));
+        return "book";
     }
 
     @RequestMapping(value = { "/addUserAJAX" }, method = RequestMethod.GET)

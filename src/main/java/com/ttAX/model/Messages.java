@@ -4,16 +4,16 @@ import org.hibernate.annotations.GenericGenerator;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
-import java.sql.Date;
-import java.sql.Time;
+//import java.security.Timestamp;
+import java.util.Date;
+//import java.sql.Timestamp;
 
 @Entity
 public class Messages {
     private int idMessage;
     private String sender;
     private String recipient;
-    private Date date;
-    private Time time;
+    private Date dateval;
     private String theme;
     private String text;
 
@@ -49,24 +49,14 @@ public class Messages {
         this.recipient = recipient;
     }
 
-    @Basic
-    @Column(name = "date", nullable = true)
+//    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "dateval", nullable = true)
     public Date getDate() {
-        return date;
+        return dateval;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
-    }
-
-    @Basic
-    @Column(name = "time", nullable = true)
-    public Time getTime() {
-        return time;
-    }
-
-    public void setTime(Time time) {
-        this.time = time;
+    public void setDate(Date dateval) {
+        this.dateval = dateval;
     }
 
     @Basic
@@ -99,8 +89,7 @@ public class Messages {
         if (idMessage != messages.idMessage) return false;
         if (sender != null ? !sender.equals(messages.sender) : messages.sender != null) return false;
         if (recipient != null ? !recipient.equals(messages.recipient) : messages.recipient != null) return false;
-        if (date != null ? !date.equals(messages.date) : messages.date != null) return false;
-        if (time != null ? !time.equals(messages.time) : messages.time != null) return false;
+        if (dateval != null ? !dateval.equals(messages.dateval) : messages.dateval != null) return false;
         if (theme != null ? !theme.equals(messages.theme) : messages.theme != null) return false;
         if (text != null ? !text.equals(messages.text) : messages.text != null) return false;
 
@@ -112,8 +101,7 @@ public class Messages {
         int result = idMessage;
         result = 31 * result + (sender != null ? sender.hashCode() : 0);
         result = 31 * result + (recipient != null ? recipient.hashCode() : 0);
-        result = 31 * result + (date != null ? date.hashCode() : 0);
-        result = 31 * result + (time != null ? time.hashCode() : 0);
+        result = 31 * result + (dateval != null ? dateval.hashCode() : 0);
         result = 31 * result + (theme != null ? theme.hashCode() : 0);
         result = 31 * result + (text != null ? text.hashCode() : 0);
         return result;

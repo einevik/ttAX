@@ -36,7 +36,7 @@
     </c:if>
 
     &nbsp; | &nbsp;
-    <a href="${pageContext.request.contextPath}/index">check login</a>
+    <a href="${pageContext.request.contextPath}/home/book">Адрессная книга</a>
 
     &nbsp; | &nbsp;
     <a href="${pageContext.request.contextPath}/addUserAJAX">ajax</a>
