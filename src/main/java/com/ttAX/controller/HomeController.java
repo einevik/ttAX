@@ -1,5 +1,6 @@
 package com.ttAX.controller;
 
+import com.ttAX.model.Addressbook;
 import com.ttAX.model.Messages;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -42,18 +43,51 @@ public class HomeController {
         if (request.isUserInRole("admin")){
             model.addAttribute("listMessages", this.userService.listMessages());
         }
-
         if (request.isUserInRole("user")){
             model.addAttribute("listMessages", this.userService.listMessagesByLogin(login));
         }
-
         return "homePage";
+    }
+
+    @RequestMapping(value = { "/home/book" }, method = RequestMethod.GET)
+    public String indexPage(Model model) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String login = auth.getName();
+        model.addAttribute("addressBook", new Addressbook());
+        model.addAttribute("listAddressBook", this.userService.listUserBook(login));
+        return "book";
+    }
+
+
+    @RequestMapping(value= "/home/book/add", method = RequestMethod.POST)
+    public String addUserBook(@ModelAttribute("addressBook") @Valid Addressbook addressbook, BindingResult bindingResult,HttpServletRequest request, Model model){
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String login = auth.getName();
+
+        if( bindingResult.hasErrors()) {
+            if (userService.findLogin(addressbook.getLogin())!=null){
+                request.setAttribute("message", loginMessage);
+            }
+            model.addAttribute("listAddressBook", this.userService.listUserBook(login));
+            return "book";
+        }
+
+        addressbook.setLogin(login);
+        this.userService.addUserBook(addressbook);
+
+        return "redirect:/home/book";
     }
 
     @RequestMapping("/home/remove/{id}")
     public String removeMessages(@PathVariable("id") int id){
         this.userService.removeMessage(id);
         return "redirect:/home";
+    }
+
+    @RequestMapping("/home/book/remove/{id}")
+    public String removeUserBook(@PathVariable("id") int id){
+        this.userService.removeUserBook(id);
+        return "redirect:/home/book";
     }
 
     @RequestMapping("/home/sort_sender")

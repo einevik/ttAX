@@ -57,6 +57,7 @@ public class AjaxController {
                 userDAOImpl.addUserBook(addressbook);
             }
             out.println();
+
         } catch (Exception ex) {
             out.println("Error ->" + ex.getMessage());
         } finally {

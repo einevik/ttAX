@@ -2,8 +2,9 @@
 <%@page session="false"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
-<%@ taglib prefix="form" uri="http://java.sun.com/jsf/html" %>
+<%--<%@ taglib prefix="form" uri="http://java.sun.com/jsf/html" %>--%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <%@ page contentType="text/html;charset=UTF-8" %>
 <html>
 <link href="/resources/style.css" rel="stylesheet" type="text/css">
@@ -27,10 +28,12 @@
         <tr>
             <td>Текущий пользователь : </td>
             <td style="font-weight:bold">${pageContext.request.userPrincipal.name}</td>
-            <td><button id="bookBtn" formaction="/home/book" formmethod="post">Адресная книга</button></td>
-            <td><button id="myBtn">Изменить пароль</button>&nbsp;<span class="status"></span></td>
+            <%--<td><form:form action="/home/book" method="get" ><input type="submit" value="адрессная книга"></form:form></td>--%>
+            <td><button id="myBtn">изменить пароль</button>&nbsp;<span class="status"></span></td>
         </tr>
     </table>
+    <form:form action="/home/book" method="get" ><input type="submit" value="адрессная книга"></form:form>
+
 
     <div id="myModal" class="modal">
         <div class="modal-content">

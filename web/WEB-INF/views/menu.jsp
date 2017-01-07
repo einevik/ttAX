@@ -35,11 +35,11 @@
 
     </c:if>
 
-    &nbsp; | &nbsp;
-    <a href="${pageContext.request.contextPath}/home/book">Адрессная книга</a>
+    <%--&nbsp; | &nbsp;--%>
+    <%--<a href="${pageContext.request.contextPath}/home/book">Адрессная книга</a>--%>
 
-    &nbsp; | &nbsp;
-    <a href="${pageContext.request.contextPath}/addUserAJAX">ajax</a>
+    <%--&nbsp; | &nbsp;--%>
+    <%--<a href="${pageContext.request.contextPath}/addUserAJAX">ajax</a>--%>
 
 
 </div>

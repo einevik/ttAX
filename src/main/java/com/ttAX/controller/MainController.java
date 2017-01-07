@@ -24,15 +24,6 @@ public class MainController {
         this.userService = userService;
     }
 
-    @RequestMapping(value = { "/home/book" }, method = RequestMethod.GET)
-    public String indexPage(Model model) {
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        String login = auth.getName();
-        model.addAttribute("addressBook", new Addressbook());
-        model.addAttribute("listAddressBook", this.userService.listUserBook(login));
-        return "book";
-    }
-
     @RequestMapping(value = { "/addUserAJAX" }, method = RequestMethod.GET)
     public String addUserAJAXPage(Model model) {
         model.addAttribute("user", new Users());

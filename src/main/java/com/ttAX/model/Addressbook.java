@@ -1,6 +1,7 @@
 package com.ttAX.model;
 
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
 
@@ -8,6 +9,8 @@ import javax.persistence.*;
 public class Addressbook {
     private int idAddressbook;
     private String login;
+
+    @NotEmpty
     private String recipient;
 
     @Id

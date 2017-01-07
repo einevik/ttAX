@@ -13,13 +13,22 @@
 <jsp:include page="menu.jsp"/>
 
 <h3>Адрессная книга</h3>
-&nbsp;<span class="status"></span>
-<table class="tg">
-    <tr>
-        <td><input id="idLogin" name="idLogin" type="text" class="login" /></td>
-        <td align="center" ><button id="addButton">add...</button></td>
-    </tr>
 
+<form:form action="/home/book/add" modelAttribute="addressBook">
+    <table>
+        <tr>
+            <td><form:label path="recipient"><spring:message text="Новый пользователь"/></form:label></td>
+        </tr>
+        <tr>
+            <td><form:input path="recipient"/></td>
+            <td><input type="submit" value="add..."></td>
+            <td><form:errors path="recipient" cssStyle="color:red;"/></td>
+        </tr>
+
+    </table>
+</form:form>
+
+<table class="tg">
     <tr>
         <th width="100">Пользователь</th>
         <th width="80">Написать</th>
@@ -29,8 +38,8 @@
     <c:forEach items="${listAddressBook}" var="addressBook">
         <tr>
             <td align="center">${addressBook.recipient}</td>
-            <td align="center"> <a href="<c:url value='/home/bool/remove/${addressBook.idAddressbook}' />" ></a></td>
-            <td align="center"> <a href="<c:url value='/home/bool/remove/${addressBook.idAddressbook}' />" >Delete</a></td>
+            <td align="center"> <a href="<c:url value='/home/book/remove/${addressBook.idAddressbook}' />" >Send...</a></td>
+            <td align="center"> <a href="<c:url value='/home/book/remove/${addressBook.idAddressbook}' />" >Delete</a></td>
         </tr>
     </c:forEach>
 
