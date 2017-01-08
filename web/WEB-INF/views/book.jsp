@@ -34,16 +34,16 @@
     <tr>
         <%--<th width="50">id</th>--%>
         <th width="100">Пользователь</th>
-        <th width="80">Написать</th>
-        <th width="80">Удалить</th>
+        <th width="80">Написать сообщение</th>
+        <th width="80">Удалить сообщение</th>
     </tr>
 
     <c:forEach items="${listAddressBook}" var="addressBook">
         <tr>
-            <%--<td align="center" id="idRowBook">${addressBook.idAddressbook}</td>--%>
+                <%--<td align="center" id="idRowBook">${addressBook.idAddressbook}</td>--%>
             <td align="center" class="recipient">${addressBook.recipient}</td>
-            <td align="center"><input type="button" id="openButtonSend" class="openButtonSend" onclick="openSend()" value="отправить"/></td>
-            <td align="center"><a href="<c:url value='/home/book/remove/${addressBook.idAddressbook}' />" >Delete</a></td>
+            <td align="center"><input type="button" id="openButtonSend" class="openButtonSend" onclick="openSend()" value="написать"/></td>
+            <td align="center"><a href="<c:url value='/home/book/remove/${addressBook.idAddressbook}' />" >удалить</a></td>
         </tr>
     </c:forEach>
 
@@ -57,7 +57,6 @@
             <tr>
                 <td><label>Кому</label></td>
             </tr>
-
             <tr>
                 <td><input type="text" name="theme" id="whom" disabled="true" readonly="true" value="" size="26" /></td>
             </tr>
@@ -78,7 +77,7 @@
             </tr>
 
             <tr>
-                <td><input type="submit" value="Отправить" id="sendButton"><input type="submit" value="reset" id="btnReset"></td>
+                <td><input type="submit" value="Отправить" id="sendButton"></td>
             </tr>
         </table>
     </div>
@@ -91,39 +90,43 @@
     var sendButton = document.getElementById('sendButton');
 
     span.onclick = function() {
-        document.getElementById('myModal').reset();
         modal.style.display = "none";
     }
     window.onclick = function(event) {
         if (event.target == modal) {
-            document.getElementById('myModal').reset();
             modal.style.display = "none";
         }
     }
+
+
 
     $(".openButtonSend").click(function() {
 
         modal.style.display = "block";
         var row = $(this).closest("tr");    // Find the row
         var nameRecipient = row.find(".recipient").text(); // Find the text
-        var sendTxt = $("#sendText").val();
+        var sendText = $("#sendText").val();
         var theme = $("#theme").val();
 
         document.getElementById("whom").setAttribute('value',nameRecipient);
 
-//        $(document).ready(function () {
+        $(document).ready(function () {
             $("#sendButton").click(function () {
-                    $.ajax({
-                        type: "POST",
-                        url: "/sendMessage",
-                        data: {sendTxt:sendTxt, theme:theme, nameRecipient:nameRecipient },
-                        success: function () {
-                            document.getElementById('myModal').reset();
-                        }
-                    });
+
+                var sendText = $("#sendText").val();
+                var theme = $("#theme").val();
+
+                $.ajax({
+                    type: "POST",
+                    url: "/sendMessage",
+                    data: {sendText:sendText, theme:theme, nameRecipient:nameRecipient},
+                    success: function () {
+                        document.getElementById('myModal').reset();
+                    }
+                });
                 modal.style.display = "none";
             });
-//        });
+        });
     });
 
 </script>

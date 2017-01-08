@@ -107,7 +107,7 @@
             <th width="50">Права</th>
             <%--<th width="60">Разрешение</th>--%>
             <th width="25">Изменить права</th>
-            <th width="40">Удалить</th>
+            <th width="40">Удалить пользователя</th>
         </tr>
         <c:forEach items="${listUsers}" var="user">
             <tr>
@@ -120,8 +120,8 @@
                 <td>${user.email}</td>
                 <td align="center">${user.roles.role}</td>
                 <%--<td>${user.enabled}</td>--%>
-                <td align="center"><a href="<c:url value='/edit/${user.id}' />" >Edit</a></td>
-                <td align="center"><a href="<c:url value='/remove/${user.id}' />" >Delete</a></td>
+                <td align="center"><a href="<c:url value='/edit/${user.id}' />" >изменить</a></td>
+                <td align="center"><a href="<c:url value='/remove/${user.id}' />" >удалить</a></td>
             </tr>
         </c:forEach>
     </table>

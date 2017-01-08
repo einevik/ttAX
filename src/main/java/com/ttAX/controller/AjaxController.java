@@ -136,11 +136,11 @@ public class AjaxController {
 
         try {
 
-            String sendTxt = request.getParameter("sendTxt");
+            String sendText = request.getParameter("sendText");
             String theme = request.getParameter("theme");
             String nameRecipient = request.getParameter("nameRecipient");
 
-            message.setText(sendTxt);
+            message.setText(sendText);
             message.setTheme(theme);
             message.setSender(login);
             message.setRecipient(nameRecipient);
