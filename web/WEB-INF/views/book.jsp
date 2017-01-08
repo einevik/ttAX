@@ -83,7 +83,7 @@
     <%--</div>--%>
 <%--</div>--%>
 
-<dialog id="myDialog">
+<dialog id="myDialog" class="send-modal">
         <h3>Отправить сообщение</h3>
         <table method="post" name="send-form" id="send-password">
             <tr>
@@ -121,7 +121,7 @@
     }
 
     $(".openButtonSend").click(function() {
-        document.getElementById("myDialog").showModal();
+        document.getElementById("myDialog").show();
 
         var row = $(this).closest("tr");    // Find the row
         var nameRecipient = row.find(".recipient").text(); // Find the text
