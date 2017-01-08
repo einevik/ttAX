@@ -32,7 +32,7 @@
 
 <table class="tg" id="tableBook">
     <tr>
-        <th width="50">id</th>
+        <%--<th width="50">id</th>--%>
         <th width="100">Пользователь</th>
         <th width="80">Написать</th>
         <th width="80">Удалить</th>
@@ -40,16 +40,16 @@
 
     <c:forEach items="${listAddressBook}" var="addressBook">
         <tr>
-            <td align="center" id="idRowBook">${addressBook.idAddressbook}</td>
+            <%--<td align="center" id="idRowBook">${addressBook.idAddressbook}</td>--%>
             <td align="center" class="recipient">${addressBook.recipient}</td>
-            <td align="center"><input type="submit" id="openButtonSend" class="openButtonSend" onclick="openSend()" value="отправить"/></td>
+            <td align="center"><input type="button" id="openButtonSend" class="openButtonSend" onclick="openSend()" value="отправить"/></td>
             <td align="center"><a href="<c:url value='/home/book/remove/${addressBook.idAddressbook}' />" >Delete</a></td>
         </tr>
     </c:forEach>
 
 </table>
 
-<div id="myModal" class="modal">
+<form id="myModal" class="modal">
     <div class="send-modal">
         <span class="close">&times;</span>
         <h3>Отправить сообщение</h3>
@@ -78,58 +78,52 @@
             </tr>
 
             <tr>
-                <td><input type="submit" value="Отправить" id="sendButton"></td>
+                <td><input type="submit" value="Отправить" id="sendButton"><input type="submit" value="reset" id="btnReset"></td>
             </tr>
-
         </table>
     </div>
-</div>
+</form>
 
 <script>
 
+    var modal = document.getElementById('myModal');
+    var span = document.getElementsByClassName("close")[0];
+    var sendButton = document.getElementById('sendButton');
 
-
+    span.onclick = function() {
+        document.getElementById('myModal').reset();
+        modal.style.display = "none";
+    }
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            document.getElementById('myModal').reset();
+            modal.style.display = "none";
+        }
+    }
 
     $(".openButtonSend").click(function() {
 
-        var modal = document.getElementById('myModal');
-        var btn = document.getElementById("myBtn");
-        var span = document.getElementsByClassName("close")[0];
-        var sendButton = document.getElementById('sendButton');
-
+        modal.style.display = "block";
         var row = $(this).closest("tr");    // Find the row
         var nameRecipient = row.find(".recipient").text(); // Find the text
-
-        modal.style.display = "block";
-
-        span.onclick = function() {
-            modal.style.display = "none";
-        }
-        window.onclick = function(event) {
-            if (event.target == modal) {
-                modal.style.display = "none";
-            }
-        }
+        var sendTxt = $("#sendText").val();
+        var theme = $("#theme").val();
 
         document.getElementById("whom").setAttribute('value',nameRecipient);
 
-        $(document).ready(function () {
+//        $(document).ready(function () {
             $("#sendButton").click(function () {
-
-                var sendTxt = $("#sendText").val();
-                var theme = $("#theme").val();
-                var idRow = $("#idRowBook").val();
-
                     $.ajax({
                         type: "POST",
-                        url: "sendMessage",
+                        url: "/sendMessage",
                         data: {sendTxt:sendTxt, theme:theme, nameRecipient:nameRecipient },
-                        success: function () {}
+                        success: function () {
+                            document.getElementById('myModal').reset();
+                        }
                     });
                 modal.style.display = "none";
             });
-        });
-
+//        });
     });
 
 </script>

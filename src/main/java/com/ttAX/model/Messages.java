@@ -1,5 +1,6 @@
 package com.ttAX.model;
 
+import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.GenericGenerator;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -10,6 +11,7 @@ import java.util.Date;
 
 @Entity
 public class Messages {
+
     private int idMessage;
     private String sender;
     private String recipient;
@@ -49,7 +51,7 @@ public class Messages {
         this.recipient = recipient;
     }
 
-//    @Temporal(TemporalType.TIMESTAMP)
+    @CreationTimestamp
     @Column(name = "dateval", nullable = true)
     public Date getDate() {
         return dateval;
