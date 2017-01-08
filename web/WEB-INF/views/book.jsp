@@ -42,16 +42,48 @@
         <tr>
                 <%--<td align="center" id="idRowBook">${addressBook.idAddressbook}</td>--%>
             <td align="center" class="recipient">${addressBook.recipient}</td>
-            <td align="center"><input type="button" id="openButtonSend" class="openButtonSend" onclick="openSend()" value="написать"/></td>
+            <td align="center"><input type="button" id="openButtonSend" class="openButtonSend" onclick="myFunction()" value="написать"/></td>
             <td align="center"><a href="<c:url value='/home/book/remove/${addressBook.idAddressbook}' />" >удалить</a></td>
         </tr>
     </c:forEach>
 
 </table>
 
-<form id="myModal" class="modal">
-    <div class="send-modal">
-        <span class="close">&times;</span>
+<%--<div id="myModal" class="modal" name="send-form">--%>
+    <%--<div class="send-modal">--%>
+        <%--<span class="close">&times;</span>--%>
+        <%--<h3>Отправить сообщение</h3>--%>
+        <%--<table method="post" name="send-form" id="send-password">--%>
+            <%--<tr>--%>
+                <%--<td><label>Кому</label></td>--%>
+            <%--</tr>--%>
+            <%--<tr>--%>
+                <%--<td><input type="text" name="theme" id="whom" disabled="true" readonly="true" value="" size="26" /></td>--%>
+            <%--</tr>--%>
+            <%--<tr>--%>
+                <%--<td><label>Тема</label></td>--%>
+            <%--</tr>--%>
+
+            <%--<tr>--%>
+                <%--<td><input type="text" name="theme" id="theme" value="" size="26" /></td>--%>
+            <%--</tr>--%>
+
+            <%--<tr>--%>
+                <%--<td><label>Сообщение</label></td>--%>
+            <%--</tr>--%>
+
+            <%--<tr>--%>
+                <%--<td><div><textarea class="writeMessages" id="sendText"></textarea></div></td>--%>
+            <%--</tr>--%>
+
+            <%--<tr>--%>
+                <%--<td><input type="submit" value="Отправить" id="sendButton"></td>--%>
+            <%--</tr>--%>
+        <%--</table>--%>
+    <%--</div>--%>
+<%--</div>--%>
+
+<dialog id="myDialog">
         <h3>Отправить сообщение</h3>
         <table method="post" name="send-form" id="send-password">
             <tr>
@@ -77,45 +109,28 @@
             </tr>
 
             <tr>
-                <td><input type="submit" value="Отправить" id="sendButton"></td>
+                <td><input type="submit" value="Отправить" id="sendButton">&nbsp;<input type="submit" value="Закрыть" onclick="closeDialog()"></td>
             </tr>
         </table>
-    </div>
-</form>
+</dialog>
 
 <script>
 
-    var modal = document.getElementById('myModal');
-    var span = document.getElementsByClassName("close")[0];
-    var sendButton = document.getElementById('sendButton');
-
-    span.onclick = function() {
-        modal.style.display = "none";
+    function closeDialog() {
+        document.getElementById("myDialog").close();
     }
-    window.onclick = function(event) {
-        if (event.target == modal) {
-            modal.style.display = "none";
-        }
-    }
-
-
 
     $(".openButtonSend").click(function() {
+        document.getElementById("myDialog").showModal();
 
-        modal.style.display = "block";
         var row = $(this).closest("tr");    // Find the row
         var nameRecipient = row.find(".recipient").text(); // Find the text
-        var sendText = $("#sendText").val();
-        var theme = $("#theme").val();
-
         document.getElementById("whom").setAttribute('value',nameRecipient);
-
         $(document).ready(function () {
             $("#sendButton").click(function () {
 
                 var sendText = $("#sendText").val();
                 var theme = $("#theme").val();
-
                 $.ajax({
                     type: "POST",
                     url: "/sendMessage",
@@ -128,7 +143,6 @@
             });
         });
     });
-
 </script>
 
 </body>
