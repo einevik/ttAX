@@ -12,9 +12,7 @@
     <script type="text/javascript">
 
             $(document).ready(function () {
-//                $(".login").change(function () {
                 $("#addButton").click(function () {
-//                    var login = $(this).val();
                     var login = $("#idLogin").val();
                     if (login.length != 0) {
                         $(".status").html("<img src='/resources/loading.gif'><font color=gray></font>");

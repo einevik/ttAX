@@ -28,6 +28,12 @@ public class UserServiceImpl implements UserService {
 
     @Override
     @Transactional
+    public void sendMessage(Messages messages) {
+        this.userDAO.sendMessage(messages);
+    }
+
+    @Override
+    @Transactional
     public void addUserBook(Addressbook user) {
         this.userDAO.addUserBook(user);
     }
@@ -84,6 +90,12 @@ public class UserServiceImpl implements UserService {
     @Transactional
     public Roles getRoleById(int id) {
         return this.userDAO.getRoleById(id);
+    }
+
+    @Override
+    @Transactional
+    public Addressbook getAddressBookById(int id) {
+        return this.userDAO.getAddressBookById(id);
     }
 
     @Override

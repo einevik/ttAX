@@ -5,6 +5,7 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <!DOCTYPE html>
 <link href="/resources/style.css" rel="stylesheet" type="text/css">
+<script src="<c:url value="/resources/jquery.js" />" type="text/javascript"></script>
 <html>
 <head>
     <title>Address Book</title>
@@ -29,8 +30,9 @@
     </table>
 </form:form>
 
-<table class="tg">
+<table class="tg" id="tableBook">
     <tr>
+        <th width="50">id</th>
         <th width="100">Пользователь</th>
         <th width="80">Написать</th>
         <th width="80">Удалить</th>
@@ -38,8 +40,9 @@
 
     <c:forEach items="${listAddressBook}" var="addressBook">
         <tr>
-            <td align="center">${addressBook.recipient}</td>
-            <td align="center"><input type="submit" id="myBtn" onclick="openSend(this)" value="отправить"/></td>
+            <td align="center" id="idRowBook">${addressBook.idAddressbook}</td>
+            <td align="center" class="recipient">${addressBook.recipient}</td>
+            <td align="center"><input type="submit" id="openButtonSend" class="openButtonSend" onclick="openSend()" value="отправить"/></td>
             <td align="center"><a href="<c:url value='/home/book/remove/${addressBook.idAddressbook}' />" >Delete</a></td>
         </tr>
     </c:forEach>
@@ -71,11 +74,11 @@
             </tr>
 
             <tr>
-                <td><div><textarea class="writeMessages"></textarea></div></td>
+                <td><div><textarea class="writeMessages" id="sendText"></textarea></div></td>
             </tr>
 
             <tr>
-                <td><input type="submit" value="Отправить" id="passsubmit"></td>
+                <td><input type="submit" value="Отправить" id="sendButton"></td>
             </tr>
 
         </table>
@@ -84,11 +87,18 @@
 
 <script>
 
-    function openSend(idRow) {
+
+
+
+    $(".openButtonSend").click(function() {
 
         var modal = document.getElementById('myModal');
         var btn = document.getElementById("myBtn");
         var span = document.getElementsByClassName("close")[0];
+        var sendButton = document.getElementById('sendButton');
+
+        var row = $(this).closest("tr");    // Find the row
+        var nameRecipient = row.find(".recipient").text(); // Find the text
 
         modal.style.display = "block";
 
@@ -101,8 +111,26 @@
             }
         }
 
+        document.getElementById("whom").setAttribute('value',nameRecipient);
 
-    }
+        $(document).ready(function () {
+            $("#sendButton").click(function () {
+
+                var sendTxt = $("#sendText").val();
+                var theme = $("#theme").val();
+                var idRow = $("#idRowBook").val();
+
+                    $.ajax({
+                        type: "POST",
+                        url: "sendMessage",
+                        data: {sendTxt:sendTxt, theme:theme, nameRecipient:nameRecipient },
+                        success: function () {}
+                    });
+                modal.style.display = "none";
+            });
+        });
+
+    });
 
 </script>
 

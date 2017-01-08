@@ -132,6 +132,14 @@ public class UserDAOImpl implements UserDAO {
     }
 
     @Override
+    public Addressbook getAddressBookById (int id) {
+        Session session = HibernateSessionFactory.getSessionFactory().openSession();
+        Addressbook addressbook = (Addressbook) session.load(Addressbook.class, new Integer(id));
+        logger.info("Addressbook loaded successfully, Addressbook details="+addressbook);
+        return addressbook;
+    }
+
+    @Override
     public Roles getRoleById(int id) {
         Session session = HibernateSessionFactory.getSessionFactory().openSession();
         Roles roles= (Roles) session.load(Roles.class, new Integer(id));
@@ -189,4 +197,13 @@ public class UserDAOImpl implements UserDAO {
         return messagesList;
     }
 
+    @Override
+    public void sendMessage (Messages messages) {
+        Session session = HibernateSessionFactory.getSessionFactory().openSession();
+        session.beginTransaction();
+        session.save(messages);
+        session.getTransaction().commit();
+        session.close();
+        logger.info("Messages saved successfully, Messages Details="+messages);
+    }
 }

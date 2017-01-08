@@ -25,4 +25,6 @@ public interface UserService {
     void removeUser(int id);
     void removeUserBook(int id);
     void removeMessage(int id);
+    void sendMessage(Messages messages);
+    Addressbook getAddressBookById(int id);
 }

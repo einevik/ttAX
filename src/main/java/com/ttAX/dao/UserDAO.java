@@ -14,6 +14,7 @@ public interface UserDAO {
     void regUser(Users users, Roles roles);
     void updateUser(Users users);
     void updateRole(Roles roles);
+    void sendMessage(Messages messages);
     List<Users> listUsers();
     List<Messages> listMessages();
     List<Messages> listMessagesByLogin(String login);
@@ -22,6 +23,7 @@ public interface UserDAO {
     Users findLogin(String login);
     Users getUserById(int id);
     Roles getRoleById(int id);
+    Addressbook getAddressBookById(int id);
     void removeUser(int id);
     void removeUserBook(int id);
     void removeMessage(int id);

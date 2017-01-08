@@ -2,6 +2,7 @@ package com.ttAX.controller;
 
 import com.ttAX.dao.UserDAOImpl;
 import com.ttAX.model.Addressbook;
+import com.ttAX.model.Messages;
 import com.ttAX.model.Users;
 
 import com.ttAX.service.UserService;
@@ -119,6 +120,32 @@ public class AjaxController {
                 out.println("<font color=red><b>"+"</b> Passwords match");
                 return;
             }
+        } catch (Exception ex) {
+            out.println("Error ->" + ex.getMessage());
+        } finally {
+            out.close();
+        }
+    }
+
+    @RequestMapping(value= "/sendMessage", method = RequestMethod.POST)
+    public void sendMessage(HttpServletRequest request, HttpServletResponse response, Messages message, Addressbook addressbook) throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
+        PrintWriter out = response.getWriter();
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String login = auth.getName();
+
+        try {
+
+            String sendTxt = request.getParameter("sendTxt");
+            String theme = request.getParameter("theme");
+            String nameRecipient = request.getParameter("nameRecipient");
+
+            message.setText(sendTxt);
+            message.setTheme(theme);
+            message.setSender(login);
+            message.setRecipient(nameRecipient);
+            userService.sendMessage(message);
+
         } catch (Exception ex) {
             out.println("Error ->" + ex.getMessage());
         } finally {
