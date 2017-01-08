@@ -32,7 +32,8 @@
             <td><button id="myBtn">изменить пароль</button>&nbsp;<span class="status"></span></td>
         </tr>
     </table>
-    <form:form action="/home/book" method="get" ><input type="submit" value="адрессная книга"></form:form>
+    &nbsp;
+    <form:form action="/home/book" method="get" ><input type="submit" value="Адрессная книга"></form:form>
 
 
     <div id="myModal" class="modal">

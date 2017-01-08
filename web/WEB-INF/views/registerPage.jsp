@@ -48,7 +48,7 @@
                 <td><form:errors path="confrimpassword" cssStyle="color:red;"/><form:errors cssStyle="color:red;"/></td>
             </tr>
             <tr>
-                <td><input type="submit" value="Submit" /></td>
+                <td><input type="submit" value="Зарегистрироваться" /></td>
             </tr>
         </table>
     </form:form>

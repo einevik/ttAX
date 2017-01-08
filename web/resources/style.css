@@ -22,6 +22,22 @@
     width: 45%;
 }
 
+/* Send modal */
+.send-modal {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 340px;
+    height: 280px;
+}
+
+.writeMessages {
+    width: 320px;
+    height: 70px;
+
+}
+
 /* The Close Button */
 .close {
     color: #aaaaaa;

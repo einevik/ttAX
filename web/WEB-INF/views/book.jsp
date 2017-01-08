@@ -13,7 +13,8 @@
 <jsp:include page="menu.jsp"/>
 
 <h3>Адрессная книга</h3>
-
+<form:form action="/home" method="get" ><input type="submit" value="Назад"></form:form>
+&nbsp;
 <form:form action="/home/book/add" modelAttribute="addressBook">
     <table>
         <tr>
@@ -38,13 +39,72 @@
     <c:forEach items="${listAddressBook}" var="addressBook">
         <tr>
             <td align="center">${addressBook.recipient}</td>
-            <td align="center"> <a href="<c:url value='/home/book/remove/${addressBook.idAddressbook}' />" >Send...</a></td>
-            <td align="center"> <a href="<c:url value='/home/book/remove/${addressBook.idAddressbook}' />" >Delete</a></td>
+            <td align="center"><input type="submit" id="myBtn" onclick="openSend(this)" value="отправить"/></td>
+            <td align="center"><a href="<c:url value='/home/book/remove/${addressBook.idAddressbook}' />" >Delete</a></td>
         </tr>
     </c:forEach>
 
 </table>
 
+<div id="myModal" class="modal">
+    <div class="send-modal">
+        <span class="close">&times;</span>
+        <h3>Отправить сообщение</h3>
+        <table method="post" name="send-form" id="send-password">
+            <tr>
+                <td><label>Кому</label></td>
+            </tr>
+
+            <tr>
+                <td><input type="text" name="theme" id="whom" disabled="true" readonly="true" value="" size="26" /></td>
+            </tr>
+            <tr>
+                <td><label>Тема</label></td>
+            </tr>
+
+            <tr>
+                <td><input type="text" name="theme" id="theme" value="" size="26" /></td>
+            </tr>
+
+            <tr>
+                <td><label>Сообщение</label></td>
+            </tr>
+
+            <tr>
+                <td><div><textarea class="writeMessages"></textarea></div></td>
+            </tr>
+
+            <tr>
+                <td><input type="submit" value="Отправить" id="passsubmit"></td>
+            </tr>
+
+        </table>
+    </div>
+</div>
+
+<script>
+
+    function openSend(idRow) {
+
+        var modal = document.getElementById('myModal');
+        var btn = document.getElementById("myBtn");
+        var span = document.getElementsByClassName("close")[0];
+
+        modal.style.display = "block";
+
+        span.onclick = function() {
+            modal.style.display = "none";
+        }
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+
+
+    }
+
+</script>
 
 </body>
 </html>
