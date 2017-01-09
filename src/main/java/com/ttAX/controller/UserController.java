@@ -67,6 +67,30 @@ public class UserController {
         return "redirect:/users";
     }
 
+    @RequestMapping(value= "/regUser", method = RequestMethod.POST)
+    public String regUser(@ModelAttribute("user") @Valid Users u, BindingResult bindingResult, HttpServletRequest request){
+        if (u.getLogin().isEmpty()){
+            return "registerPage";
+        }
+        if( bindingResult.hasErrors()) {
+            if (userService.findLogin(u.getLogin())!=null){
+                request.setAttribute("message", loginMessage);
+            }
+            return "registerPage";
+        }
+        if (userService.findLogin(u.getLogin())!=null){
+            request.setAttribute("message", loginMessage);
+            return "registerPage";
+        }
+
+        Roles r = new Roles();
+        r.setLogin(u.getLogin());
+        r.setRole("user");
+        u.setEnabled(true);
+        this.userService.regUser(u,r);
+        return "redirect:/login";
+    }
+
     @RequestMapping("/edit/{id}")
     public String editUserPage(@PathVariable("id") int id, Model model){
         model.addAttribute("user", this.userService.getUserById(id));
@@ -93,29 +117,6 @@ public class UserController {
         return "redirect:/users";
     }
 
-    @RequestMapping(value= "/regUser", method = RequestMethod.POST)
-    public String regUser(@ModelAttribute("user") @Valid Users u, BindingResult bindingResult, HttpServletRequest request){
-        if (u.getLogin().isEmpty()){
-            return "registerPage";
-        }
-        if( bindingResult.hasErrors()) {
-            if (userService.findLogin(u.getLogin())!=null){
-                request.setAttribute("message", loginMessage);
-            }
-            return "registerPage";
-        }
-        if (userService.findLogin(u.getLogin())!=null){
-            request.setAttribute("message", loginMessage);
-            return "registerPage";
-        }
-
-        Roles r = new Roles();
-        r.setLogin(u.getLogin());
-        r.setRole("user");
-        u.setEnabled(true);
-        this.userService.regUser(u,r);
-        return "redirect:/login";
-    }
 
     @RequestMapping(value = "/registrationPage", method = RequestMethod.GET)
     public String registerPage(Model model) {

@@ -4,7 +4,7 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <%@ page session="false" %>
 <html>
-<link href="/resources/style.css" rel="stylesheet" type="text/css">
+<link  href="<c:url value="/resources/style.css"/>" rel="stylesheet" type="text/css">
 <head>
     <title>User Page</title>
 </head>

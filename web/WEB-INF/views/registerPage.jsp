@@ -10,7 +10,8 @@
     <body>
     <jsp:include page="menu.jsp" />
 
-    <form:form action="/regUser" modelAttribute="user">
+    <c:url var="addAction" value="/regUser" ></c:url>
+    <form:form action="${addAction}" modelAttribute="user">
         <table>
             <tr>
                 <td><form:label path="surname"><spring:message text="Фамилия:"/></form:label></td>
@@ -48,7 +49,8 @@
                 <td><form:errors path="confrimpassword" cssStyle="color:red;"/><form:errors cssStyle="color:red;"/></td>
             </tr>
             <tr>
-                <td><input type="submit" value="Зарегистрироваться" /></td>
+                <%--<td><input type="submit" value="Зарегистрироваться" /></td>--%>
+                <td><input type="submit" value="<spring:message text="Зарегистрироваться"/>"/></td>
             </tr>
         </table>
     </form:form>

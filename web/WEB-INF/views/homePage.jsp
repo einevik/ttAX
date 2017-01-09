@@ -7,7 +7,7 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <%@ page contentType="text/html;charset=UTF-8" %>
 <html>
-<link href="/resources/style.css" rel="stylesheet" type="text/css">
+<link  href="<c:url value="/resources/style.css"/>" rel="stylesheet" type="text/css">
 <script src="<c:url value="/resources/jquery.js" />" type="text/javascript"></script>
 
 <html>
@@ -33,7 +33,7 @@
         </tr>
     </table>
     &nbsp;
-    <form:form action="/home/book" method="get" ><input type="submit" value="Адрессная книга"></form:form>
+    <form:form action="/ttAX/home/book" method="get" ><input type="submit" value="Адрессная книга"></form:form>
 
 
     <div id="myModal" class="modal">

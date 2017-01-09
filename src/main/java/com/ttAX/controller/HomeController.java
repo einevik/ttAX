@@ -33,7 +33,7 @@ public class HomeController {
         this.userService = us;
     }
 
-    @RequestMapping(value = { "/home" }, method = RequestMethod.GET)
+    @RequestMapping(value =  "/home", method = RequestMethod.GET)
     public String welcomePage(Model model, String login, Roles roles, HttpServletRequest request) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         login = auth.getName();
@@ -49,7 +49,7 @@ public class HomeController {
         return "homePage";
     }
 
-    @RequestMapping(value = { "/home/book" }, method = RequestMethod.GET)
+    @RequestMapping(value = "/home/book", method = RequestMethod.GET)
     public String indexPage(Model model) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String login = auth.getName();

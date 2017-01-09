@@ -4,7 +4,7 @@
 <%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
 <%@ page contentType="text/html;charset=UTF-8" %>
 <!DOCTYPE html>
-<link href="/resources/style.css" rel="stylesheet" type="text/css">
+<link  href="<c:url value="/resources/style.css"/>" rel="stylesheet" type="text/css">
 <script src="<c:url value="/resources/jquery.js" />" type="text/javascript"></script>
 <html>
 <head>
