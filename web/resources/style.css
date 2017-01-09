@@ -32,10 +32,18 @@
     height: 280px;
 }
 
-.writeMessages {
-    width: 210px;
-    height: 70px;
+.home-modal {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 220px;
+    height: 320px;
+}
 
+.writeMessages {
+    width: 215px;
+    height: 70px;
 }
 
 /* The Close Button */
@@ -81,3 +89,9 @@
 .login {
     color: blue;
 }
+
+.highlight {
+    background-color: yellow;
+}
+
+/*input.highlight { background-color: red; }*/

@@ -123,9 +123,9 @@
 
     <h3>Messages:</h3>
 
-        <table class="tg">
+        <table id="homeTable" class="tg">
             <tr>
-                <th id="itemSender" width="100"><a href="<c:url value='/home/sort_sender'/>">Отправитель</a></th>
+                <th  width="100"><a href="<c:url value='/home/sort_sender'/>">Отправитель</a></th>
             <security:authorize access="hasAnyRole('admin')">
                 <th id="itemRecipient" width="100"><a href="<c:url value='/home/sort_recipient'/>">Получатель</a></th>
             </security:authorize>
@@ -136,23 +136,85 @@
             </tr>
 
             <c:forEach items="${listMessages}" var="messages">
-
-            <tr onclick="myFunction(this)">
-                <td align="center">${messages.sender}</td>
+            <tr>
+                <td class="itemSender" align="center" >${messages.sender}</td>
             <security:authorize access="hasAnyRole('admin')">
                 <td align="center">${messages.recipient}</td>
             </security:authorize>
-                <td align="center">${messages.date}</td>
-                <td align="center">${messages.theme}</td>
-                <td>${messages.text}</td>
-                <td align="center"> <a href="<c:url value='/home/remove/${messages.idMessage}' />" >Delete</a></td>
+                <td class="itemDate" align="center" >${messages.date}</td>
+                <td class="itemTheme" align="center" >${messages.theme}</td>
+                <td class="itemText" ><a class="infoMessage">${messages.text}</a></td>
+                <td class="openButtonSend" id="openButtonSend" align="center"> <a href="<c:url value='/home/remove/${messages.idMessage}' />" >удалить</a></td>
+                <%--<td align="center"><input type="button" id="openButtonSend" class="openButtonSend" onclick="myFunction()" value="написать"/></td>--%>
             </tr>
-
             </c:forEach>
 
         </table>
 
+    <dialog id="myDialog" class="home-modal">
+        <h3>Отправить сообщение</h3>
+        <table method="post" name="send-form" id="send-password">
+            <tr>
+                <td><label>Отправитель</label></td>
+            </tr>
+            <tr>
+                <td><input type="text" name="theme" id="from" disabled="true" readonly="true" value="" size="26" /></td>
+            </tr>
+            <tr>
+                <td><label>Тема</label></td>
+            </tr>
+            <tr>
+                <td><input type="text" name="theme" id="theme" disabled="true" readonly="true" value="" size="26" /></td>
+            </tr>
+            <tr>
+                <td><label>Дата</label></td>
+            </tr>
+            <tr>
+                <td><input type="text" name="theme" id="data" disabled="true" readonly="true" value="" size="26" /></td>
+            </tr>
+
+            <tr>
+                <td><label>Сообщение</label></td>
+            </tr>
+            <tr>
+                <td><div><textarea class="writeMessages" id="readText" disabled="true" readonly="true" ></textarea></div></td>
+            </tr>
+
+            <tr>
+                <td><input type="submit" value="Отправить" id="sendButton">&nbsp;<input type="submit" value="Закрыть" onclick="closeDialog()"></td>
+            </tr>
+        </table>
+    </dialog>
+
     <script>
+
+//        $("#homeTable td").click(function(){
+//            var row = $(this).closest("tr");    // Find the row
+//            var itemText = row.find(".itemText").text(); // Find the text
+//            alert(itemText);
+//        });
+
+    function closeDialog() {
+        document.getElementById("myDialog").close();
+    }
+
+//        $("#homeTable td").click(function(){
+    $(".infoMessage").click(function() {
+
+        document.getElementById("myDialog").show();
+
+        var row = $(this).closest("tr");    // Find the row
+        var itemSender = row.find(".itemSender").text(); // Find the text
+        var itemDate = row.find(".itemDate").text(); // Find the text
+        var itemTheme = row.find(".itemTheme").text(); // Find the text
+        var itemText = row.find(".itemText").text(); // Find the text
+
+        document.getElementById("from").setAttribute('value',itemSender);
+        document.getElementById("data").setAttribute('value',itemDate);
+        document.getElementById("theme").setAttribute('value',itemTheme);
+        document.getElementById("readText").value = itemText;
+
+    });
 
     </script>
 
