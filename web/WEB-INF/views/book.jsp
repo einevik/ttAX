@@ -14,9 +14,15 @@
 <jsp:include page="menu.jsp"/>
 
 <h3>Адрессная книга</h3>
-<form:form action="/home" method="get" ><input type="submit" value="Назад"></form:form>
+
+
+
+
+<form:form action="/ttAX/home" method="get" ><input type="submit" value="Назад"></form:form>
 &nbsp;
-<form:form action="/home/book/add" modelAttribute="addressBook">
+<c:url var="addBook" value="/home/book/add" ></c:url>
+<form:form action="${addBook}" modelAttribute="addressBook">
+
     <table>
         <tr>
             <td><form:label path="recipient"><spring:message text="Новый пользователь"/></form:label></td>
@@ -120,6 +126,7 @@
         document.getElementById("myDialog").close();
     }
 
+    $(function(){
     $(".openButtonSend").click(function() {
         document.getElementById("myDialog").show();
 
@@ -133,7 +140,7 @@
                 var theme = $("#theme").val();
                 $.ajax({
                     type: "POST",
-                    url: "/sendMessage",
+                    url: "sendMessage",
                     data: {sendText:sendText, theme:theme, nameRecipient:nameRecipient},
                     success: function () {
 
@@ -143,7 +150,7 @@
 
             });
         });
-    });
+    });});
 </script>
 
 </body>

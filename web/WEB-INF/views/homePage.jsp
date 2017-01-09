@@ -33,8 +33,8 @@
         </tr>
     </table>
     &nbsp;
-    <form:form action="/ttAX/home/book" method="get" ><input type="submit" value="Адрессная книга"></form:form>
-
+    <%--<form:form action="/ttAX/home/book" method="get" ><input type="submit" value="Адрессная книга"></form:form>--%>
+    <a href="${pageContext.request.contextPath}/home/book">Адрессная книга</a>
 
     <div id="myModal" class="modal">
         <div class="modal-content">
