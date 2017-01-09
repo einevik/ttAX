@@ -49,7 +49,7 @@ public class HomeController {
         return "homePage";
     }
 
-    @RequestMapping(value = "/home/book", method = RequestMethod.GET)
+    @RequestMapping(value = "/book", method = RequestMethod.GET)
     public String indexPage(Model model) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String login = auth.getName();
@@ -59,7 +59,7 @@ public class HomeController {
     }
 
 
-    @RequestMapping(value= "/home/book/add", method = RequestMethod.POST)
+    @RequestMapping(value= "/book/add", method = RequestMethod.POST)
     public String addUserBook(@ModelAttribute("addressBook") @Valid Addressbook addressbook, BindingResult bindingResult,HttpServletRequest request, Model model){
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String login = auth.getName();
@@ -75,7 +75,7 @@ public class HomeController {
         addressbook.setLogin(login);
         this.userService.addUserBook(addressbook);
 
-        return "redirect:/home/book";
+        return "redirect:/book";
     }
 
     @RequestMapping("/home/remove/{id}")
@@ -84,10 +84,10 @@ public class HomeController {
         return "redirect:/home";
     }
 
-    @RequestMapping("/home/book/remove/{id}")
+    @RequestMapping("/book/remove/{id}")
     public String removeUserBook(@PathVariable("id") int id){
         this.userService.removeUserBook(id);
-        return "redirect:/home/book";
+        return "redirect:/book";
     }
 
     @RequestMapping("/home/sort_sender")

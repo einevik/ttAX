@@ -20,7 +20,7 @@
 
 <form:form action="/ttAX/home" method="get" ><input type="submit" value="Назад"></form:form>
 &nbsp;
-<c:url var="addBook" value="/home/book/add" ></c:url>
+<c:url var="addBook" value="/book/add" ></c:url>
 <form:form action="${addBook}" modelAttribute="addressBook">
 
     <table>
@@ -49,7 +49,7 @@
                 <%--<td align="center" id="idRowBook">${addressBook.idAddressbook}</td>--%>
             <td align="center" class="recipient">${addressBook.recipient}</td>
             <td align="center"><input type="button" id="openButtonSend" class="openButtonSend" onclick="myFunction()" value="написать"/></td>
-            <td align="center"><a href="<c:url value='/home/book/remove/${addressBook.idAddressbook}' />" >удалить</a></td>
+            <td align="center"><a href="<c:url value='/book/remove/${addressBook.idAddressbook}' />" >удалить</a></td>
         </tr>
     </c:forEach>
 
