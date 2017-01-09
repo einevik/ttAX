@@ -12,7 +12,10 @@ import org.slf4j.LoggerFactory;
 @Repository
 public class UserDAOImpl implements UserDAO {
 
-    private static final Logger logger = LoggerFactory.getLogger(UserDAOImpl.class);
+    private static final Logger loggerUsers = LoggerFactory.getLogger(Users.class);
+    private static final Logger loggerRoles = LoggerFactory.getLogger(Roles.class);
+    private static final Logger Messages = LoggerFactory.getLogger(Messages.class);
+    private static final Logger Addressbook = LoggerFactory.getLogger(Addressbook.class);
 
     @Override
     public void addUser (Users users) {
@@ -21,7 +24,7 @@ public class UserDAOImpl implements UserDAO {
         session.save(users);
         session.getTransaction().commit();
         session.close();
-        logger.info("Users saved successfully, Users Details="+users);
+        loggerUsers.info("addUser saved successfully, Users Details="+users);
     }
 
     @Override
@@ -31,7 +34,7 @@ public class UserDAOImpl implements UserDAO {
         session.save(user);
         session.getTransaction().commit();
         session.close();
-        logger.info("User saved successfully, User Details="+user);
+        Addressbook.info("addUserBook saved successfully, User Details="+user);
     }
 
     @Override
@@ -42,7 +45,8 @@ public class UserDAOImpl implements UserDAO {
         session.save(roles);
         session.getTransaction().commit();
         session.close();
-//        logger.info("Users saved successfully, Users Details="+users);
+        loggerUsers.info("regUser saved successfully, Users Details="+users);
+        loggerRoles.info("regUser saved successfully, Roles Details="+roles);
     }
 
     @Override
@@ -52,7 +56,7 @@ public class UserDAOImpl implements UserDAO {
         session.update(user);
         session.getTransaction().commit();
         session.close();
-        logger.info("Users updated successfully, Users Details="+user);
+        loggerUsers.info("updateUser updated successfully, Users Details="+user);
     }
 
     @Override
@@ -62,7 +66,7 @@ public class UserDAOImpl implements UserDAO {
         session.update(role);
         session.getTransaction().commit();
         session.close();
-        logger.info("Roles updated successfully, Roles Details="+role);
+        loggerRoles.info("updateRole updated successfully, Roles Details="+role);
     }
 
     @SuppressWarnings("unchecked")
@@ -71,7 +75,7 @@ public class UserDAOImpl implements UserDAO {
         Session session = HibernateSessionFactory.getSessionFactory().openSession();
         List<Users> UsersList = session.createQuery("from Users").list();
         for(Users users: UsersList){
-            logger.info("Users List::"+users);
+            loggerUsers.info("Users List::"+users);
         }
         return UsersList;
     }
@@ -82,7 +86,7 @@ public class UserDAOImpl implements UserDAO {
         Session session = HibernateSessionFactory.getSessionFactory().openSession();
         List<Messages> MessagesList = session.createQuery("from Messages").list();
         for(Messages messages: MessagesList){
-            logger.info("Messages List::"+messages);
+            Messages.info("listMessages List::"+messages);
         }
         return MessagesList;
     }
@@ -93,7 +97,7 @@ public class UserDAOImpl implements UserDAO {
         Session session = HibernateSessionFactory.getSessionFactory().openSession();
         List<Messages> MessagesListByLogin = session.createQuery("from Messages where recipient=?").setParameter(0,login).list();
         for(Messages messages: MessagesListByLogin){
-            logger.info("Messages List::"+messages);
+            Messages.info("listMessagesByLogin List::"+messages);
         }
         return MessagesListByLogin;
     }
@@ -103,7 +107,7 @@ public class UserDAOImpl implements UserDAO {
         Session session = HibernateSessionFactory.getSessionFactory().openSession();
         List<Addressbook> addressbookList = session.createQuery("from Addressbook where login=?").setParameter(0,login).list();
         for(Addressbook addressbook: addressbookList){
-            logger.info("Addressbook List::"+addressbook);
+            Addressbook.info("listUserBook List::"+addressbook);
         }
         return addressbookList;
     }
@@ -117,8 +121,10 @@ public class UserDAOImpl implements UserDAO {
         session.getTransaction().commit();
         session.close();
         if (usersList.size() > 0) {
+            loggerUsers.info("findLogin loaded successfully, Users details="+usersList);
             return usersList.get(0);
         } else {
+            loggerUsers.info("findLogin loaded successfully, Users details="+usersList);
             return null;
         }
     }
@@ -127,7 +133,7 @@ public class UserDAOImpl implements UserDAO {
     public Users getUserById(int id) {
         Session session = HibernateSessionFactory.getSessionFactory().openSession();
         Users users = (Users) session.load(Users.class, new Integer(id));
-        logger.info("Users loaded successfully, Users details="+users);
+        loggerUsers.info("getUserById loaded successfully, Users details="+users);
         return users;
     }
 
@@ -135,7 +141,7 @@ public class UserDAOImpl implements UserDAO {
     public Addressbook getAddressBookById (int id) {
         Session session = HibernateSessionFactory.getSessionFactory().openSession();
         Addressbook addressbook = (Addressbook) session.load(Addressbook.class, new Integer(id));
-        logger.info("Addressbook loaded successfully, Addressbook details="+addressbook);
+        Addressbook.info("getAddressBookById loaded successfully, getAddressBookById details="+addressbook);
         return addressbook;
     }
 
@@ -143,7 +149,7 @@ public class UserDAOImpl implements UserDAO {
     public Roles getRoleById(int id) {
         Session session = HibernateSessionFactory.getSessionFactory().openSession();
         Roles roles= (Roles) session.load(Roles.class, new Integer(id));
-        logger.info("Users loaded successfully, Users details="+roles);
+        loggerRoles.info("getRoleById loaded successfully, getRoleById details="+roles);
         return roles;
     }
 
@@ -157,7 +163,7 @@ public class UserDAOImpl implements UserDAO {
             session.getTransaction().commit();
             session.close();
         }
-        logger.info("Users deleted successfully, Users details="+users);
+        loggerUsers.info("removeUser deleted successfully, Users details="+users);
     }
 
     @Override
@@ -170,7 +176,7 @@ public class UserDAOImpl implements UserDAO {
             session.getTransaction().commit();
             session.close();
         }
-        logger.info("Addressbook deleted successfully, Addressbook details="+addressbook);
+        Addressbook.info("removeUserBook deleted successfully, Addressbook details="+addressbook);
     }
 
     @Override
@@ -183,7 +189,7 @@ public class UserDAOImpl implements UserDAO {
             session.getTransaction().commit();
             session.close();
         }
-        logger.info("Messages deleted successfully, Messages details="+messages);
+        Messages.info("removeMessage deleted successfully, Messages details="+messages);
     }
 
     @SuppressWarnings("unchecked")
@@ -192,7 +198,7 @@ public class UserDAOImpl implements UserDAO {
         Session session = HibernateSessionFactory.getSessionFactory().openSession();
         List<Messages> messagesList = session.createQuery(query).list();
         for(Messages messages: messagesList){
-            logger.info("Messages List::"+messages);
+            Messages.info("sortTable List::"+messages);
         }
         return messagesList;
     }
@@ -204,6 +210,6 @@ public class UserDAOImpl implements UserDAO {
         session.save(messages);
         session.getTransaction().commit();
         session.close();
-        logger.info("Messages saved successfully, Messages Details="+messages);
+        Messages.info("sendMessage saved successfully, Messages Details="+messages);
     }
 }

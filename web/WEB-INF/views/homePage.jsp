@@ -143,7 +143,7 @@
             </security:authorize>
                 <td class="itemDate" align="center" >${messages.date}</td>
                 <td class="itemTheme" align="center" >${messages.theme}</td>
-                <td class="itemText" ><a class="infoMessage">${messages.text}</a></td>
+                <td class="itemText" style="color:blue;text-decoration: underline;"><a class="infoMessage">${messages.text}</a></td>
                 <td class="openButtonSend" id="openButtonSend" align="center"> <a href="<c:url value='/home/remove/${messages.idMessage}' />" >удалить</a></td>
                 <%--<td align="center"><input type="button" id="openButtonSend" class="openButtonSend" onclick="myFunction()" value="написать"/></td>--%>
             </tr>
@@ -152,7 +152,7 @@
         </table>
 
     <dialog id="myDialog" class="home-modal">
-        <h3>Отправить сообщение</h3>
+        <h3>Информация</h3>
         <table method="post" name="send-form" id="send-password">
             <tr>
                 <td><label>Отправитель</label></td>

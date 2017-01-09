@@ -7,8 +7,30 @@
 		</Console>
 	</Appenders>
 
+	<appender name="file" class="org.apache.log4j.RollingFileAppender">
+		<param name="append" value="false" />
+		<param name="maxFileSize" value="10KB" />
+		<param name="maxBackupIndex" value="5" />
+		<!-- For Tomcat -->
+		<param name="file" value="${catalina.home}/logs/ttAXservice.log" />
+		<!--<param name="file" value="D:/Project/ttAX/logs/ttAXservice.log" />-->
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern"
+				   value="%d{yyyy-MM-dd HH:mm:ss} %-5p %c{1}:%L - %m%n" />
+		</layout>
+	</appender>
+
 	<Loggers>
-		<Logger name= "com.examples.User" level="debug" additivity="true">
+		<Logger name= "com.examples.User" level="ALL" additivity="true">
+			<AppenderRef ref="Console"/>
+		</Logger>
+		<Logger name= "com.examples.Messages" level="ALL" additivity="true">
+			<AppenderRef ref="Console"/>
+		</Logger>
+		<Logger name= "com.examples.Roles" level="ALL" additivity="true">
+			<AppenderRef ref="Console"/>
+		</Logger>
+		<Logger name= "com.examples.Addressbook" level="ALL" additivity="true">
 			<AppenderRef ref="Console"/>
 		</Logger>
 

@@ -136,10 +136,11 @@
                     url: "/sendMessage",
                     data: {sendText:sendText, theme:theme, nameRecipient:nameRecipient},
                     success: function () {
-                        document.getElementById('myModal').reset();
+
                     }
                 });
                 modal.style.display = "none";
+
             });
         });
     });
